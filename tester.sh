@@ -52,11 +52,31 @@ RESULT=diff_result.txt
 
 # Test Construction
 echo -e $PURPLE"Testing Vector Constructors"$DEFAULT
-# c++ -Wall -Wextra -Werror objects/ft_containers/vector_construction.o; ./a.out
-c++ -Wall -Wextra -Werror objects/vector_construction.o; ./a.out; rm a.out
+c++ -Wall -Wextra -Werror objects/vector_construction.o; ./a.out
+valgrind --leak-check=full --show-leak-kinds=all ./a.out > vector_construction.txt 2>&1
+
+echo -e $PURPLE"Vector Constructors Valgrind Report"$DEFAULT
+{
+	if grep -q "All heap blocks were freed -- no leaks are possible" vector_construction.txt; then
+		echo -e "Leaks: "$GREEN"[OK]"$DEFAULT
+	else
+		echo -e "Leaks: "$RED"[KO]"$DEFAULT
+	fi
+
+	if grep -q "ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)" vector_construction.txt; then
+		echo -e "Error Summary: "$GREEN"[OK]"$DEFAULT
+	else
+		echo -e "Error Summary: "$RED"[KO]"$DEFAULT
+	fi
+}
+
+
+# c++ -Wall -Wextra -Werror objects/vector_construction.o; ./a.out; rm a.out
 
 
 # deletes all text files
 
 # echo -e $PURPLE"Deleted $FT_TEXT, $STD_TEXT, and $RESULT"$DEFAULT
 # rm $FT_TEXT $STD_TEXT $RESULT
+rm a.out vector_construction.txt
+make fclean
