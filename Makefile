@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/08/31 22:49:31 by gkintana         ###   ########.fr        #
+#    Updated: 2022/09/01 08:43:23 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS_FT)
 # @$(CXX) $(CPPFLAGS) $(OBJ_DIR)/$(OBJ_FT)/main.o -o $@
-			@echo $(DEFAULT)$(GREEN)"ft_containers Ready"$(DEFAULT)
+			@echo $(DEFAULT)$(GREEN)"Test Files Ready"$(DEFAULT)
 
 clean:
 			@$(RM) $(OBJ_DIR)
