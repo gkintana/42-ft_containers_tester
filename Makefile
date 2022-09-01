@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/09/01 08:43:23 by gkintana         ###   ########.fr        #
+#    Updated: 2022/09/01 11:34:22 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ CONT_DIR2	=	../42-ft_containers/include/utilities
 SRC_DIR		=	sources
 OBJ_DIR		=	objects
 
-SRCS		=	vector_construction.cpp
+SRCS		=	vector_construction.cpp \
+				vector_push.cpp
 OBJS_FT		=	$(addprefix $(OBJ_DIR)/, $(SRCS:%cpp=%o))
 
 CXX			=	c++
@@ -34,7 +35,6 @@ PURPLE		=	"\033[0;35m"
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
 			@mkdir -p $(OBJ_DIR)
 			@printf $(CYAN)
-			@printf "\033[A\033[2K\r"
 			$(CXX) $(CPPFLAGS) -I$(INC_DIR) -I$(CONT_DIR1) -I$(CONT_DIR2) -c $< -o $@
 
 all:		$(NAME)
