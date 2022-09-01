@@ -49,23 +49,30 @@ RESULT=diff_result.txt
 # 	echo -e "Status: "$GREEN"[OK]"$DEFAULT
 # fi
 
+COMPILER=c++
+COMPILE_FLAGS='-Wall -Wextra -Werror'
+VALGRIND=valgrind
+VALGRIND_FLAGS='--leak-check=full --show-leak-kinds=all'
+EXEC=a.out
+TEXT_FILE=output.txt
 
-for f in objects/*.o; do
-    echo -e $CYAN"Testing $f"$DEFAULT
-	c++ -Wall -Wextra -Werror "$f"; ./a.out
-	valgrind --leak-check=full --show-leak-kinds=all ./a.out > result.txt 2>&1
+for file in objects/*.o; do
+    echo -e $CYAN"Testing $file"$DEFAULT
+	$COMPILER $COMPILE_FLAGS "$file"; ./$EXEC
+
 	if [[ "$OSTYPE" =~ ^linux ]]; then
-		echo -e $CYAN"Vector Constructors Valgrind Report"$DEFAULT
-		if grep -q "All heap blocks were freed -- no leaks are possible" result.txt; then
+		$VALGRIND $VALGRIND_FLAGS ./$EXEC > $TEXT_FILE 2>&1
+		echo -e $CYAN"Valgrind report for $file"$DEFAULT
+		if grep -q "All heap blocks were freed -- no leaks are possible" $TEXT_FILE; then
 			echo -e "Leaks: "$GREEN"[OK]"$DEFAULT
 		else
 			echo -e "Leaks: "$RED"[KO]"$DEFAULT
 		fi
 
-		if grep -q "ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)" result.txt; then
-			echo -e "Error Summary: "$GREEN"[OK]"$DEFAULT
+		if grep -q "ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)" $TEXT_FILE; then
+			echo -e "Error Summary: "$GREEN"[OK]\n"$DEFAULT
 		else
-			echo -e "Error Summary: "$RED"[KO]"$DEFAULT
+			echo -e "Error Summary: "$RED"[KO]\n"$DEFAULT
 		fi
 	fi
 # echo "Output file => ${f%.*}"
@@ -77,5 +84,9 @@ done
 # echo -e $PURPLE"Deleted $FT_TEXT, $STD_TEXT, and $RESULT"$DEFAULT
 # rm $FT_TEXT $STD_TEXT $RESULT
 # rm a.out vector_construction.txt
-rm a.out *.txt
+if [[ "$OSTYPE" =~ ^linux ]]; then
+	rm a.out *.txt
+else
+	rm a.out
+fi
 make fclean
