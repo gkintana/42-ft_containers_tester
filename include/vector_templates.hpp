@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tester.hpp                                         :+:      :+:    :+:   */
+/*   vector_templates.hpp                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/01 12:54:31 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/01 15:33:50 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void checkMaxSize(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 template < class T >
 void checkContent(ft::vector<T> &ft, std::vector<T> &std) {
 	std::stringstream ft_ss, std_ss;
+
 	for (size_t i = 0; i < ft.size(); i++) {
 		ft_ss << ft[i] << " ";
 	}
@@ -196,6 +197,65 @@ void testVectors(ft::vector<T> &lhs, ft::vector<T> &rhs, bool add_newline) {
 	if (add_newline) {
 		std::cout << std::endl;
 	}
+}
+
+/*----------------------------------------------------------------------------*/
+
+template < class T >
+void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t start, size_t end) {
+	for (size_t i = start; i < end; i++) {
+		size_t random_value = rand() % 123456789;
+		ft.push_back(random_value);
+		std.push_back(random_value);
+	}
+	testVectors(ft, std, true);
+}
+
+template < class T >
+void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t start,
+                    size_t end, std::string str) {
+	for (size_t i = start; i < end; i++) {
+		ft.push_back(str);
+		std.push_back(str);
+	}
+	testVectors(ft, std, true);
+}
+
+/**
+** Helper function used in vector::at() tests. Pushes random values to both
+** ft and std containers.
+**
+** @param ft     address of container with ft namespace
+** @param std    address of container with std namespace
+** @param len    total increments
+*/
+template < class T >
+void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len) {
+	for (size_t i = 0; i < len; i++) {
+		size_t random_value = rand() % 123456789;
+		ft.push_back(random_value);
+		std.push_back(random_value);
+	}
+}
+
+/*----------------------------------------------------------------------------*/
+
+template < class T >
+void compareAtOutput(ft::vector<T> &ft, std::vector<T> &std) {
+	if (ft.size() != std.size()) {
+		for (size_t i = 0; i < std::max(ft.size(), std.size()); i++) {
+			std::cout << RED "[KO] " DEFAULT;
+		}
+	} else {
+		for (size_t i = 0; i < ft.size(); i++) {
+			if (ft.at(i) == std.at(i)) {
+				std::cout << GREEN "[OK] " DEFAULT;
+			} else {
+				std::cout << RED "[KO] " DEFAULT;
+			}
+		}
+	}
+	std::cout << std::endl;
 }
 
 #endif

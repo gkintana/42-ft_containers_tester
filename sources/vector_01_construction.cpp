@@ -6,11 +6,11 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:39:42 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/01 11:36:23 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/01 14:38:53 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <tester.hpp>
+#include <vector_templates.hpp>
 
 int main() {
 	std::cout << PURPLE "Vector Construction Tests" DEFAULT << std::endl
