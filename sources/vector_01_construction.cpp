@@ -6,69 +6,94 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:39:42 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/02 20:59:44 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/02 22:19:29 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector_templates.hpp>
 
+static void defaultTests();
+static void fillTests();
+static void rangeTests();
+static void copyTests();
+
 int main() {
-	std::cout << PURPLE "Vector Construction Tests" DEFAULT << std::endl
-	          << "Empty Char Vector: ";
+	std::cout << PURPLE "Default Constructor Tests" DEFAULT << std::endl;
+	defaultTests();
+
+	std::cout << PURPLE "Fill Constructor Tests" DEFAULT << std::endl;
+	fillTests();
+
+	std::cout << PURPLE "Range Constructor Tests" DEFAULT << std::endl;
+	rangeTests();
+
+	std::cout << PURPLE "Copy Constructor Tests" DEFAULT << std::endl;
+	copyTests();
+
+	return 0;
+}
+
+static void defaultTests() {
 	resetTestCount();
+	std::cout << "Empty Char Vector: ";
 	{
 		ft::vector<char> ft_vec;
 		std::vector<char> std_vec;
 		testVectors(ft_vec, std_vec, true);
 	}
-	std::cout << "Empty Int Vector: ";
+
 	resetTestCount();
+	std::cout << "Empty Int Vector: ";
 	{
 		ft::vector<int> ft_vec;
 		std::vector<int> std_vec;
 		testVectors(ft_vec, std_vec, true);
 	}
-	std::cout << "Empty Long Vector: ";
+
 	resetTestCount();
+	std::cout << "Empty Long Vector: ";
 	{
 		ft::vector<long> ft_vec;
 		std::vector<long> std_vec;
 		testVectors(ft_vec, std_vec, true);
 	}
-	std::cout << "Empty Size_t Vector: ";
+
 	resetTestCount();
+	std::cout << "Empty Size_t Vector: ";
 	{
 		ft::vector<size_t> ft_vec;
 		std::vector<size_t> std_vec;
 		testVectors(ft_vec, std_vec, true);
 	}
-	std::cout << "Empty Float Vector: ";
+
 	resetTestCount();
+	std::cout << "Empty Float Vector: ";
 	{
 		ft::vector<float> ft_vec;
 		std::vector<float> std_vec;
 		testVectors(ft_vec, std_vec, true);
 	}
-	std::cout << "Empty Double Vector: ";
+
 	resetTestCount();
+	std::cout << "Empty Double Vector: ";
 	{
 		ft::vector<double> ft_vec;
 		std::vector<double> std_vec;
 		testVectors(ft_vec, std_vec, true);
 	}
-	std::cout << "Empty String Vector: ";
+
 	resetTestCount();
+	std::cout << "Empty String Vector: ";
 	{
 		ft::vector<std::string> ft_vec;
 		std::vector<std::string> std_vec;
 		testVectors(ft_vec, std_vec, true);
 	}
+}
 
-	/*------------------------------------------------------------------------*/
-
-	std::cout << PURPLE "Fill Constructor Tests" DEFAULT << std::endl
-	          << "Char Vector: ";
+static void fillTests() {
 	resetTestCount();
+	std::cout << "Char Vector: ";
 	{
 		ft::vector<char> ft_vec(0, 97);
 		std::vector<char> std_vec(0, 97);
@@ -89,8 +114,8 @@ int main() {
 		}
 	}
 
-	std::cout << "Int Vector: ";
 	resetTestCount();
+	std::cout << "Int Vector: ";
 	{
 		ft::vector<int> ft_vec(0, 42);
 		std::vector<int> std_vec(0, 42);
@@ -121,8 +146,8 @@ int main() {
 		}
 	}
 
-	std::cout << "Long Vector: ";
 	resetTestCount();
+	std::cout << "Long Vector: ";
 	{
 		ft::vector<long> ft_vec(0, 42);
 		std::vector<long> std_vec(0, 42);
@@ -153,8 +178,8 @@ int main() {
 		}
 	}
 
-	std::cout << "Size_t Vector: ";
 	resetTestCount();
+	std::cout << "Size_t Vector: ";
 	{
 		ft::vector<size_t> ft_vec(0, 42);
 		std::vector<size_t> std_vec(0, 42);
@@ -175,8 +200,8 @@ int main() {
 		}
 	}
 
-	std::cout << "Float Vector: ";
 	resetTestCount();
+	std::cout << "Float Vector: ";
 	{
 		ft::vector<float> ft_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123f);
 		std::vector<float> std_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123f);
@@ -207,8 +232,8 @@ int main() {
 		}
 	}
 
-	std::cout << "Double Vector: ";
 	resetTestCount();
+	std::cout << "Double Vector: ";
 	{
 		ft::vector<double> ft_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123);
 		std::vector<double> std_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123);
@@ -238,16 +263,18 @@ int main() {
 			std::cout << test_no++ << "." GREEN "OK " DEFAULT << std::endl;
 		}
 	}
+}
 
-	/*------------------------------------------------------------------------*/
-
-	std::cout << PURPLE "Range Constructor Tests" DEFAULT << std::endl
-	          << "Begin to End: ";
+static void rangeTests() {
 	resetTestCount();
-	{
-		ft::vector<int> ft_vec(21, 42);
-		std::vector<int> std_vec(21, 42);
+	std::cout << "Begin to End: ";
 
+	size_t size = 21,
+	       value = 42;
+
+	ft::vector<int> ft_vec(size, value);
+	std::vector<int> std_vec(size, value);
+	{
 		ft::vector<int> ft_range(ft_vec.begin(), ft_vec.end());
 		testVectors(ft_vec, ft_range, false);
 
@@ -255,20 +282,31 @@ int main() {
 		testVectors(ft_range, std_range, false);
 	}
 	{
-		ft::vector<int> ft_vec(21, 42);
-		std::vector<int> std_vec(21, 42);
-
 		ft::vector<int> ft_range(ft_vec.begin() + 3, ft_vec.end() - 3);
 		std::vector<int> std_range(std_vec.begin() + 3, std_vec.end() - 3);
 		testVectors(ft_range, std_range, true);
 	}
 
-	std::cout << "Error Cases: ";
 	resetTestCount();
+	std::cout << "Error Cases: ";
 	{
-		ft::vector<int> ft_vec(21, 42);
-		std::vector<int> std_vec(21, 42);
+		/**
+		** the following cases will cause a lot of invalid reads but do
+		** not throw errors nor lead to a segmentation fault
+		**
+		** REMINDER: try to create a separate tester for these cases:
+		**
+		** ft::vector<int> ft_range(ft_vec.begin(), ft_vec.end() + 42);
+		** ft::vector<int> ft_range(ft_vec.begin() - (size * 42), ft_vec.end() + (size * 42));
+		*/
 
+		try {
+			ft::vector<int> ft_range(ft_vec.begin() + (size * 42), ft_vec.end() - (size * 42));
+			std::cout << test_no++ << "." RED "KO " DEFAULT;
+		} catch (std::exception &e) {
+			std::cout << test_no++ << "." GREEN "OK " DEFAULT;
+		}
+	
 		try {
 			ft::vector<int> ft_range(ft_vec.rend(), ft_vec.rbegin());
 			std::cout << test_no++ << "." RED "KO " DEFAULT << std::endl;
@@ -282,11 +320,41 @@ int main() {
 		// std::vector<int> std_range(std_vec.rend(), std_vec.rbegin());
 		// testVectors(ft_range, std_range, true);
 	}
-	/*------------------------------------------------------------------------*/
 
-	std::cout << PURPLE "Copy Constructor Tests" DEFAULT << std::endl
-	          << "Copy Constructor: ";
 	resetTestCount();
+	std::cout << "Character Array to Vector: ";
+	{
+		char array[] = { 0, 32, 48, 57, 97, 122 };
+		
+		ft::vector<char> ft_vec(array, array + (sizeof(array) / sizeof(char)));
+		std::vector<char> std_vec(array, array + (sizeof(array) / sizeof(char)));
+		testVectors(ft_vec, std_vec, true);
+	}
+
+	resetTestCount();
+	std::cout << "Int Array to Vector: ";
+	{
+		int array[] = { 12, 34, 56, 78, 90, 123, 456, 789, 12345, 67890 };
+		
+		ft::vector<int> ft_vec(array, array + (sizeof(array) / sizeof(int)));
+		std::vector<int> std_vec(array, array + (sizeof(array) / sizeof(int)));
+		testVectors(ft_vec, std_vec, true);
+	}
+
+	resetTestCount();
+	std::cout << "String Array to Vector: ";
+	{
+		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
+		
+		ft::vector<std::string> ft_vec(array, array + (sizeof(array) / sizeof(std::string)));
+		std::vector<std::string> std_vec(array, array + (sizeof(array) / sizeof(std::string)));
+		testVectors(ft_vec, std_vec, true);
+	}
+}
+
+static void copyTests() {
+	resetTestCount();
+	std::cout << "Copy Constructor: ";
 	{
 		ft::vector<int> ft_vec(10, 42);
 		std::vector<int> std_vec(10, 42);
@@ -300,8 +368,8 @@ int main() {
 		testVectors(ft_copy2, std_copy2, true);
 	}
 
-	std::cout << "Copy Assignment: ";
 	resetTestCount();
+	std::cout << "Copy Assignment: ";
 	{
 		ft::vector<int> ft_vec(10, 42);
 		std::vector<int> std_vec(10, 42);
@@ -313,8 +381,8 @@ int main() {
 		testVectors(ft_copy, std_copy, true);
 	}
 
-	std::cout << "Self-Assignment: ";
 	resetTestCount();
+	std::cout << "Self-Assignment: ";
 	{
 		ft::vector<int> ft_vec(10, INT_MAX);
 		ft::vector<int> ft_copy(ft_vec);
@@ -327,6 +395,4 @@ int main() {
 		std_vec = std_copy;
 		testVectors(ft_vec, std_vec, true);
 	}
-
-	return 0;
 }
