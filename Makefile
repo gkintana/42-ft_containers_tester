@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/09/01 14:47:39 by gkintana         ###   ########.fr        #
+#    Updated: 2022/09/02 20:58:01 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,12 +19,12 @@ SRC_DIR		=	sources
 OBJ_DIR		=	objects
 
 SRCS		=	vector_01_construction.cpp \
-				vector_at.cpp \
-				vector_push.cpp
+				vector_02_element_access.cpp \
+				vector_05_modifiers.cpp
 OBJS_FT		=	$(addprefix $(OBJ_DIR)/, $(SRCS:%cpp=%o))
 
 CXX			=	c++
-CPPFLAGS	=	-std=c++98 -Wall -Wextra -Werror
+CPPFLAGS	=	-std=c++98 -g3 -Wall -Wextra -Werror
 RM			=	rm -rf
 
 DEFAULT		=	"\033[0m"

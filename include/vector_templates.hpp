@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/01 15:33:50 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/02 20:52:08 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,33 +18,39 @@
 #include <cfloat>
 // #include <cstring>
 #include <vector>
+#include <iterator>
+
 #include <vector.hpp>
 #include <limits.h>
 
 #define DEFAULT    "\033[0m"
 #define RED        "\033[1;31m"
 #define GREEN      "\033[1;32m"
-#define YELLOW     "\033[1;33m"
+#define YELLOW     "\033[0;33m"
 #define PURPLE     "\033[1;35m"
-#define CYAN       "\033[0;36m"
+#define CYAN       "\033[3;36m"
+
+size_t test_no = 1;
+
+void resetTestCount() { test_no = 1; }
 
 /*----------------------------------------------------------------------------*/
 
 template < class T >
 void checkEmpty(ft::vector<T> &ft, std::vector<T> &std) {
 	if (ft.empty() == std.empty()) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << RED "[KO] " DEFAULT;
+		std::cout << test_no++ << "." RED "KO " DEFAULT;
 	}
 }
 
 template < class T >
 void checkEmpty(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 	if (lhs.empty() == rhs.empty()) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << RED "[KO] " DEFAULT;
+		std::cout << test_no++ << "." RED "KO " DEFAULT;
 	}
 }
 
@@ -53,18 +59,18 @@ void checkEmpty(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 template < class T >
 void checkSize(ft::vector<T> &ft, std::vector<T> &std) {
 	if (ft.size() == std.size()) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << RED "[KO] " DEFAULT;
+		std::cout << test_no++ << "." RED "KO " DEFAULT;
 	}
 }
 
 template < class T >
 void checkSize(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 	if (lhs.size() == rhs.size()) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << RED "[KO] " DEFAULT;
+		std::cout << test_no++ << "." RED "KO " DEFAULT;
 	}
 }
 
@@ -73,18 +79,18 @@ void checkSize(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 template < class T >
 void checkCapacity(ft::vector<T> &ft, std::vector<T> &std) {
 	if (ft.capacity() == std.capacity()) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << YELLOW "[WARNING] " DEFAULT;
+		std::cout << test_no++ << "." YELLOW "WARNING " DEFAULT;
 	}
 }
 
 template < class T >
 void checkCapacity(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 	if (lhs.capacity() == rhs.capacity()) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << YELLOW "[WARNING] " DEFAULT;
+		std::cout << test_no++ << "." YELLOW "WARNING " DEFAULT;
 	}
 }
 
@@ -94,22 +100,22 @@ void checkCapacity(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 template < class T >
 void checkMaxSize(ft::vector<T> &ft, std::vector<T> &std) {
 	if (ft.max_size() == ULONG_MAX && std.max_size() == LONG_MAX) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else if (ft.max_size() == std.max_size()) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << YELLOW "[KO] " DEFAULT;
+		std::cout << test_no++ << "." YELLOW "KO " DEFAULT;
 	}
 }
 
 template < class T >
 void checkMaxSize(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 	if (lhs.max_size() == ULONG_MAX && rhs.max_size() == LONG_MAX) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else if (lhs.max_size() == rhs.max_size()) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << YELLOW "[KO] " DEFAULT;
+		std::cout << test_no++ << "." YELLOW "KO " DEFAULT;
 	}
 }
 #endif
@@ -118,18 +124,18 @@ void checkMaxSize(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 template < class T >
 void checkMaxSize(ft::vector<T> &ft, std::vector<T> &std) {
 	if (ft.max_size() == std.max_size()) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << RED "[KO] " DEFAULT;
+		std::cout << test_no++ << "." RED "KO " DEFAULT;
 	}
 }
 
 template < class T >
 void checkMaxSize(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 	if (lhs.max_size() == rhs.max_size()) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << RED "[KO] " DEFAULT;
+		std::cout << test_no++ << "." RED "KO " DEFAULT;
 	}
 }
 #endif
@@ -148,9 +154,9 @@ void checkContent(ft::vector<T> &ft, std::vector<T> &std) {
 	}
 
 	if (ft_ss.str() == std_ss.str()) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << RED "[KO] " DEFAULT;
+		std::cout << test_no++ << "." RED "KO " DEFAULT;
 	}
 }
 
@@ -165,9 +171,9 @@ void checkContent(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 	}
 
 	if (lhs_ss.str() == rhs_ss.str()) {
-		std::cout << GREEN "[OK] " DEFAULT;
+		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << RED "[KO] " DEFAULT;
+		std::cout << test_no++ << "." RED "KO " DEFAULT;
 	}
 }
 
@@ -181,9 +187,7 @@ void testVectors(ft::vector<T> &ft, std::vector<T> &std, bool add_newline) {
 	checkCapacity(ft, std);
 	checkMaxSize(ft, std);
 
-	if (add_newline) {
-		std::cout << std::endl;
-	}
+	if (add_newline) { std::cout << std::endl; }
 }
 
 template < class T >
@@ -194,9 +198,7 @@ void testVectors(ft::vector<T> &lhs, ft::vector<T> &rhs, bool add_newline) {
 	checkCapacity(lhs, rhs);
 	checkMaxSize(lhs, rhs);
 
-	if (add_newline) {
-		std::cout << std::endl;
-	}
+	if (add_newline) { std::cout << std::endl; }
 }
 
 /*----------------------------------------------------------------------------*/
@@ -244,14 +246,14 @@ template < class T >
 void compareAtOutput(ft::vector<T> &ft, std::vector<T> &std) {
 	if (ft.size() != std.size()) {
 		for (size_t i = 0; i < std::max(ft.size(), std.size()); i++) {
-			std::cout << RED "[KO] " DEFAULT;
+			std::cout << test_no++ << "." RED "KO " DEFAULT;
 		}
 	} else {
 		for (size_t i = 0; i < ft.size(); i++) {
 			if (ft.at(i) == std.at(i)) {
-				std::cout << GREEN "[OK] " DEFAULT;
+				std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 			} else {
-				std::cout << RED "[KO] " DEFAULT;
+				std::cout << test_no++ << "." RED "KO " DEFAULT;
 			}
 		}
 	}

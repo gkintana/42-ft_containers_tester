@@ -46,15 +46,15 @@ for file in $EXEC_DIR/*; do
 		$VALGRIND $VFLAGS ./$file > $file.txt 2>&1
 		echo -e $CYAN"Valgrind report for $file"$DEFAULT
 		if grep -q "All heap blocks were freed -- no leaks are possible" $file.txt; then
-			echo -e "Leaks: "$GREEN"[OK]"$DEFAULT
+			echo -e "Leaks: "$GREEN"OK"$DEFAULT
 		else
-			echo -e "Leaks: "$RED"[KO]"$DEFAULT
+			echo -e "Leaks: "$RED"KO"$DEFAULT
 		fi
 
 		if grep -q "ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)" $file.txt; then
-			echo -e "Error Summary: "$GREEN"[OK]\n"$DEFAULT
+			echo -e "Error Summary: "$GREEN"OK\n"$DEFAULT
 		else
-			echo -e "Error Summary: "$RED"[KO]\n"$DEFAULT
+			echo -e "Error Summary: "$RED"KO\n"$DEFAULT
 		fi
 	fi
 done
