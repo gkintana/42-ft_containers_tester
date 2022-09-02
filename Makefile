@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/09/02 20:58:01 by gkintana         ###   ########.fr        #
+#    Updated: 2022/09/02 22:36:20 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ OBJ_DIR		=	objects
 
 SRCS		=	vector_01_construction.cpp \
 				vector_02_element_access.cpp \
+				vector_03_iterators.cpp \
 				vector_05_modifiers.cpp
 OBJS_FT		=	$(addprefix $(OBJ_DIR)/, $(SRCS:%cpp=%o))
 
