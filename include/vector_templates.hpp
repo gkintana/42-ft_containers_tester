@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/03 18:35:03 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/03 21:32:44 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,7 +213,7 @@ void testVectors(ft::vector<T> &lhs, ft::vector<T> &rhs, bool add_newline) {
 template < class T >
 void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len,
                     bool compare_vec, bool add_newline) {
-	for (size_t i = 0; i <= len; i++) {
+	for (size_t i = 0; i < len; i++) {
 		size_t random_value = rand() % 123456789;
 		ft.push_back(random_value);
 		std.push_back(random_value);
@@ -227,7 +227,7 @@ void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len,
 template < class T >
 void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len,
                     std::string str, bool compare_vec, bool add_newline) {
-	for (size_t i = 0; i <= len; i++) {
+	for (size_t i = 0; i < len; i++) {
 		ft.push_back(str);
 		std.push_back(str);
 	}
