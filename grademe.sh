@@ -9,7 +9,7 @@ RED='\033[1;31m'
 GREEN='\033[1;32m'
 YELLOW='\033[0;33m'
 PURPLE='\033[0;35m'
-CYAN='\033[1;4;36m'
+CYAN='\033[1;36m'
 
 OBJ_DIR=objects
 EXEC_DIR=executables

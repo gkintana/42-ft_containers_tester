@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:39:42 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/02 22:19:29 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:55:00 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -325,7 +325,7 @@ static void rangeTests() {
 	std::cout << "Character Array to Vector: ";
 	{
 		char array[] = { 0, 32, 48, 57, 97, 122 };
-		
+
 		ft::vector<char> ft_vec(array, array + (sizeof(array) / sizeof(char)));
 		std::vector<char> std_vec(array, array + (sizeof(array) / sizeof(char)));
 		testVectors(ft_vec, std_vec, true);
@@ -335,7 +335,7 @@ static void rangeTests() {
 	std::cout << "Int Array to Vector: ";
 	{
 		int array[] = { 12, 34, 56, 78, 90, 123, 456, 789, 12345, 67890 };
-		
+
 		ft::vector<int> ft_vec(array, array + (sizeof(array) / sizeof(int)));
 		std::vector<int> std_vec(array, array + (sizeof(array) / sizeof(int)));
 		testVectors(ft_vec, std_vec, true);
@@ -345,7 +345,7 @@ static void rangeTests() {
 	std::cout << "String Array to Vector: ";
 	{
 		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
-		
+
 		ft::vector<std::string> ft_vec(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std_vec(array, array + (sizeof(array) / sizeof(std::string)));
 		testVectors(ft_vec, std_vec, true);
