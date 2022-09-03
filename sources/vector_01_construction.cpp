@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:39:42 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/03 22:55:00 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:58:54 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void defaultTests() {
 	{
 		ft::vector<char> ft_vec;
 		std::vector<char> std_vec;
-		testVectors(ft_vec, std_vec, true);
+		compareVectors(ft_vec, std_vec, true);
 	}
 
 	resetTestCount();
@@ -47,7 +47,7 @@ static void defaultTests() {
 	{
 		ft::vector<int> ft_vec;
 		std::vector<int> std_vec;
-		testVectors(ft_vec, std_vec, true);
+		compareVectors(ft_vec, std_vec, true);
 	}
 
 	resetTestCount();
@@ -55,7 +55,7 @@ static void defaultTests() {
 	{
 		ft::vector<long> ft_vec;
 		std::vector<long> std_vec;
-		testVectors(ft_vec, std_vec, true);
+		compareVectors(ft_vec, std_vec, true);
 	}
 
 	resetTestCount();
@@ -63,7 +63,7 @@ static void defaultTests() {
 	{
 		ft::vector<size_t> ft_vec;
 		std::vector<size_t> std_vec;
-		testVectors(ft_vec, std_vec, true);
+		compareVectors(ft_vec, std_vec, true);
 	}
 
 	resetTestCount();
@@ -71,7 +71,7 @@ static void defaultTests() {
 	{
 		ft::vector<float> ft_vec;
 		std::vector<float> std_vec;
-		testVectors(ft_vec, std_vec, true);
+		compareVectors(ft_vec, std_vec, true);
 	}
 
 	resetTestCount();
@@ -79,7 +79,7 @@ static void defaultTests() {
 	{
 		ft::vector<double> ft_vec;
 		std::vector<double> std_vec;
-		testVectors(ft_vec, std_vec, true);
+		compareVectors(ft_vec, std_vec, true);
 	}
 
 	resetTestCount();
@@ -87,7 +87,7 @@ static void defaultTests() {
 	{
 		ft::vector<std::string> ft_vec;
 		std::vector<std::string> std_vec;
-		testVectors(ft_vec, std_vec, true);
+		compareVectors(ft_vec, std_vec, true);
 	}
 }
 
@@ -97,12 +97,12 @@ static void fillTests() {
 	{
 		ft::vector<char> ft_vec(0, 97);
 		std::vector<char> std_vec(0, 97);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<char> ft_vec(21, 97);
 		std::vector<char> std_vec(21, 97);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		try {
@@ -119,22 +119,22 @@ static void fillTests() {
 	{
 		ft::vector<int> ft_vec(0, 42);
 		std::vector<int> std_vec(0, 42);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<int> ft_vec(10, INT_MIN);
 		std::vector<int> std_vec(10, INT_MIN);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<int> ft_vec(10, 0);
 		std::vector<int> std_vec(10, 0);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<int> ft_vec(10, INT_MAX);
 		std::vector<int> std_vec(10, INT_MAX);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		try {
@@ -151,22 +151,22 @@ static void fillTests() {
 	{
 		ft::vector<long> ft_vec(0, 42);
 		std::vector<long> std_vec(0, 42);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<long> ft_vec(10, LONG_MIN);
 		std::vector<long> std_vec(10, LONG_MIN);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<long> ft_vec(10, 0);
 		std::vector<long> std_vec(10, 0);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<long> ft_vec(10, LONG_MAX);
 		std::vector<long> std_vec(10, LONG_MAX);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		try {
@@ -183,12 +183,12 @@ static void fillTests() {
 	{
 		ft::vector<size_t> ft_vec(0, 42);
 		std::vector<size_t> std_vec(0, 42);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<size_t> ft_vec(21, 42);
 		std::vector<size_t> std_vec(21, 42);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		try {
@@ -205,22 +205,22 @@ static void fillTests() {
 	{
 		ft::vector<float> ft_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123f);
 		std::vector<float> std_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123f);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<float> ft_vec(10, FLT_MIN);
 		std::vector<float> std_vec(10, FLT_MIN);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<float> ft_vec(10, 0);
 		std::vector<float> std_vec(10, 0);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<float> ft_vec(10, FLT_MAX);
 		std::vector<float> std_vec(10, FLT_MAX);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		try {
@@ -237,22 +237,22 @@ static void fillTests() {
 	{
 		ft::vector<double> ft_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123);
 		std::vector<double> std_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<double> ft_vec(10, DBL_MIN);
 		std::vector<double> std_vec(10, DBL_MIN);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<double> ft_vec(10, 0);
 		std::vector<double> std_vec(10, 0);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		ft::vector<double> ft_vec(10, DBL_MAX);
 		std::vector<double> std_vec(10, DBL_MAX);
-		testVectors(ft_vec, std_vec, false);
+		compareVectors(ft_vec, std_vec, false);
 	}
 	{
 		try {
@@ -276,15 +276,15 @@ static void rangeTests() {
 	std::vector<int> std_vec(size, value);
 	{
 		ft::vector<int> ft_range(ft_vec.begin(), ft_vec.end());
-		testVectors(ft_vec, ft_range, false);
+		compareVectors(ft_vec, ft_range, false);
 
 		std::vector<int> std_range(std_vec.begin(), std_vec.end());
-		testVectors(ft_range, std_range, false);
+		compareVectors(ft_range, std_range, false);
 	}
 	{
 		ft::vector<int> ft_range(ft_vec.begin() + 3, ft_vec.end() - 3);
 		std::vector<int> std_range(std_vec.begin() + 3, std_vec.end() - 3);
-		testVectors(ft_range, std_range, true);
+		compareVectors(ft_range, std_range, true);
 	}
 
 	resetTestCount();
@@ -313,12 +313,12 @@ static void rangeTests() {
 		} catch (std::exception &e) {
 			std::cout << test_no++ << "." GREEN "OK " DEFAULT << std::endl;
 		}
-		// testVectors(ft_vec, ft_range, false);
+		// compareVectors(ft_vec, ft_range, false);
 		// ft::vector<int> ft_range(ft_vec.rbegin(), ft_vec.rend());
 
 		// std::vector<int> std_range(std_vec.rbegin(), std_vec.rend());
 		// std::vector<int> std_range(std_vec.rend(), std_vec.rbegin());
-		// testVectors(ft_range, std_range, true);
+		// compareVectors(ft_range, std_range, true);
 	}
 
 	resetTestCount();
@@ -328,7 +328,7 @@ static void rangeTests() {
 
 		ft::vector<char> ft_vec(array, array + (sizeof(array) / sizeof(char)));
 		std::vector<char> std_vec(array, array + (sizeof(array) / sizeof(char)));
-		testVectors(ft_vec, std_vec, true);
+		compareVectors(ft_vec, std_vec, true);
 	}
 
 	resetTestCount();
@@ -338,7 +338,7 @@ static void rangeTests() {
 
 		ft::vector<int> ft_vec(array, array + (sizeof(array) / sizeof(int)));
 		std::vector<int> std_vec(array, array + (sizeof(array) / sizeof(int)));
-		testVectors(ft_vec, std_vec, true);
+		compareVectors(ft_vec, std_vec, true);
 	}
 
 	resetTestCount();
@@ -348,7 +348,7 @@ static void rangeTests() {
 
 		ft::vector<std::string> ft_vec(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std_vec(array, array + (sizeof(array) / sizeof(std::string)));
-		testVectors(ft_vec, std_vec, true);
+		compareVectors(ft_vec, std_vec, true);
 	}
 }
 
@@ -361,11 +361,11 @@ static void copyTests() {
 
 		ft::vector<int> ft_copy1(ft_vec);
 		std::vector<int> std_copy1(std_vec);
-		testVectors(ft_copy1, std_copy1, false);
+		compareVectors(ft_copy1, std_copy1, false);
 
 		ft::vector<int> ft_copy2 = ft_vec;
 		std::vector<int> std_copy2 = std_vec;
-		testVectors(ft_copy2, std_copy2, true);
+		compareVectors(ft_copy2, std_copy2, true);
 	}
 
 	resetTestCount();
@@ -378,7 +378,7 @@ static void copyTests() {
 		ft_copy = ft_vec;
 		std::vector<int> std_copy;
 		std_copy = std_vec;
-		testVectors(ft_copy, std_copy, true);
+		compareVectors(ft_copy, std_copy, true);
 	}
 
 	resetTestCount();
@@ -386,13 +386,13 @@ static void copyTests() {
 	{
 		ft::vector<int> ft_vec(10, INT_MAX);
 		ft::vector<int> ft_copy(ft_vec);
-		testVectors(ft_vec, ft_copy, false);
+		compareVectors(ft_vec, ft_copy, false);
 		ft_vec = ft_copy;
-		testVectors(ft_vec, ft_copy, false);
+		compareVectors(ft_vec, ft_copy, false);
 
 		std::vector<int> std_vec(10, INT_MAX);
 		std::vector<int> std_copy(std_vec);
 		std_vec = std_copy;
-		testVectors(ft_vec, std_vec, true);
+		compareVectors(ft_vec, std_vec, true);
 	}
 }

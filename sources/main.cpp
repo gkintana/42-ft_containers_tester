@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 17:05:25 by gkintana          #+#    #+#             */
-/*   Updated: 2022/08/31 18:47:23 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:58:54 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,7 +280,7 @@ int main() {
 	{
 		NAMESPACE::vector<char> ft_vec;
 		// std::vector<char> std_vec;
-		// testVectors(ft_vec, std_vec);
+		// compareVectors(ft_vec, std_vec);
 		printInfo(ft_vec, true);
 		std::cout << ft_vec.max_size() << std::endl;
 		

@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:26:38 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/03 22:55:42 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/03 23:00:38 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void clearTests() {
 	resetTestCount();
 	std::cout << "Empty Int Vector: ";
 	clearVectors(ft_vec, std_vec);
-	testVectors(ft_vec, std_vec, true);
+	compareVectors(ft_vec, std_vec, true);
 
 	resetTestCount();
 	std::cout << "Char Vector: ";
@@ -56,14 +56,14 @@ static void clearTests() {
 		ft::vector<char> ft_char(42, 'A');
 		std::vector<char> std_char(42, 'A');
 		clearVectors(ft_char, std_char);
-		testVectors(ft_char, std_char, true);
+		compareVectors(ft_char, std_char, true);
 	}
 
 	resetTestCount();
 	std::cout << "Int Vector: ";
 	vectorPushLoop(ft_vec, std_vec, 10, false, false);
 	clearVectors(ft_vec, std_vec);
-	testVectors(ft_vec, std_vec, true);
+	compareVectors(ft_vec, std_vec, true);
 
 	resetTestCount();
 	std::cout << "String Vector: ";
@@ -73,7 +73,7 @@ static void clearTests() {
 		ft::vector<std::string> ft_str(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std_str(array, array + (sizeof(array) / sizeof(std::string)));
 		clearVectors(ft_str, std_str);
-		testVectors(ft_str, std_str, true);
+		compareVectors(ft_str, std_str, true);
 	}
 }
 
@@ -120,8 +120,8 @@ static void swapTests() {
 		ft_vec1.swap(ft_vec2);
 		std_vec1.swap(std_vec2);
 		// test no. 11 - 15
-		testVectors(ft_vec1, std_vec1, true);
+		compareVectors(ft_vec1, std_vec1, false);
 		// test no. 16 - 20
-		testVectors(ft_vec2, std_vec2, true);
+		compareVectors(ft_vec2, std_vec2, true);
 	}
 }

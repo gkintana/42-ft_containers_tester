@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/03 21:32:44 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:58:54 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,7 @@ void checkContent(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 /*----------------------------------------------------------------------------*/
 
 template < class T >
-void testVectors(ft::vector<T> &ft, std::vector<T> &std, bool add_newline) {
+void compareVectors(ft::vector<T> &ft, std::vector<T> &std, bool add_newline) {
 	checkContent(ft, std);
 	checkEmpty(ft, std);
 	checkSize(ft, std);
@@ -191,7 +191,7 @@ void testVectors(ft::vector<T> &ft, std::vector<T> &std, bool add_newline) {
 }
 
 template < class T >
-void testVectors(ft::vector<T> &lhs, ft::vector<T> &rhs, bool add_newline) {
+void compareVectors(ft::vector<T> &lhs, ft::vector<T> &rhs, bool add_newline) {
 	checkContent(lhs, rhs);
 	checkEmpty(lhs, rhs);
 	checkSize(lhs, rhs);
@@ -220,7 +220,7 @@ void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len,
 	}
 
 	if (compare_vec) {
-		testVectors(ft, std, add_newline);
+		compareVectors(ft, std, add_newline);
 	}
 }
 
@@ -233,7 +233,7 @@ void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len,
 	}
 
 	if (compare_vec) {
-		testVectors(ft, std, add_newline);
+		compareVectors(ft, std, add_newline);
 	}
 }
 
