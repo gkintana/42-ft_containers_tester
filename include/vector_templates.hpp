@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/02 20:52:08 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:35:03 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,40 +203,37 @@ void testVectors(ft::vector<T> &lhs, ft::vector<T> &rhs, bool add_newline) {
 
 /*----------------------------------------------------------------------------*/
 
-template < class T >
-void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t start, size_t end) {
-	for (size_t i = start; i < end; i++) {
-		size_t random_value = rand() % 123456789;
-		ft.push_back(random_value);
-		std.push_back(random_value);
-	}
-	testVectors(ft, std, true);
-}
-
-template < class T >
-void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t start,
-                    size_t end, std::string str) {
-	for (size_t i = start; i < end; i++) {
-		ft.push_back(str);
-		std.push_back(str);
-	}
-	testVectors(ft, std, true);
-}
-
 /**
-** Helper function used in vector::at() tests. Pushes random values to both
-** ft and std containers.
+** @brief pushes random values to both ft and std containers
 **
 ** @param ft     address of container with ft namespace
 ** @param std    address of container with std namespace
-** @param len    total increments
+** @param len    desired vector size
 */
 template < class T >
-void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len) {
-	for (size_t i = 0; i < len; i++) {
+void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len,
+                    bool compare_vec, bool add_newline) {
+	for (size_t i = 0; i <= len; i++) {
 		size_t random_value = rand() % 123456789;
 		ft.push_back(random_value);
 		std.push_back(random_value);
+	}
+
+	if (compare_vec) {
+		testVectors(ft, std, add_newline);
+	}
+}
+
+template < class T >
+void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len,
+                    std::string str, bool compare_vec, bool add_newline) {
+	for (size_t i = 0; i <= len; i++) {
+		ft.push_back(str);
+		std.push_back(str);
+	}
+
+	if (compare_vec) {
+		testVectors(ft, std, add_newline);
 	}
 }
 

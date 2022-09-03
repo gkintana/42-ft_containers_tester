@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:26:11 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/02 23:50:24 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:50:01 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,34 @@ static void iteratorLoop(std::vector<T> &std, typename ft::vector<T>::iterator s
 	if (add_newline) { std::cout << std::endl; }
 }
 
+/**
+**
+*/
+template < class T >
+static void reverseIteratorLoop(ft::vector<T> &ft, std::vector<T> &std,
+                                typename ft::vector<T>::reverse_iterator start,
+                                typename ft::vector<T>::reverse_iterator end,
+								bool add_newline) {
+	typedef typename std::vector<T>::reverse_iterator STD_REV;
+	typedef typename ft::vector<T>::reverse_iterator FT_REV;
+
+	size_t pos = 0;
+	for (FT_REV temp = ft.rend(); temp != start; temp--) {
+		pos++;
+	}
+
+	STD_REV std_iter = std.rend() - pos;
+	for (FT_REV ft_iter = start; ft_iter != end; ft_iter--) {
+		if (*ft_iter == *std_iter--) {
+			std::cout << test_no++ << "." GREEN "OK " DEFAULT;
+		} else {
+			std::cout << test_no++ << "." RED "KO " DEFAULT;
+		}
+	}
+
+	if (add_newline) { std::cout << std::endl; }
+}
+
 /*----------------------------------------------------------------------------*/
 
 #define BEGIN     1
@@ -82,8 +110,9 @@ static void iteratorLoop(std::vector<T> &std, typename ft::vector<T>::iterator s
 static void beginTests();
 static void endTests();
 static void iteratorLoopTests();
-
+static void rbeginTests();
 static void rendTests();
+static void reverseIteratorLoopTests();
 
 int main() {
 	std::cout << PURPLE "Iterator Tests" DEFAULT << std::endl;
@@ -92,7 +121,9 @@ int main() {
 	iteratorLoopTests();
 
 	std::cout << PURPLE "Reverse Iterator Tests" DEFAULT << std::endl;
+	rbeginTests();
 	rendTests();
+	reverseIteratorLoopTests();
 
 	return 0;
 }
@@ -142,16 +173,45 @@ static void iteratorLoopTests() {
 	iteratorLoop(std_vec, ft_vec.end() - (size / 2), ft_vec.end() - (size / 4), true);
 }
 
-static void rendTests() {
+static void rbeginTests() {
 	resetTestCount();
-	std::cout << "Rend: ";
+	std::cout << "Rbegin: ";
 
 	size_t size = 21,
 	       value = 42;
 	ft::vector<int> ft_vec(size, value);
 	std::vector<int> std_vec(size, value);
 
+	compareWithStd(ft_vec, std_vec, 0, RBEGIN, false);
+	compareWithStd(ft_vec, std_vec, size / 2, RBEGIN, false);
+	compareWithStd(ft_vec, std_vec, size - 1, RBEGIN, true);
+}
+
+static void rendTests() {
+	resetTestCount();
+	std::cout << "Rend: ";
+
+	size_t size = 21,
+	       value = 42;
+	// vectorPushLoop(ft_vec, std_vec, 10, false, false);
+	ft::vector<int> ft_vec(size, value);
+	std::vector<int> std_vec(size, value);
+
 	compareWithStd(ft_vec, std_vec, 1, REND, false);
 	compareWithStd(ft_vec, std_vec, size / 2, REND, false);
 	compareWithStd(ft_vec, std_vec, size - 1, REND, true);
+}
+
+static void reverseIteratorLoopTests() {
+	resetTestCount();
+	std::cout << "Reverse Iterator Loop: ";
+
+	ft::vector<int> ft_vec;
+	std::vector<int> std_vec;
+	vectorPushLoop(ft_vec, std_vec, 10, false, false);
+
+	reverseIteratorLoop(ft_vec, std_vec, ft_vec.rend() - 1, ft_vec.rbegin(), false);
+	reverseIteratorLoop(ft_vec, std_vec, ft_vec.rend() - (ft_vec.size() / 2), ft_vec.rbegin(), false);
+	reverseIteratorLoop(ft_vec, std_vec, ft_vec.rend() - (ft_vec.size() - 1), ft_vec.rbegin(), false);
+	reverseIteratorLoop(ft_vec, std_vec, ft_vec.rend() - ft_vec.size(), ft_vec.rbegin(), true);
 }

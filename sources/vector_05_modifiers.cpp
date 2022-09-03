@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:26:38 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/02 20:57:05 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/03 18:32:29 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main() {
 	{
 		ft::vector<char> ft_vec;
 		std::vector<char> std_vec;
-		vectorPushLoop(ft_vec, std_vec, 32, 127);
+		vectorPushLoop(ft_vec, std_vec, 42, true, true);
 	}
 
 	/*------------------------------------------------------------------------*/
@@ -30,7 +30,7 @@ int main() {
 	{
 		ft::vector<int> ft_vec;
 		std::vector<int> std_vec;
-		vectorPushLoop(ft_vec, std_vec, 0, 42);
+		vectorPushLoop(ft_vec, std_vec, 42, true, true);
 	}
 
 	/*------------------------------------------------------------------------*/
@@ -40,7 +40,7 @@ int main() {
 	{
 		ft::vector<std::string> ft_vec;
 		std::vector<std::string> std_vec;
-		vectorPushLoop(ft_vec, std_vec, 0, 42, "Hello World!");
+		vectorPushLoop(ft_vec, std_vec, 42, "Hello World!", true, true);
 	}
 
 	return 0;
