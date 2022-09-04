@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:26:11 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/03 21:42:12 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:51:21 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,8 +143,7 @@ int main() {
 /*----------------------------------------------------------------------------*/
 
 static void beginTests() {
-	resetTestCount();
-	std::cout << "Begin: ";
+	resetTestCount("Begin: ");
 
 	ft::vector<int> ft_vec;
 	std::vector<int> std_vec;
@@ -159,8 +158,7 @@ static void beginTests() {
 }
 
 static void endTests() {
-	resetTestCount();
-	std::cout << "End: ";
+	resetTestCount("End: ");
 
 	ft::vector<int> ft_vec;
 	std::vector<int> std_vec;
@@ -175,8 +173,7 @@ static void endTests() {
 }
 
 static void iteratorLoopTests() {
-	resetTestCount();
-	std::cout << "Iterator Loop: ";
+	resetTestCount("Iterator Loop: ");
 
 	ft::vector<int> ft_vec;
 	std::vector<int> std_vec;
@@ -215,8 +212,7 @@ static void iteratorLoopTests() {
 }
 
 static void rbeginTests() {
-	resetTestCount();
-	std::cout << "Rbegin: ";
+	resetTestCount("Rbegin: ");
 
 	ft::vector<int> ft_vec;
 	std::vector<int> std_vec;
@@ -231,8 +227,7 @@ static void rbeginTests() {
 }
 
 static void rendTests() {
-	resetTestCount();
-	std::cout << "Rend: ";
+	resetTestCount("Rend: ");
 
 	ft::vector<int> ft_vec;
 	std::vector<int> std_vec;
@@ -247,8 +242,7 @@ static void rendTests() {
 }
 
 static void reverseIteratorLoopTests() {
-	resetTestCount();
-	std::cout << "Reverse Iterator Loop: ";
+	resetTestCount("Reverse Iterator Loop: ");
 
 	ft::vector<int> ft_vec;
 	std::vector<int> std_vec;

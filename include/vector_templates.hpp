@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/03 22:58:54 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:51:51 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@
 
 size_t test_no = 1;
 
-void resetTestCount() { test_no = 1; }
+void resetTestCount(std::string test_type) {
+	test_no = 1;
+	std::cout << test_type;
+}
 
 /*----------------------------------------------------------------------------*/
 

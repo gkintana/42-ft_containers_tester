@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:26:38 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/03 23:00:38 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:50:32 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void clearVectors(ft::vector<T> &ft, std::vector<T> &std) {
 
 static void clearTests();
 static void pushBackTests();
+// static void popBackTests();
 static void swapTests();
 
 int main() {
@@ -45,13 +46,11 @@ static void clearTests() {
 	ft::vector<int> ft_vec;
 	std::vector<int> std_vec;
 
-	resetTestCount();
-	std::cout << "Empty Int Vector: ";
+	resetTestCount("Empty Int Vector: ");
 	clearVectors(ft_vec, std_vec);
 	compareVectors(ft_vec, std_vec, true);
 
-	resetTestCount();
-	std::cout << "Char Vector: ";
+	resetTestCount("Char Vector: ");
 	{
 		ft::vector<char> ft_char(42, 'A');
 		std::vector<char> std_char(42, 'A');
@@ -59,14 +58,12 @@ static void clearTests() {
 		compareVectors(ft_char, std_char, true);
 	}
 
-	resetTestCount();
-	std::cout << "Int Vector: ";
+	resetTestCount("Int Vector: ");
 	vectorPushLoop(ft_vec, std_vec, 10, false, false);
 	clearVectors(ft_vec, std_vec);
 	compareVectors(ft_vec, std_vec, true);
 
-	resetTestCount();
-	std::cout << "String Vector: ";
+	resetTestCount("String Vector: ");
 	{
 		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
 
@@ -78,24 +75,21 @@ static void clearTests() {
 }
 
 static void pushBackTests() {
-	resetTestCount();
-	std::cout << "Char Vector: ";
+	resetTestCount("Char Vector: ");
 	{
 		ft::vector<char> ft_vec;
 		std::vector<char> std_vec;
 		vectorPushLoop(ft_vec, std_vec, 42, true, true);
 	}
 
-	resetTestCount();
-	std::cout << "Int Vector: ";
+	resetTestCount("Int Vector: ");
 	{
 		ft::vector<int> ft_vec;
 		std::vector<int> std_vec;
 		vectorPushLoop(ft_vec, std_vec, 42, true, true);
 	}
 
-	resetTestCount();
-	std::cout << "String Vector: ";
+	resetTestCount("String Vector: ");
 	{
 		ft::vector<std::string> ft_vec;
 		std::vector<std::string> std_vec;
@@ -103,9 +97,12 @@ static void pushBackTests() {
 	}
 }
 
+// static void popBackTests() {
+	
+// }
+
 static void swapTests() {
-	resetTestCount();
-	std::cout << "Int Vector: ";
+	resetTestCount("Int Vector: ");
 	{
 		ft::vector<int> ft_vec1;
 		std::vector<int> std_vec1;

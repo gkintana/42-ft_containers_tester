@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:39:42 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/03 22:58:54 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/04 15:51:36 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,56 +34,49 @@ int main() {
 }
 
 static void defaultTests() {
-	resetTestCount();
-	std::cout << "Empty Char Vector: ";
+	resetTestCount("Empty Char Vector: ");
 	{
 		ft::vector<char> ft_vec;
 		std::vector<char> std_vec;
 		compareVectors(ft_vec, std_vec, true);
 	}
 
-	resetTestCount();
-	std::cout << "Empty Int Vector: ";
+	resetTestCount("Empty Int Vector: ");
 	{
 		ft::vector<int> ft_vec;
 		std::vector<int> std_vec;
 		compareVectors(ft_vec, std_vec, true);
 	}
 
-	resetTestCount();
-	std::cout << "Empty Long Vector: ";
+	resetTestCount("Empty Long Vector: ");
 	{
 		ft::vector<long> ft_vec;
 		std::vector<long> std_vec;
 		compareVectors(ft_vec, std_vec, true);
 	}
 
-	resetTestCount();
-	std::cout << "Empty Size_t Vector: ";
+	resetTestCount("Empty Size_t Vector: ");
 	{
 		ft::vector<size_t> ft_vec;
 		std::vector<size_t> std_vec;
 		compareVectors(ft_vec, std_vec, true);
 	}
 
-	resetTestCount();
-	std::cout << "Empty Float Vector: ";
+	resetTestCount("Empty Float Vector: ");
 	{
 		ft::vector<float> ft_vec;
 		std::vector<float> std_vec;
 		compareVectors(ft_vec, std_vec, true);
 	}
 
-	resetTestCount();
-	std::cout << "Empty Double Vector: ";
+	resetTestCount("Empty Double Vector: ");
 	{
 		ft::vector<double> ft_vec;
 		std::vector<double> std_vec;
 		compareVectors(ft_vec, std_vec, true);
 	}
 
-	resetTestCount();
-	std::cout << "Empty String Vector: ";
+	resetTestCount("Empty String Vector: ");
 	{
 		ft::vector<std::string> ft_vec;
 		std::vector<std::string> std_vec;
@@ -92,8 +85,7 @@ static void defaultTests() {
 }
 
 static void fillTests() {
-	resetTestCount();
-	std::cout << "Char Vector: ";
+	resetTestCount("Char Vector: ");
 	{
 		ft::vector<char> ft_vec(0, 97);
 		std::vector<char> std_vec(0, 97);
@@ -114,8 +106,7 @@ static void fillTests() {
 		}
 	}
 
-	resetTestCount();
-	std::cout << "Int Vector: ";
+	resetTestCount("Int Vector: ");
 	{
 		ft::vector<int> ft_vec(0, 42);
 		std::vector<int> std_vec(0, 42);
@@ -146,8 +137,7 @@ static void fillTests() {
 		}
 	}
 
-	resetTestCount();
-	std::cout << "Long Vector: ";
+	resetTestCount("Long Vector: ");
 	{
 		ft::vector<long> ft_vec(0, 42);
 		std::vector<long> std_vec(0, 42);
@@ -178,8 +168,7 @@ static void fillTests() {
 		}
 	}
 
-	resetTestCount();
-	std::cout << "Size_t Vector: ";
+	resetTestCount("Size_t Vector: ");
 	{
 		ft::vector<size_t> ft_vec(0, 42);
 		std::vector<size_t> std_vec(0, 42);
@@ -200,8 +189,7 @@ static void fillTests() {
 		}
 	}
 
-	resetTestCount();
-	std::cout << "Float Vector: ";
+	resetTestCount("Float Vector: ");
 	{
 		ft::vector<float> ft_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123f);
 		std::vector<float> std_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123f);
@@ -232,8 +220,7 @@ static void fillTests() {
 		}
 	}
 
-	resetTestCount();
-	std::cout << "Double Vector: ";
+	resetTestCount("Double Vector: ");
 	{
 		ft::vector<double> ft_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123);
 		std::vector<double> std_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123);
@@ -266,14 +253,13 @@ static void fillTests() {
 }
 
 static void rangeTests() {
-	resetTestCount();
-	std::cout << "Begin to End: ";
+	resetTestCount("Begin to End: ");
 
 	size_t size = 21,
 	       value = 42;
-
 	ft::vector<int> ft_vec(size, value);
 	std::vector<int> std_vec(size, value);
+
 	{
 		ft::vector<int> ft_range(ft_vec.begin(), ft_vec.end());
 		compareVectors(ft_vec, ft_range, false);
@@ -287,8 +273,7 @@ static void rangeTests() {
 		compareVectors(ft_range, std_range, true);
 	}
 
-	resetTestCount();
-	std::cout << "Error Cases: ";
+	resetTestCount("Error Cases: ");
 	{
 		/**
 		** the following cases will cause a lot of invalid reads but do
@@ -321,8 +306,7 @@ static void rangeTests() {
 		// compareVectors(ft_range, std_range, true);
 	}
 
-	resetTestCount();
-	std::cout << "Character Array to Vector: ";
+	resetTestCount("Character Array to Vector: ");
 	{
 		char array[] = { 0, 32, 48, 57, 97, 122 };
 
@@ -331,8 +315,7 @@ static void rangeTests() {
 		compareVectors(ft_vec, std_vec, true);
 	}
 
-	resetTestCount();
-	std::cout << "Int Array to Vector: ";
+	resetTestCount("Int Array to Vector: ");
 	{
 		int array[] = { 12, 34, 56, 78, 90, 123, 456, 789, 12345, 67890 };
 
@@ -341,8 +324,7 @@ static void rangeTests() {
 		compareVectors(ft_vec, std_vec, true);
 	}
 
-	resetTestCount();
-	std::cout << "String Array to Vector: ";
+	resetTestCount("String Array to Vector: ");
 	{
 		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
 
@@ -353,8 +335,7 @@ static void rangeTests() {
 }
 
 static void copyTests() {
-	resetTestCount();
-	std::cout << "Copy Constructor: ";
+	resetTestCount("Copy Constructor: ");
 	{
 		ft::vector<int> ft_vec(10, 42);
 		std::vector<int> std_vec(10, 42);
@@ -368,8 +349,7 @@ static void copyTests() {
 		compareVectors(ft_copy2, std_copy2, true);
 	}
 
-	resetTestCount();
-	std::cout << "Copy Assignment: ";
+	resetTestCount("Copy Assignment: ");
 	{
 		ft::vector<int> ft_vec(10, 42);
 		std::vector<int> std_vec(10, 42);
@@ -381,8 +361,7 @@ static void copyTests() {
 		compareVectors(ft_copy, std_copy, true);
 	}
 
-	resetTestCount();
-	std::cout << "Self-Assignment: ";
+	resetTestCount("Self-Assignment: ");
 	{
 		ft::vector<int> ft_vec(10, INT_MAX);
 		ft::vector<int> ft_copy(ft_vec);
