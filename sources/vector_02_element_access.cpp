@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:14:12 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/03 18:33:37 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/05 11:08:59 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main() {
 	srand(time(NULL));
-	std::cout << PURPLE "Vector At Tests" DEFAULT << std::endl
+	std::cout << PURPLE "At Tests" DEFAULT << std::endl
 	          << "Int Vector: ";
 	{
 		ft::vector<int> ft_vec;

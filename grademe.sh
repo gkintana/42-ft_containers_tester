@@ -64,7 +64,9 @@ done
 #               Cleanup               #
 #######################################
 
-printf "\033[A"
+if [[ "$OSTYPE" =~ ^linux ]]; then
+	printf "\033[A"
+fi
 
 $RM $EXEC_DIR
 make fclean

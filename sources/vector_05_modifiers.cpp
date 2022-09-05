@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:26:38 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/04 15:50:32 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/05 10:20:51 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main() {
 	std::cout << PURPLE "Clear Tests" DEFAULT << std::endl;
 	clearTests();
 
-	std::cout << PURPLE "Vector Push Back Tests" DEFAULT << std::endl;
+	std::cout << PURPLE "Push Back Tests" DEFAULT << std::endl;
 	pushBackTests();
 
 	std::cout << PURPLE "Swap Tests" DEFAULT << std::endl;
