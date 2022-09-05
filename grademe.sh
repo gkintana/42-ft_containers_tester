@@ -25,6 +25,7 @@ RM='rm -rf'
 #             Compilation             #
 #######################################
 
+$RM $EXEC_DIR
 make re
 
 mkdir -p $EXEC_DIR
