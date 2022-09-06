@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/04 23:03:34 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/06 14:14:34 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void checkMaxSize(ft::vector<T> &ft, std::vector<T> &std) {
 	} else if (ft.max_size() == std.max_size()) {
 		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << test_no++ << "." YELLOW "KO " DEFAULT;
+		std::cout << test_no++ << "." RED "KO " DEFAULT;
 	}
 }
 
@@ -118,7 +118,7 @@ void checkMaxSize(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 	} else if (lhs.max_size() == rhs.max_size()) {
 		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
 	} else {
-		std::cout << test_no++ << "." YELLOW "KO " DEFAULT;
+		std::cout << test_no++ << "." RED "KO " DEFAULT;
 	}
 }
 #endif
