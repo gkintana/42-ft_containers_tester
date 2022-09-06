@@ -6,21 +6,40 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:26:38 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/05 10:20:51 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/06 10:51:01 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector_templates.hpp>
 
 template < typename T >
-static void clearVectors(ft::vector<T> &ft, std::vector<T> &std) {
+static void clearVectors(ft::vector<T> &ft, std::vector<T> &std, bool add_newline) {
 	ft.clear();
 	std.clear();
+	compareVectors(ft, std, add_newline);
+}
+
+/**
+** @REMINDER: add one more parameter to determine if begin or end function will
+** be used
+*/
+template < typename T >
+static void singleErase(ft::vector<T> &ft, std::vector<T> &std, size_t offset,
+                        bool add_newline) {
+	ft.erase(ft.begin() + offset);
+	std.erase(std.begin() + offset);
+	compareVectors(ft, std, add_newline);
 }
 
 /*----------------------------------------------------------------------------*/
 
+#define BEGIN     1
+#define END       2
+#define RBEGIN    3
+#define REND      4
+
 static void clearTests();
+static void eraseTests();
 static void pushBackTests();
 // static void popBackTests();
 static void swapTests();
@@ -30,6 +49,9 @@ int main() {
 
 	std::cout << PURPLE "Clear Tests" DEFAULT << std::endl;
 	clearTests();
+
+	std::cout << PURPLE "Erase Tests" DEFAULT << std::endl;
+	eraseTests();
 
 	std::cout << PURPLE "Push Back Tests" DEFAULT << std::endl;
 	pushBackTests();
@@ -47,21 +69,18 @@ static void clearTests() {
 	std::vector<int> std_vec;
 
 	resetTestCount("Empty Int Vector: ");
-	clearVectors(ft_vec, std_vec);
-	compareVectors(ft_vec, std_vec, true);
+	clearVectors(ft_vec, std_vec, true);
 
 	resetTestCount("Char Vector: ");
 	{
 		ft::vector<char> ft_char(42, 'A');
 		std::vector<char> std_char(42, 'A');
-		clearVectors(ft_char, std_char);
-		compareVectors(ft_char, std_char, true);
+		clearVectors(ft_char, std_char, true);
 	}
 
 	resetTestCount("Int Vector: ");
 	vectorPushLoop(ft_vec, std_vec, 10, false, false);
-	clearVectors(ft_vec, std_vec);
-	compareVectors(ft_vec, std_vec, true);
+	clearVectors(ft_vec, std_vec, true);
 
 	resetTestCount("String Vector: ");
 	{
@@ -69,8 +88,20 @@ static void clearTests() {
 
 		ft::vector<std::string> ft_str(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std_str(array, array + (sizeof(array) / sizeof(std::string)));
-		clearVectors(ft_str, std_str);
-		compareVectors(ft_str, std_str, true);
+		clearVectors(ft_str, std_str, true);
+	}
+}
+
+static void eraseTests() {
+	resetTestCount("Int Vector: ");
+	{
+		ft::vector<int> ft_vec;
+		std::vector<int> std_vec;
+		vectorPushLoop(ft_vec, std_vec, 100, false, false);
+		singleErase(ft_vec, std_vec, ft_vec.size() / 3, false);
+		singleErase(ft_vec, std_vec, 0, false);
+		singleErase(ft_vec, std_vec, ft_vec.size() - 1, true);
+		// singleBeginErase(ft_vec, std_vec, ft_vec.size() / 3, true);
 	}
 }
 
