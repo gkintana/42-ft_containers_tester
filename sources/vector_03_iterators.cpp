@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:26:11 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/04 15:51:21 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/06 21:12:42 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 ** @param option         integer that indicates which type of iterator or reverse
 **                       iterator will be compared with the std equivalent
 ** @param add_newline    boolean to check if a newline should be printed after
-**                       the test result 
+**                       the test result
 */
-template < class T >
+template < typename T >
 static void compareWithStd(ft::vector<T> &ft, std::vector<T> &std, int offset,
                            int option, bool add_newline) {
 	if (option == 1) {
@@ -51,7 +51,9 @@ static void compareWithStd(ft::vector<T> &ft, std::vector<T> &std, int offset,
 		}
 	}
 
-	if (add_newline) { std::cout << std::endl; }
+	if (add_newline) {
+		std::cout << std::endl;
+	}
 }
 
 /**
@@ -124,6 +126,9 @@ static void rbeginTests();
 static void rendTests();
 static void reverseIteratorLoopTests();
 
+/**
+** @REMINDER: add const iterator tests
+*/
 int main() {
 	std::srand(time(NULL));
 

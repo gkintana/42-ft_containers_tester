@@ -6,22 +6,29 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/06 14:14:34 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/06 22:30:09 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TESTER_HPP
-#define TESTER_HPP
+#ifndef VECTOR_TEMPLATES_HPP
+#define VECTOR_TEMPLATES_HPP
 
+// C++ Library
 #include <iostream>
 #include <sstream>
 #include <cfloat>
 // #include <cstring>
-#include <vector>
 #include <iterator>
+#include <vector>
+// #include <fstream>
 
-#include <vector.hpp>
+// C Library
 #include <limits.h>
+
+// Project Library
+#include <vector.hpp>
+#include <stack.hpp>
+
 
 #define DEFAULT    "\033[0m"
 #define RED        "\033[1;31m"
@@ -30,72 +37,64 @@
 #define PURPLE     "\033[1;35m"
 #define CYAN       "\033[3;36m"
 
+#define OK         1
+#define WARNING    2
+#define KO         3
+
 size_t test_no = 1;
+
+// class vectorTester {
+// 	private:
+// 		size_t OK;
+// 		size_t WARNING;
+// 		size_t KO;
+// 		size_t test_no;
+// 		std::ofstream report;
+
+// 	public:
+// 		tester() : OK(0), WARNING(0), KO(0), test_no(1) {}
+// 		~tester() {}
+// 		void addOK() { this->OK++; }
+// 		void addWarning() { this->WARNING++; }
+// 		void addKO() { this->KO++; }
+// };
+
+/*----------------------------------------------------------------------------*/
 
 void resetTestCount(std::string test_type) {
 	test_no = 1;
 	std::cout << test_type;
 }
 
-/*----------------------------------------------------------------------------*/
-
-template < class T >
-void checkEmpty(ft::vector<T> &ft, std::vector<T> &std) {
-	if (ft.empty() == std.empty()) {
-		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
-	} else {
-		std::cout << test_no++ << "." RED "KO " DEFAULT;
-	}
-}
-
-template < class T >
-void checkEmpty(ft::vector<T> &lhs, ft::vector<T> &rhs) {
-	if (lhs.empty() == rhs.empty()) {
-		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
-	} else {
-		std::cout << test_no++ << "." RED "KO " DEFAULT;
-	}
+void printTestResult(int result) {
+	result == OK ? std::cout << test_no++ << "." GREEN "OK " DEFAULT:
+	result == WARNING ? std::cout << test_no++ << "." YELLOW "WARNING " DEFAULT:
+	std::cout << test_no++ << "." RED "KO " DEFAULT;
 }
 
 /*----------------------------------------------------------------------------*/
 
-template < class T >
-void checkSize(ft::vector<T> &ft, std::vector<T> &std) {
-	if (ft.size() == std.size()) {
-		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
-	} else {
-		std::cout << test_no++ << "." RED "KO " DEFAULT;
-	}
-}
+template <typename T>
+void checkEmpty(ft::vector<T> &ft, std::vector<T> &std) { ft.empty() == std.empty() ? printTestResult(OK) : printTestResult(KO); }
 
-template < class T >
-void checkSize(ft::vector<T> &lhs, ft::vector<T> &rhs) {
-	if (lhs.size() == rhs.size()) {
-		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
-	} else {
-		std::cout << test_no++ << "." RED "KO " DEFAULT;
-	}
-}
+template <typename T>
+void checkEmpty(ft::vector<T> &lhs, ft::vector<T> &rhs) { lhs.empty() == rhs.empty() ? printTestResult(OK) : printTestResult(KO); }
 
 /*----------------------------------------------------------------------------*/
 
-template < class T >
-void checkCapacity(ft::vector<T> &ft, std::vector<T> &std) {
-	if (ft.capacity() == std.capacity()) {
-		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
-	} else {
-		std::cout << test_no++ << "." YELLOW "WARNING " DEFAULT;
-	}
-}
+template <typename T>
+void checkSize(ft::vector<T> &ft, std::vector<T> &std) { ft.size() == std.size() ? printTestResult(OK) : printTestResult(KO); }
 
-template < class T >
-void checkCapacity(ft::vector<T> &lhs, ft::vector<T> &rhs) {
-	if (lhs.capacity() == rhs.capacity()) {
-		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
-	} else {
-		std::cout << test_no++ << "." YELLOW "WARNING " DEFAULT;
-	}
-}
+template <typename T>
+void checkSize(ft::vector<T> &lhs, ft::vector<T> &rhs) { lhs.size() == rhs.size() ? printTestResult(OK) : printTestResult(KO); }
+
+/*----------------------------------------------------------------------------*/
+
+template <typename T>
+void checkCapacity(ft::vector<T> &ft, std::vector<T> &std) { ft.capacity() == std.capacity() ? printTestResult(OK) : printTestResult(WARNING); }
+
+template <typename T>
+void checkCapacity(ft::vector<T> &lhs, ft::vector<T> &rhs) { lhs.capacity() == rhs.capacity() ? printTestResult(OK) : printTestResult(WARNING); }
 
 /*----------------------------------------------------------------------------*/
 
@@ -124,28 +123,16 @@ void checkMaxSize(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 #endif
 
 #if __linux__
-template < class T >
-void checkMaxSize(ft::vector<T> &ft, std::vector<T> &std) {
-	if (ft.max_size() == std.max_size()) {
-		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
-	} else {
-		std::cout << test_no++ << "." RED "KO " DEFAULT;
-	}
-}
+template <typename T>
+void checkMaxSize(ft::vector<T> &ft, std::vector<T> &std) { ft.max_size() == std.max_size() ? printTestResult(OK) : printTestResult(KO); }
 
-template < class T >
-void checkMaxSize(ft::vector<T> &lhs, ft::vector<T> &rhs) {
-	if (lhs.max_size() == rhs.max_size()) {
-		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
-	} else {
-		std::cout << test_no++ << "." RED "KO " DEFAULT;
-	}
-}
+template <typename T>
+void checkMaxSize(ft::vector<T> &lhs, ft::vector<T> &rhs) { lhs.max_size() == rhs.max_size() ? printTestResult(OK) : printTestResult(KO); }
 #endif
 
 /*----------------------------------------------------------------------------*/
 
-template < class T >
+template <typename T>
 void checkContent(ft::vector<T> &ft, std::vector<T> &std) {
 	std::stringstream ft_ss, std_ss;
 
@@ -156,14 +143,10 @@ void checkContent(ft::vector<T> &ft, std::vector<T> &std) {
 		std_ss << std[i] << " ";
 	}
 
-	if (ft_ss.str() == std_ss.str()) {
-		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
-	} else {
-		std::cout << test_no++ << "." RED "KO " DEFAULT;
-	}
+	ft_ss.str() == std_ss.str() ? printTestResult(OK) : printTestResult(KO);
 }
 
-template < class T >
+template <typename T>
 void checkContent(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 	std::stringstream lhs_ss, rhs_ss;
 	for (size_t i = 0; i < lhs.size(); i++) {
@@ -173,16 +156,12 @@ void checkContent(ft::vector<T> &lhs, ft::vector<T> &rhs) {
 		rhs_ss << rhs[i] << " ";
 	}
 
-	if (lhs_ss.str() == rhs_ss.str()) {
-		std::cout << test_no++ << "." GREEN "OK " DEFAULT;
-	} else {
-		std::cout << test_no++ << "." RED "KO " DEFAULT;
-	}
+	lhs_ss.str() == rhs_ss.str() ? printTestResult(OK) : printTestResult(KO);
 }
 
 /*----------------------------------------------------------------------------*/
 
-template < class T >
+template <typename T>
 void compareVectors(ft::vector<T> &ft, std::vector<T> &std, bool add_newline) {
 	checkContent(ft, std);
 	checkEmpty(ft, std);
@@ -190,10 +169,12 @@ void compareVectors(ft::vector<T> &ft, std::vector<T> &std, bool add_newline) {
 	checkCapacity(ft, std);
 	checkMaxSize(ft, std);
 
-	if (add_newline) { std::cout << std::endl; }
+	if (add_newline) {
+		std::cout << std::endl;
+	}
 }
 
-template < class T >
+template <typename T>
 void compareVectors(ft::vector<T> &lhs, ft::vector<T> &rhs, bool add_newline) {
 	checkContent(lhs, rhs);
 	checkEmpty(lhs, rhs);
@@ -201,23 +182,28 @@ void compareVectors(ft::vector<T> &lhs, ft::vector<T> &rhs, bool add_newline) {
 	checkCapacity(lhs, rhs);
 	checkMaxSize(lhs, rhs);
 
-	if (add_newline) { std::cout << std::endl; }
+	if (add_newline) {
+		std::cout << std::endl;
+	}
 }
 
 /*----------------------------------------------------------------------------*/
 
 /**
-** @brief pushes random values to both ft and std containers
+** @brief    pushes random values to both ft and std containers
 **
-** @param ft     address of container with ft namespace
-** @param std    address of container with std namespace
-** @param len    desired vector size
+** @param ft             address of container with ft namespace
+** @param std            address of container with std namespace
+** @param len            desired vector size
+** @param compare_vec    determines if the ft and std vector will be compared once
+**                       the push_back loop ends
+** @param add_newline    checks if the function should print a newline after testing
 */
-template < class T >
+template <typename T>
 void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len,
                     bool compare_vec, bool add_newline) {
 	for (size_t i = 0; i < len; i++) {
-		size_t random_value = rand() % 123456789;
+		size_t random_value = std::rand() % 123456789;
 		ft.push_back(random_value);
 		std.push_back(random_value);
 	}
@@ -227,7 +213,13 @@ void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len,
 	}
 }
 
-template < class T >
+/**
+** @brief    pushes the exact same string to both ft and std containers according to
+**           the size of len
+**
+** @param str    std::string to be pushed to the ft and std vectors
+*/
+template <typename T>
 void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len,
                     std::string str, bool compare_vec, bool add_newline) {
 	for (size_t i = 0; i < len; i++) {
@@ -242,19 +234,15 @@ void vectorPushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len,
 
 /*----------------------------------------------------------------------------*/
 
-template < class T >
+template <typename T>
 void compareAtOutput(ft::vector<T> &ft, std::vector<T> &std) {
 	if (ft.size() != std.size()) {
 		for (size_t i = 0; i < std::max(ft.size(), std.size()); i++) {
-			std::cout << test_no++ << "." RED "KO " DEFAULT;
+			printTestResult(KO);
 		}
 	} else {
 		for (size_t i = 0; i < ft.size(); i++) {
-			if (ft.at(i) == std.at(i)) {
-				std::cout << test_no++ << "." GREEN "OK " DEFAULT;
-			} else {
-				std::cout << test_no++ << "." RED "KO " DEFAULT;
-			}
+			ft.at(i) == std.at(i) ? printTestResult(OK) : printTestResult(KO);
 		}
 	}
 	std::cout << std::endl;
