@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/09/04 22:31:19 by gkintana         ###   ########.fr        #
+#    Updated: 2022/09/06 18:50:53 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,20 +39,17 @@ $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
 			@mkdir -p $(OBJ_DIR)
 			@printf $(CYAN)
 			$(CXX) $(CPPFLAGS) -I$(INC_DIR) -I$(CONT_DIR1) -I$(CONT_DIR2) -c $< -o $@
+			@printf "\033[A\033[2K\r"
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS_FT)
-# @$(CXX) $(CPPFLAGS) $(OBJ_DIR)/$(OBJ_FT)/main.o -o $@
 			@echo $(DEFAULT)$(GREEN)"Test Files Ready"$(DEFAULT)
 
 clean:
 			@$(RM) $(OBJ_DIR)
-# @echo $(RED)"Deleted object files"$(DEFAULT)
 
 fclean:		clean
-# @$(RM) $(FT) $(STD)
-# @echo $(RED)"Deleted executable file"$(DEFAULT)
 
 re:			fclean all
 

@@ -6,14 +6,15 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:26:38 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/06 14:58:06 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/06 18:43:54 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector_templates.hpp>
 
-#define BEGIN     1
-#define END       2
+#define BEGIN                1
+#define END                  2
+#define ERASE_VECTOR_SIZE    256
 
 template < typename T >
 static void clearVectors(ft::vector<T> &ft, std::vector<T> &std, bool add_newline) {
@@ -35,22 +36,56 @@ static void singleErase(ft::vector<T> &ft, std::vector<T> &std, size_t option,
 	compareVectors(ft, std, add_newline);
 }
 
+template < typename T >
+static void rangedErase(ft::vector<T> &ft, std::vector<T> &std, size_t option1,
+                        size_t offset1, size_t option2, size_t offset2, bool add_newline) {
+	if (option1 == BEGIN && option2 == BEGIN) {
+		ft.erase(ft.begin() + offset1, ft.begin() + offset2);
+		std.erase(std.begin() + offset1, std.begin() + offset2);
+	} else if (option1 == BEGIN && option2 == END) {
+		ft.erase(ft.begin() + offset1, ft.end() - offset2);
+		std.erase(std.begin() + offset1, std.end() - offset2);
+	} else if (option1 == END && option2 == BEGIN) {
+		ft.erase(ft.end() - offset1, ft.begin() + offset2);
+		std.erase(std.end() - offset1, std.begin() + offset2);
+	} else if (option1 == END && option2 == END) {
+		ft.erase(ft.end() - offset1, ft.end() - offset2);
+		std.erase(std.end() - offset1, std.end() - offset2);
+	}
+	compareVectors(ft, std, add_newline);
+
+	/**
+	** @brief    encountered some segmentation faults when using the rangedErase multiple times, in
+	**           order to fix that issue I added this for loop to fill back the values that were erased
+	**           and allow continuous use of rangedErase without having to reconstruct the vector
+	*/
+	for (size_t i = ft.size(); i < ERASE_VECTOR_SIZE; i++) {
+		size_t random_value = std::rand() % 123456789;
+		ft.push_back(random_value);
+		std.push_back(random_value);
+	}
+}
+
 /*----------------------------------------------------------------------------*/
 
 static void clearTests();
 static void singleEraseTests();
+static void rangedEraseTests();
 static void pushBackTests();
 // static void popBackTests();
 static void swapTests();
 
 int main() {
-	srand(time(NULL));
+	std::srand(time(NULL));
 
 	std::cout << PURPLE "Clear Tests" DEFAULT << std::endl;
 	clearTests();
 
 	std::cout << PURPLE "Single Erase Tests" DEFAULT << std::endl;
 	singleEraseTests();
+
+	std::cout << PURPLE "Ranged Erase Tests" DEFAULT << std::endl;
+	rangedEraseTests();
 
 	std::cout << PURPLE "Push Back Tests" DEFAULT << std::endl;
 	pushBackTests();
@@ -83,8 +118,7 @@ static void clearTests() {
 
 	resetTestCount("String Vector: ");
 	{
-		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
-
+		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
 		ft::vector<std::string> ft_str(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std_str(array, array + (sizeof(array) / sizeof(std::string)));
 		clearVectors(ft_str, std_str, true);
@@ -114,7 +148,7 @@ static void singleEraseTests() {
 
 	resetTestCount("String Vector: ");
 	{
-		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
+		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
 		ft::vector<std::string> ft_vec(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std_vec(array, array + (sizeof(array) / sizeof(std::string)));
 
@@ -130,6 +164,30 @@ static void singleEraseTests() {
 		singleErase(ft_vec, std_vec, END, ft_vec.size() / 2, false);
 		// test no. 26 - 30
 		singleErase(ft_vec, std_vec, END, ft_vec.size(), true);
+	}
+}
+
+static void rangedEraseTests() {
+	resetTestCount("Int Vector: ");
+	{
+		ft::vector<int> ft_vec;
+		std::vector<int> std_vec;
+		vectorPushLoop(ft_vec, std_vec, ERASE_VECTOR_SIZE, false, false);
+
+		rangedErase(ft_vec, std_vec, BEGIN, 0, BEGIN, 0, false);
+		rangedErase(ft_vec, std_vec, BEGIN, 0, BEGIN, ft_vec.size(), false);
+
+
+		rangedErase(ft_vec, std_vec, BEGIN, 0, END, 0, false);
+		rangedErase(ft_vec, std_vec, BEGIN, ft_vec.size() / 2, END, 0, false);
+		rangedErase(ft_vec, std_vec, BEGIN, ft_vec.size() - 1, END, 0, false);
+		rangedErase(ft_vec, std_vec, BEGIN, ft_vec.size(), END, 0, false);
+
+
+		rangedErase(ft_vec, std_vec, END, 1, BEGIN, ft_vec.size(), false);
+
+
+		rangedErase(ft_vec, std_vec, END, 1, END, 1, true);
 	}
 }
 
