@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/07 18:52:18 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:45:07 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,63 @@ class vectorTester {
 				// report.open()
 			}
 			this->resetTestCount();
+		}
+
+		/**
+		** @brief    pushes random values to both ft and std containers
+		**
+		** @param ft             address of container with ft namespace
+		** @param std            address of container with std namespace
+		** @param len            desired vector size
+		** @param compare_vec    determines if the ft and std vector will be compared once
+		**                       the push_back loop ends
+		** @param add_newline    checks if the function should print a newline after testing
+		*/
+		template <typename T>
+		void pushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len) {
+			for (size_t i = 0; i < len; i++) {
+				size_t random_value = std::rand() % 123456789;
+				ft.push_back(random_value);
+				std.push_back(random_value);
+			}
+		}
+
+		/**
+		** @brief    pushes the exact same string to both ft and std containers according to
+		**           the size of len
+		**
+		** @param str    std::string to be pushed to the ft and std vectors
+		*/
+		template <typename T>
+		void pushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len, std::string str) {
+			for (size_t i = 0; i < len; i++) {
+				ft.push_back(str);
+				std.push_back(str);
+			}
+		}
+
+		/**
+		** @brief    checks if value at the position ft iterator and std iterator are currently
+		**           at are equal
+		**
+		** @param ft             address of container with ft namespace
+		** @param std            address of container with std namespace
+		** @param offset         integer which represents a value to be added or subtracted
+		**                       to the iterator's position
+		** @param option         integer that indicates which type of iterator or reverse
+		**                       iterator will be compared with the std equivalent
+		*/
+		template <typename T>
+		void compareIterToStd(ft::vector<T> &ft, std::vector<T> &std, int offset, int option) {
+			if (option == 1) {
+				*(ft.begin() + offset) == *(std.begin() + offset) ? this->addOK() : this->addKO();
+			} else if (option == 2) {
+				*(ft.end() - offset) == *(std.end() - offset) ? this->addOK() : this->addKO();
+			} else if (option == 3) {
+				*(ft.rbegin() + offset) == *(std.rbegin() + offset) ? this->addOK() : this->addKO();
+			} else if (option == 4) {
+				*(ft.rend() - offset) == *(std.rend() - offset) ? this->addOK() : this->addKO();
+			}
 		}
 };
 

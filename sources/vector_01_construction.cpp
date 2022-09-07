@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:39:42 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/07 19:06:20 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:25:46 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ static void fillTests() {
 		} catch (std::exception &e) {
 			test.addOK();
 		}
-		test.printTestResults("Character Vector");
+		test.printTestResults("Char Vector ");
 	}
 
 	// Int Vector Fill Constructor Tests
@@ -158,119 +158,124 @@ static void fillTests() {
 		test.printTestResults("Int Vector  ");
 	}
 
-// 	resetTestCount("Long Vector: ");
-// 	{
-// 		ft::vector<long> ft_vec(0, 42);
-// 		std::vector<long> std_vec(0, 42);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		ft::vector<long> ft_vec(10, LONG_MIN);
-// 		std::vector<long> std_vec(10, LONG_MIN);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		ft::vector<long> ft_vec(10, 0);
-// 		std::vector<long> std_vec(10, 0);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		ft::vector<long> ft_vec(10, LONG_MAX);
-// 		std::vector<long> std_vec(10, LONG_MAX);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		try {
-// 			ft::vector<long> ft_vec(-5, 42);
-// 			std::cout << test_no++ << "." RED "KO " DEFAULT << std::endl;
-// 			// std::vector<long> std_vec(-5, 42);
-// 		} catch (std::exception &e) {
-// 			std::cout << test_no++ << "." GREEN "OK " DEFAULT << std::endl;
-// 		}
-// 	}
+	// Long Vector Fill Constructor Tests
+	{
+		ft::vector<long> ft_vec(0, 42);
+		std::vector<long> std_vec(0, 42);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		ft::vector<long> ft_vec(10, LONG_MIN);
+		std::vector<long> std_vec(10, LONG_MIN);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		ft::vector<long> ft_vec(10, 0);
+		std::vector<long> std_vec(10, 0);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		ft::vector<long> ft_vec(10, LONG_MAX);
+		std::vector<long> std_vec(10, LONG_MAX);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		try {
+			ft::vector<long> ft_vec(-5, 42);
+			test.addKO();
+		} catch (std::exception &e) {
+			test.addOK();
+		}
+		test.printTestResults("Long Vector ");
+	}
 
-// 	resetTestCount("Size_t Vector: ");
-// 	{
-// 		ft::vector<size_t> ft_vec(0, 42);
-// 		std::vector<size_t> std_vec(0, 42);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		ft::vector<size_t> ft_vec(21, 42);
-// 		std::vector<size_t> std_vec(21, 42);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		try {
-// 			ft::vector<size_t> ft_vec(-5, 42);
-// 			std::cout << test_no++ << "." RED "KO " DEFAULT << std::endl;
-// 			// std::vector<size_t> std_vec(-5, 42);
-// 		} catch (std::exception &e) {
-// 			std::cout << test_no++ << "." GREEN "OK " DEFAULT << std::endl;
-// 		}
-// 	}
+	// Size_t Vector Fill Constructor Tests
+	{
+		ft::vector<size_t> ft_vec(0, 42);
+		std::vector<size_t> std_vec(0, 42);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		ft::vector<size_t> ft_vec(21, 0);
+		std::vector<size_t> std_vec(21, 0);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		ft::vector<size_t> ft_vec(21, SIZE_MAX);
+		std::vector<size_t> std_vec(21, SIZE_MAX);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		try {
+			ft::vector<size_t> ft_vec(-5, 42);
+			test.addKO();
+		} catch (std::exception &e) {
+			test.addOK();
+		}
+		test.printTestResults("Size_t Vector");
+	}
 
-// 	resetTestCount("Float Vector: ");
-// 	{
-// 		ft::vector<float> ft_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123f);
-// 		std::vector<float> std_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123f);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		ft::vector<float> ft_vec(10, FLT_MIN);
-// 		std::vector<float> std_vec(10, FLT_MIN);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		ft::vector<float> ft_vec(10, 0);
-// 		std::vector<float> std_vec(10, 0);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		ft::vector<float> ft_vec(10, FLT_MAX);
-// 		std::vector<float> std_vec(10, FLT_MAX);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		try {
-// 			ft::vector<float> ft_vec(-5, 42424242424242424242.123123123123123123123123123123123123123123123123f);
-// 			std::cout << test_no++ << "." RED "KO " DEFAULT << std::endl;
-// 			// std::vector<float> std_vec(-5, 42424242424242424242.123123123123123123123123123123123123123123123123f);
-// 		} catch (std::exception &e) {
-// 			std::cout << test_no++ << "." GREEN "OK " DEFAULT << std::endl;
-// 		}
-// 	}
+	// Float Vector Fill Constructor Tests
+	{
+		ft::vector<float> ft_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123f);
+		std::vector<float> std_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123f);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		ft::vector<float> ft_vec(10, FLT_MIN);
+		std::vector<float> std_vec(10, FLT_MIN);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		ft::vector<float> ft_vec(10, 0);
+		std::vector<float> std_vec(10, 0);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		ft::vector<float> ft_vec(10, FLT_MAX);
+		std::vector<float> std_vec(10, FLT_MAX);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		try {
+			ft::vector<float> ft_vec(-5, 42424242424242424242.123123123123123123123123123123123123123123123123f);
+			test.addKO();
+		} catch (std::exception &e) {
+			test.addOK();
+		}
+		test.printTestResults("Float Vector");
+	}
 
-// 	resetTestCount("Double Vector: ");
-// 	{
-// 		ft::vector<double> ft_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123);
-// 		std::vector<double> std_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		ft::vector<double> ft_vec(10, DBL_MIN);
-// 		std::vector<double> std_vec(10, DBL_MIN);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		ft::vector<double> ft_vec(10, 0);
-// 		std::vector<double> std_vec(10, 0);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		ft::vector<double> ft_vec(10, DBL_MAX);
-// 		std::vector<double> std_vec(10, DBL_MAX);
-// 		compareVectors(ft_vec, std_vec, false);
-// 	}
-// 	{
-// 		try {
-// 			ft::vector<double> ft_vec(-5, 42424242424242424242.123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123);
-// 			std::cout << test_no++ << "." RED "KO " DEFAULT << std::endl;
-// 			// std::vector<double> std_vec(-5, 42424242424242424242.123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123);
-// 		} catch (std::exception &e) {
-// 			std::cout << test_no++ << "." GREEN "OK " DEFAULT << std::endl;
-// 		}
-// 	}
+	// Double Vector Fill Constructor Tests
+	{
+		ft::vector<double> ft_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123);
+		std::vector<double> std_vec(0, 42424242424242424242.123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		ft::vector<double> ft_vec(10, DBL_MIN);
+		std::vector<double> std_vec(10, DBL_MIN);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		ft::vector<double> ft_vec(10, 0);
+		std::vector<double> std_vec(10, 0);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		ft::vector<double> ft_vec(10, DBL_MAX);
+		std::vector<double> std_vec(10, DBL_MAX);
+		test.compareVectors(ft_vec, std_vec);
+	}
+	{
+		try {
+			ft::vector<double> ft_vec(-5, 42424242424242424242.123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123123);
+			test.addKO();
+		} catch (std::exception &e) {
+			test.addOK();
+		}
+		test.printTestResults("String Vector");
+	}
 }
 
 static void rangeTests() {
