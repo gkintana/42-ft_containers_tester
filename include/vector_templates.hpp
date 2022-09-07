@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/07 19:45:07 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/07 22:11:31 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,21 @@ class vectorTester {
 	public:
 		vectorTester() : OK(0), WARNING(0), KO(0), test_no(0) {}
 		~vectorTester() {}
-		void addOK() { this->test_no++; this->OK++; }
-		void addWarning() { this->test_no++; this->WARNING++; }
-		void addKO() { this->test_no++; this->KO++; }
+
+		void addOK() {
+			this->test_no++;
+			this->OK++;
+		}
+
+		void addWarning() {
+			this->test_no++;
+			this->WARNING++;
+		}
+
+		void addKO() {
+			this->test_no++;
+			this->KO++;
+		}
 
 		void printOK() { std::cout << GREEN "OK" DEFAULT; }
 		void printWARNING() { std::cout << YELLOW "WARNING: " << this->WARNING << " potential error(s)" << DEFAULT; }
@@ -152,9 +164,9 @@ class vectorTester {
 
 		void printTestResults(std::string test_name) {
 			if (test_name.empty()) {
-				std::cout << "    General Tests\t\t";
+				std::cout << "  ➢ General Tests\t\t";
 			} else {
-				std::cout << "    " << test_name << "\t\t";
+				std::cout << "  ➢ " << test_name << "\t\t";
 			}
 
 			!this->WARNING && !this->KO ? printOK() : this->WARNING && !this->KO ? printWARNING() : printKO();
@@ -214,13 +226,54 @@ class vectorTester {
 		template <typename T>
 		void compareIterToStd(ft::vector<T> &ft, std::vector<T> &std, int offset, int option) {
 			if (option == 1) {
-				*(ft.begin() + offset) == *(std.begin() + offset) ? this->addOK() : this->addKO();
+				*(ft.begin() + offset) == *(std.begin() + offset) ? addOK() : addKO();
 			} else if (option == 2) {
-				*(ft.end() - offset) == *(std.end() - offset) ? this->addOK() : this->addKO();
+				*(ft.end() - offset) == *(std.end() - offset) ? addOK() : addKO();
 			} else if (option == 3) {
-				*(ft.rbegin() + offset) == *(std.rbegin() + offset) ? this->addOK() : this->addKO();
+				*(ft.rbegin() + offset) == *(std.rbegin() + offset) ? addOK() : addKO();
 			} else if (option == 4) {
-				*(ft.rend() - offset) == *(std.rend() - offset) ? this->addOK() : this->addKO();
+				*(ft.rend() - offset) == *(std.rend() - offset) ? addOK() : addKO();
+			}
+		}
+
+		template <typename T>
+		void iterLoop(ft::vector<T> &ft, std::vector<T> &std,
+					  typename ft::vector<T>::iterator start,
+					  typename ft::vector<T>::iterator end) {
+			typedef typename std::vector<T>::iterator STD_ITERATOR;
+			typedef typename ft::vector<T>::iterator FT_ITERATOR;
+
+			size_t pos = 0;
+			for (FT_ITERATOR temp = ft.begin(); temp != start; temp++) {
+				pos++;
+			}
+
+			STD_ITERATOR std_iter = std.begin() + pos;
+			for (FT_ITERATOR ft_iter = start; ft_iter != end; ft_iter++) {
+				*ft_iter == *std_iter++ ? addOK() : addKO();
+			}
+		}
+
+		template <typename T>
+		void revIterLoop(ft::vector<T> &ft, std::vector<T> &std,
+						 typename ft::vector<T>::reverse_iterator start,
+						 typename ft::vector<T>::reverse_iterator end) {
+			typedef typename std::vector<T>::reverse_iterator STD_REVERSE;
+			typedef typename ft::vector<T>::reverse_iterator FT_REVERSE;
+
+			size_t pos = 0;
+			for (FT_REVERSE temp = ft.rend(); temp != start; temp--) {
+				pos++;
+			}
+
+			STD_REVERSE std_iter = std.rend() - pos;
+			for (FT_REVERSE ft_iter = start; ft_iter != end; ft_iter--) {
+				*ft_iter == *std_iter-- ? addOK() : addKO();
+				// if (*ft_iter == *std_iter--) {
+				// 	std::cout << test_no++ << "." GREEN "OK " DEFAULT;
+				// } else {
+				// 	std::cout << test_no++ << "." RED "KO " DEFAULT;
+				// }
 			}
 		}
 };

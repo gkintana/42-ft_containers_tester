@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:39:42 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/07 19:25:46 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/07 22:14:16 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,11 +200,13 @@ static void fillTests() {
 		std::vector<size_t> std_vec(21, 0);
 		test.compareVectors(ft_vec, std_vec);
 	}
+	#if __APPLE__
 	{
 		ft::vector<size_t> ft_vec(21, SIZE_MAX);
 		std::vector<size_t> std_vec(21, SIZE_MAX);
 		test.compareVectors(ft_vec, std_vec);
 	}
+	#endif
 	{
 		try {
 			ft::vector<size_t> ft_vec(-5, 42);
