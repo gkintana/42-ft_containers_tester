@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:26:11 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/07 19:47:55 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/07 19:59:45 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,10 +120,10 @@
 #define REND      4
 
 static void beginTests();
-// static void endTests();
+static void endTests();
 // static void iteratorLoopTests();
-// static void rbeginTests();
-// static void rendTests();
+static void rbeginTests();
+static void rendTests();
 // static void reverseIteratorLoopTests();
 
 /**
@@ -134,12 +134,12 @@ int main() {
 
 	std::cout << PURPLE "Iterator Tests" DEFAULT << std::endl;
 	beginTests();
-	// endTests();
+	endTests();
 	// iteratorLoopTests();
 
-	// std::cout << PURPLE "Reverse Iterator Tests" DEFAULT << std::endl;
-	// rbeginTests();
-	// rendTests();
+	std::cout << PURPLE "Reverse Iterator Tests" DEFAULT << std::endl;
+	rbeginTests();
+	rendTests();
 	// reverseIteratorLoopTests();
 
 	return 0;
@@ -161,20 +161,19 @@ static void beginTests() {
 	test.printTestResults("Begin       ");
 }
 
-// static void endTests() {
-// 	resetTestCount("End: ");
+static void endTests() {
+	vectorTester test;
 
-// 	ft::vector<int> ft_vec;
-// 	std::vector<int> std_vec;
-// 	vectorPushLoop(ft_vec, std_vec, 10, false, false);
+	ft::vector<int> ft_vec;
+	std::vector<int> std_vec;
+	test.pushLoop(ft_vec, std_vec, 10);
 
-// 	// test no. 1
-// 	compareWithStd(ft_vec, std_vec, 1, END, false);
-// 	// test no. 2
-// 	compareWithStd(ft_vec, std_vec, ft_vec.size() / 2, END, false);
-// 	// test no. 3
-// 	compareWithStd(ft_vec, std_vec, ft_vec.size(), END, true);
-// }
+	test.compareIterToStd(ft_vec, std_vec, 1, END);
+	test.compareIterToStd(ft_vec, std_vec, ft_vec.size() / 2, END);
+	test.compareIterToStd(ft_vec, std_vec, ft_vec.size(), END);
+
+	test.printTestResults("End         ");
+}
 
 // static void iteratorLoopTests() {
 // 	resetTestCount("Iterator Loop: ");
@@ -215,35 +214,33 @@ static void beginTests() {
 // 	iteratorLoop(ft_vec, std_vec, ft_vec.end() - (ft_vec.size() / 2), ft_vec.end() - (ft_vec.size() / 4), true);
 // }
 
-// static void rbeginTests() {
-// 	resetTestCount("Rbegin: ");
+static void rbeginTests() {
+	vectorTester test;
 
-// 	ft::vector<int> ft_vec;
-// 	std::vector<int> std_vec;
-// 	vectorPushLoop(ft_vec, std_vec, 10, false, false);
+	ft::vector<int> ft_vec;
+	std::vector<int> std_vec;
+	test.pushLoop(ft_vec, std_vec, 10);
 
-// 	// test no. 1
-// 	compareWithStd(ft_vec, std_vec, 0, RBEGIN, false);
-// 	// test no. 2
-// 	compareWithStd(ft_vec, std_vec, ft_vec.size() / 2, RBEGIN, false);
-// 	// test no. 3
-// 	compareWithStd(ft_vec, std_vec, ft_vec.size() - 1, RBEGIN, true);
-// }
+	test.compareIterToStd(ft_vec, std_vec, 0, RBEGIN);
+	test.compareIterToStd(ft_vec, std_vec, ft_vec.size() / 2, RBEGIN);
+	test.compareIterToStd(ft_vec, std_vec, ft_vec.size() - 1, RBEGIN);
 
-// static void rendTests() {
-// 	resetTestCount("Rend: ");
+	test.printTestResults("Rbegin      ");
+}
 
-// 	ft::vector<int> ft_vec;
-// 	std::vector<int> std_vec;
-// 	vectorPushLoop(ft_vec, std_vec, 10, false, false);
+static void rendTests() {
+	vectorTester test;
 
-// 	// test no. 1
-// 	compareWithStd(ft_vec, std_vec, 1, REND, false);
-// 	// test no. 2
-// 	compareWithStd(ft_vec, std_vec, ft_vec.size() / 2, REND, false);
-// 	// test no. 3
-// 	compareWithStd(ft_vec, std_vec, ft_vec.size() - 1, REND, true);
-// }
+	ft::vector<int> ft_vec;
+	std::vector<int> std_vec;
+	test.pushLoop(ft_vec, std_vec, 10);
+
+	test.compareIterToStd(ft_vec, std_vec, 1, REND);
+	test.compareIterToStd(ft_vec, std_vec, ft_vec.size() / 2, REND);
+	test.compareIterToStd(ft_vec, std_vec, ft_vec.size() - 1, REND);
+
+	test.printTestResults("Rend        ");
+}
 
 // static void reverseIteratorLoopTests() {
 // 	resetTestCount("Reverse Iterator Loop: ");
