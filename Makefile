@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/09/07 19:46:49 by gkintana         ###   ########.fr        #
+#    Updated: 2022/09/07 22:26:01 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ SRC_DIR		=	sources
 OBJ_DIR		=	objects
 
 SRCS		=	vector_01_construction.cpp \
-				vector_03_iterators.cpp
+				vector_03_iterators.cpp \
+				vector_04_capacity.cpp
 # vector_02_element_access.cpp \
-# vector_04_capacity.cpp \
 # vector_05_modifiers.cpp
 OBJS_FT		=	$(addprefix $(OBJ_DIR)/, $(SRCS:%cpp=%o))
 

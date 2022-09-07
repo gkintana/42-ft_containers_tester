@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/07 22:11:31 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/07 22:58:02 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,11 +173,13 @@ class vectorTester {
 			std::cout << std::endl;
 
 			if (this->WARNING || this->KO) {
-				std::cout << YELLOW "    Check report.txt for more details" DEFAULT << std::endl;
+				std::cout << RED "    Check report.txt for more details" DEFAULT << std::endl;
 				// report.open()
 			}
 			this->resetTestCount();
 		}
+
+
 
 		/**
 		** @brief    pushes random values to both ft and std containers
@@ -238,8 +240,8 @@ class vectorTester {
 
 		template <typename T>
 		void iterLoop(ft::vector<T> &ft, std::vector<T> &std,
-					  typename ft::vector<T>::iterator start,
-					  typename ft::vector<T>::iterator end) {
+		              typename ft::vector<T>::iterator start,
+		              typename ft::vector<T>::iterator end) {
 			typedef typename std::vector<T>::iterator STD_ITERATOR;
 			typedef typename ft::vector<T>::iterator FT_ITERATOR;
 
@@ -256,8 +258,8 @@ class vectorTester {
 
 		template <typename T>
 		void revIterLoop(ft::vector<T> &ft, std::vector<T> &std,
-						 typename ft::vector<T>::reverse_iterator start,
-						 typename ft::vector<T>::reverse_iterator end) {
+		                 typename ft::vector<T>::reverse_iterator start,
+		                 typename ft::vector<T>::reverse_iterator end) {
 			typedef typename std::vector<T>::reverse_iterator STD_REVERSE;
 			typedef typename ft::vector<T>::reverse_iterator FT_REVERSE;
 
@@ -269,12 +271,51 @@ class vectorTester {
 			STD_REVERSE std_iter = std.rend() - pos;
 			for (FT_REVERSE ft_iter = start; ft_iter != end; ft_iter--) {
 				*ft_iter == *std_iter-- ? addOK() : addKO();
-				// if (*ft_iter == *std_iter--) {
-				// 	std::cout << test_no++ << "." GREEN "OK " DEFAULT;
-				// } else {
-				// 	std::cout << test_no++ << "." RED "KO " DEFAULT;
-				// }
 			}
+		}
+
+
+
+		// https://stackoverflow.com/questions/30835980/c-error-deduced-conflicting-types-for-parameter-t-string-vs-const-char
+		template <typename T>
+		struct identity {
+			typedef T type;
+		};
+
+		template <typename T>
+		void resizeAndCompare(ft::vector<T> &ft,std::vector<T> &std, size_t new_size,
+		                      typename identity<T>::type value) {
+			ft.resize(new_size, value);
+			std.resize(new_size, value);
+			compareVectors(ft, std);
+		}
+
+		template <typename T>
+		void reserveAndCompare(ft::vector<T> &ft,std::vector<T> &std, size_t new_cap) {
+			ft.reserve(new_cap);
+			std.reserve(new_cap);
+			compareVectors(ft, std);
+		}
+
+		template < typename T >
+		void checkExceptions(ft::vector<T> &ft,std::vector<T> &std, size_t new_size,
+		                     bool is_resize) {
+			bool ft_exception = false,
+                 std_exception = false;
+
+			try {
+				is_resize ? ft.resize(new_size) : ft.reserve(new_size);
+			} catch (std::exception &e) {
+				ft_exception = true;
+			}
+
+			try {
+				is_resize ? std.resize(new_size) : std.reserve(new_size);
+			} catch (std::exception &e) {
+				std_exception = true;
+			}
+
+			ft_exception == std_exception ? addOK() : addKO();
 		}
 };
 
