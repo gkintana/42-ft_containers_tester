@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/07 22:58:02 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/07 23:28:35 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,7 +297,7 @@ class vectorTester {
 			compareVectors(ft, std);
 		}
 
-		template < typename T >
+		template <typename T>
 		void checkExceptions(ft::vector<T> &ft,std::vector<T> &std, size_t new_size,
 		                     bool is_resize) {
 			bool ft_exception = false,
@@ -316,6 +316,27 @@ class vectorTester {
 			}
 
 			ft_exception == std_exception ? addOK() : addKO();
+		}
+
+
+		template < typename T >
+		void clearVectors(ft::vector<T> &ft, std::vector<T> &std) {
+			ft.clear();
+			std.clear();
+			compareVectors(ft, std);
+		}
+
+		template <typename T>
+		void singleErase(ft::vector<T> &ft, std::vector<T> &std, size_t option,
+		                 size_t offset) {
+			if (option == 1) {
+				ft.erase(ft.begin() + offset);
+				std.erase(std.begin() + offset);
+			} else if (option == 2) {
+				ft.erase(ft.end() - offset);
+				std.erase(std.end() - offset);
+			}
+			compareVectors(ft, std);
 		}
 };
 
