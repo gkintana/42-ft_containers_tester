@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/07 23:28:35 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/08 11:28:04 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@
 #define YELLOW     "\033[1;33m"
 #define PURPLE     "\033[1;35m"
 #define CYAN       "\033[1;36m"
+
+#define BEGIN     1
+#define END       2
+#define RBEGIN    3
+#define REND      4
 
 // #define OK         1
 // #define WARNING    2
@@ -71,7 +76,7 @@ class vectorTester {
 			this->KO++;
 		}
 
-		void printOK() { std::cout << GREEN "OK" DEFAULT; }
+		void printOK() { std::cout << GREEN "OK: passed " << this->OK << " tests" DEFAULT; }
 		void printWARNING() { std::cout << YELLOW "WARNING: " << this->WARNING << " potential error(s)" << DEFAULT; }
 		void printKO() { std::cout << RED "KO: " << this->KO << " error(s)" << DEFAULT; }
 
@@ -197,6 +202,7 @@ class vectorTester {
 				size_t random_value = std::rand() % 123456789;
 				ft.push_back(random_value);
 				std.push_back(random_value);
+				compareVectors(ft, std);
 			}
 		}
 
@@ -211,6 +217,7 @@ class vectorTester {
 			for (size_t i = 0; i < len; i++) {
 				ft.push_back(str);
 				std.push_back(str);
+				compareVectors(ft, std);
 			}
 		}
 
@@ -227,13 +234,13 @@ class vectorTester {
 		*/
 		template <typename T>
 		void compareIterToStd(ft::vector<T> &ft, std::vector<T> &std, int offset, int option) {
-			if (option == 1) {
+			if (option == BEGIN) {
 				*(ft.begin() + offset) == *(std.begin() + offset) ? addOK() : addKO();
-			} else if (option == 2) {
+			} else if (option == END) {
 				*(ft.end() - offset) == *(std.end() - offset) ? addOK() : addKO();
-			} else if (option == 3) {
+			} else if (option == RBEGIN) {
 				*(ft.rbegin() + offset) == *(std.rbegin() + offset) ? addOK() : addKO();
-			} else if (option == 4) {
+			} else if (option == REND) {
 				*(ft.rend() - offset) == *(std.rend() - offset) ? addOK() : addKO();
 			}
 		}
@@ -319,7 +326,7 @@ class vectorTester {
 		}
 
 
-		template < typename T >
+		template <typename T>
 		void clearVectors(ft::vector<T> &ft, std::vector<T> &std) {
 			ft.clear();
 			std.clear();
@@ -329,14 +336,46 @@ class vectorTester {
 		template <typename T>
 		void singleErase(ft::vector<T> &ft, std::vector<T> &std, size_t option,
 		                 size_t offset) {
-			if (option == 1) {
+			if (option == BEGIN) {
 				ft.erase(ft.begin() + offset);
 				std.erase(std.begin() + offset);
-			} else if (option == 2) {
+			} else if (option == END) {
 				ft.erase(ft.end() - offset);
 				std.erase(std.end() - offset);
 			}
 			compareVectors(ft, std);
+		}
+
+		template <typename T>
+		void rangedErase(ft::vector<T> &ft, std::vector<T> &std, size_t option1,
+		                 size_t offset1, size_t option2, size_t offset2) {
+			size_t size_before_erase = ft.size();
+
+			if (option1 == BEGIN && option2 == BEGIN) {
+				ft.erase(ft.begin() + offset1, ft.begin() + offset2);
+				std.erase(std.begin() + offset1, std.begin() + offset2);
+			} else if (option1 == BEGIN && option2 == END) {
+				ft.erase(ft.begin() + offset1, ft.end() - offset2);
+				std.erase(std.begin() + offset1, std.end() - offset2);
+			} else if (option1 == END && option2 == BEGIN) {
+				ft.erase(ft.end() - offset1, ft.begin() + offset2);
+				std.erase(std.end() - offset1, std.begin() + offset2);
+			} else if (option1 == END && option2 == END) {
+				ft.erase(ft.end() - offset1, ft.end() - offset2);
+				std.erase(std.end() - offset1, std.end() - offset2);
+			}
+			compareVectors(ft, std);
+
+			/**
+			** @brief    encountered some segmentation faults when using the rangedErase multiple times, in
+			**           order to fix that issue I added this for loop to fill back the values that were erased
+			**           and allow continuous use of rangedErase without having to reconstruct the vector
+			*/
+			for (size_t i = ft.size(); i < size_before_erase; i++) {
+				size_t random_value = std::rand() % 123456789;
+				ft.push_back(random_value);
+				std.push_back(random_value);
+			}
 		}
 };
 

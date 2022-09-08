@@ -6,16 +6,16 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:26:11 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/07 22:10:32 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:23:04 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector_templates.hpp>
 
-#define BEGIN     1
-#define END       2
-#define RBEGIN    3
-#define REND      4
+// #define BEGIN     1
+// #define END       2
+// #define RBEGIN    3
+// #define REND      4
 
 static void beginTests();
 static void endTests();

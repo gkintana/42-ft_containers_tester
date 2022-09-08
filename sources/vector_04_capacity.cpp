@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 22:28:50 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/07 22:55:02 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/08 10:36:24 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int main() {
 
 static void resizeTests() {
 	vectorTester test;
-
 	{
 		ft::vector<long> ft_vec;
 		std::vector<long> std_vec;
@@ -74,7 +73,6 @@ static void resizeTests() {
 
 static void resizeExceptionTests() {
 	vectorTester test;
-
 	{
 		ft::vector<int> ft_vec;
 		std::vector<int> std_vec;
@@ -104,7 +102,6 @@ static void resizeExceptionTests() {
 
 static void reserveTests() {
 	vectorTester test;
-
 	{
 		size_t size = 10,
                value = 12345;
@@ -126,7 +123,6 @@ static void reserveTests() {
 
 static void reserveExceptionTests() {
 	vectorTester test;
-
 	{
 		ft::vector<int> ft_vec;
 		std::vector<int> std_vec;
