@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:14:12 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/05 11:08:59 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:55:16 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 int main() {
 	srand(time(NULL));
-	std::cout << PURPLE "At Tests" DEFAULT << std::endl
-	          << "Int Vector: ";
+
+	vectorTester test;
+	std::cout << PURPLE "At Tests" DEFAULT << std::endl;
 	{
 		ft::vector<int> ft_vec;
 		std::vector<int> std_vec;
-		vectorPushLoop(ft_vec, std_vec, 15, false, true);
-		compareAtOutput(ft_vec, std_vec);
+		test.pushLoop(ft_vec, std_vec, 42);
+		test.compareAt(ft_vec, std_vec);
+		test.printTestResults("At Tests    ");
 	}
 
 	return 0;

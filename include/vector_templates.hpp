@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/08 11:28:04 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:53:43 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ class vectorTester {
 			this->KO++;
 		}
 
-		void printOK() { std::cout << GREEN "OK: passed " << this->OK << " tests" DEFAULT; }
+		void printOK() { std::cout << GREEN "OK" DEFAULT; }
 		void printWARNING() { std::cout << YELLOW "WARNING: " << this->WARNING << " potential error(s)" << DEFAULT; }
 		void printKO() { std::cout << RED "KO: " << this->KO << " error(s)" << DEFAULT; }
 
@@ -375,6 +375,21 @@ class vectorTester {
 				size_t random_value = std::rand() % 123456789;
 				ft.push_back(random_value);
 				std.push_back(random_value);
+			}
+		}
+
+
+
+		template <typename T>
+		void compareAt(ft::vector<T> &ft, std::vector<T> &std) {
+			if (ft.size() != std.size()) {
+				for (size_t i = 0; i < std::max(ft.size(), std.size()); i++) {
+					addKO();
+				}
+			} else {
+				for (size_t i = 0; i < ft.size(); i++) {
+					ft.at(i) == std.at(i) ? addOK() : addKO();
+				}
 			}
 		}
 };

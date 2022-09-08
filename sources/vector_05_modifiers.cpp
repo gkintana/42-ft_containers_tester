@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:26:38 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/08 11:53:40 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/08 17:51:23 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,5 +182,22 @@ static void swapTests() {
 		test.compareVectors(ft_vec2, std_vec2);
 
 		test.printTestResults("Int Vector   ");
+	}
+
+	{
+		ft::vector<std::string> ft_vec1;
+		std::vector<std::string> std_vec1;
+		test.pushLoop(ft_vec1, std_vec1, 24, "42 Abu Dhabi is Awesome!");
+		ft::vector<std::string> ft_vec2;
+		std::vector<std::string> std_vec2;
+		test.pushLoop(ft_vec1, std_vec1, 42, "Hello World!");
+
+		ft_vec1.swap(ft_vec2);
+		std_vec1.swap(std_vec2);
+
+		test.compareVectors(ft_vec1, std_vec1);
+		test.compareVectors(ft_vec2, std_vec2);
+
+		test.printTestResults("String Vector");
 	}
 }
