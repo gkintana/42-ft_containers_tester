@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/09 14:28:00 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:07:00 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -402,15 +402,10 @@ class vectorTester {
 		}
 
 		template <typename T>
-		void atModify(ft::vector<T> &ft, std::vector<T> &std, size_t n, int value) {
+		void atModify(ft::vector<T> &ft, std::vector<T> &std, size_t n,
+		              typename identity<T>::type value) {
 			ft.at(n) = value;
 			std.at(n) = value;
-		}
-
-		template <typename T>
-		void atModify(ft::vector<T> &ft, std::vector<T> &std, size_t n, std::string str) {
-			ft.at(n) = str;
-			std.at(n) = str;
 		}
 
 		template <typename T>
@@ -426,6 +421,22 @@ class vectorTester {
 				ft.at(n) == std.at(n) ? addOK() : addKO();
 			} catch (std::out_of_range &e) {
 				addOK();
+			}
+		}
+
+		template <typename T>
+		void compareFrontBack(ft::vector<T> &ft, std::vector<T> &std, bool is_front) {
+			/**
+			** @brief    added an if statement to check if both the ft and std containers
+			**           are empty or not before proceeding with the tests, to ensure that
+			**           undefined behavior will not be encountered
+			*/
+			if (!ft.empty() && !std.empty()) {
+				if (is_front) {
+					ft.front() == std.front() ? addOK() : addKO();
+				} else {
+					ft.back() == std.back() ? addOK() : addKO();
+				}
 			}
 		}
 };

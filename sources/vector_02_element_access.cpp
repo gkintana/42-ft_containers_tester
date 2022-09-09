@@ -6,14 +6,21 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:14:12 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/09 14:22:57 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/09 15:17:21 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector_templates.hpp>
 
+#define FRONT    true
+#define BACK     false
+
+// static void operatorTests();
 static void atTests();
 static void atExceptionTests();
+static void frontTests();
+static void backTests();
+// static void dataTests();
 
 int main() {
 	srand(time(NULL));
@@ -23,6 +30,12 @@ int main() {
 
 	std::cout << PURPLE "At Exception Tests" DEFAULT << std::endl;
 	atExceptionTests();
+
+	std::cout << PURPLE "Front Tests" DEFAULT << std::endl;
+	frontTests();
+
+	std::cout << PURPLE "Back Tests" DEFAULT << std::endl;
+	backTests();
 
 	return 0;
 }
@@ -106,4 +119,74 @@ static void atExceptionTests() {
 	test.atException(ft, std, std::rand());
 
 	test.printTestResults("");
+}
+
+static void frontTests() {
+	vectorTester test;
+	{
+		ft::vector<int> ft;
+		std::vector<int> std;
+		test.pushLoop(ft, std, 42);
+
+		test.compareFrontBack(ft, std, FRONT);
+		test.atModify(ft, std, 0, 0);
+		test.compareFrontBack(ft, std, FRONT);
+		test.resizeAndCompare(ft, std, 42, 123456789);
+		test.compareFrontBack(ft, std, FRONT);
+		test.atModify(ft, std, 0, 24);
+		test.compareFrontBack(ft, std, FRONT);
+
+		test.printTestResults("Int Vector    ");
+	}
+
+	{
+		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
+		ft::vector<std::string> ft(array, array + (sizeof(array) / sizeof(std::string)));
+		std::vector<std::string> std(array, array + (sizeof(array) / sizeof(std::string)));
+
+		test.compareFrontBack(ft, std, FRONT);
+		test.atModify(ft, std, 0, "Hello World!");
+		test.compareFrontBack(ft, std, FRONT);
+		test.resizeAndCompare(ft, std, 42, "Lorem ipsum dolor sit amet,");
+		test.compareFrontBack(ft, std, FRONT);
+		test.atModify(ft, std, 0, "The quick brown fox jumps over the lazy dog");
+		test.compareFrontBack(ft, std, FRONT);
+
+		test.printTestResults("String Vector");
+	}
+}
+
+static void backTests() {
+	vectorTester test;
+	{
+		ft::vector<int> ft;
+		std::vector<int> std;
+		test.pushLoop(ft, std, 42);
+
+		test.compareFrontBack(ft, std, BACK);
+		test.atModify(ft, std, ft.size() - 1, 0);
+		test.compareFrontBack(ft, std, BACK);
+		test.resizeAndCompare(ft, std, 42, 123456789);
+		test.compareFrontBack(ft, std, BACK);
+		test.atModify(ft, std, ft.size() - 1, 24);
+		test.compareFrontBack(ft, std, BACK);
+
+		test.printTestResults("Int Vector    ");
+	}
+
+	{
+		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
+		ft::vector<std::string> ft(array, array + (sizeof(array) / sizeof(std::string)));
+		std::vector<std::string> std(array, array + (sizeof(array) / sizeof(std::string)));
+
+		test.compareFrontBack(ft, std, BACK);
+		test.atModify(ft, std, ft.size() - 1, "The quick brown fox jumps over the lazy dog");
+		test.compareFrontBack(ft, std, BACK);
+		test.resizeAndCompare(ft, std, 42, "Lorem ipsum dolor sit amet,");
+		test.compareFrontBack(ft, std, BACK);
+		test.atModify(ft, std, ft.size() - 1, "Hello World!");
+		test.compareFrontBack(ft, std, BACK);
+
+		test.printTestResults("String Vector");
+	}
 }
