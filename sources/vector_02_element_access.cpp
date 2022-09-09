@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:14:12 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/09 15:17:21 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/09 20:51:33 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 #define FRONT    true
 #define BACK     false
 
-// static void operatorTests();
+static void operatorTests();
 static void atTests();
 static void atExceptionTests();
 static void frontTests();
 static void backTests();
-// static void dataTests();
+static void dataTests();
 
 int main() {
 	srand(time(NULL));
+
+	std::cout << PURPLE "Operator[] Tests" DEFAULT << std::endl;
+	operatorTests();
 
 	std::cout << PURPLE "At Tests" DEFAULT << std::endl;
 	atTests();
@@ -37,40 +40,30 @@ int main() {
 	std::cout << PURPLE "Back Tests" DEFAULT << std::endl;
 	backTests();
 
+	std::cout << PURPLE "Data Tests" DEFAULT << std::endl;
+	dataTests();
+
 	return 0;
 }
 
-static void atTests() {
+static void operatorTests() {
 	vectorTester test;
 	{
 		ft::vector<int> ft;
 		std::vector<int> std;
 		test.pushLoop(ft, std, 42);
-		test.compareAt(ft, std);
+
+		test.operatorLoop(ft, std);
 		test.printTestResults("Int Vector   ");
-	}
 
-	{
-		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
-		ft::vector<std::string> ft(array, array + (sizeof(array) / sizeof(std::string)));
-		std::vector<std::string> std(array, array + (sizeof(array) / sizeof(std::string)));
-		test.compareAt(ft, std);
-		test.printTestResults("String Vector");
-	}
+		test.operatorModify(ft, std, 0, 0);
+		test.operatorModify(ft, std, ft.size() - 1, 123);
+		test.operatorModify(ft, std, ft.size() / 2, 123);
+		test.operatorModify(ft, std, ft.size() / 3, 456);
+		test.operatorModify(ft, std, ft.size() / 4, 789);
+		test.operatorModify(ft, std, ft.size() / 5, 1234567890);
 
-	{
-		ft::vector<int> ft;
-		std::vector<int> std;
-		test.pushLoop(ft, std, 42);
-
-		test.atModify(ft, std, 0, 0);
-		test.atModify(ft, std, ft.size() - 1, 123);
-		test.atModify(ft, std, ft.size() / 2, 123);
-		test.atModify(ft, std, ft.size() / 3, 456);
-		test.atModify(ft, std, ft.size() / 4, 789);
-		test.atModify(ft, std, ft.size() / 5, 1234567890);
-
-		test.compareAt(ft, std);
+		test.operatorLoop(ft, std);
 		test.printTestResults("Modified Int Vector");
 	}
 
@@ -79,6 +72,50 @@ static void atTests() {
 		ft::vector<std::string> ft(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std(array, array + (sizeof(array) / sizeof(std::string)));
 
+		test.operatorLoop(ft, std);
+		test.printTestResults("String Vector");
+
+		test.operatorModify(ft, std, 0, "The sun");
+		test.operatorModify(ft, std, ft.size() - 1, "had set,");
+		test.operatorModify(ft, std, ft.size() / 2, "and");
+		test.operatorModify(ft, std, ft.size() / 3, "so had");
+		test.operatorModify(ft, std, ft.size() / 4, "his");
+		test.operatorModify(ft, std, ft.size() / 5, "grades");
+
+		test.operatorLoop(ft, std);
+		test.printTestResults("Modified Str Vector");
+	}
+}
+
+static void atTests() {
+	vectorTester test;
+	{
+		ft::vector<int> ft;
+		std::vector<int> std;
+		test.pushLoop(ft, std, 42);
+
+		test.atLoop(ft, std);
+		test.printTestResults("Int Vector   ");
+
+		test.atModify(ft, std, 0, 0);
+		test.atModify(ft, std, ft.size() - 1, 123);
+		test.atModify(ft, std, ft.size() / 2, 123);
+		test.atModify(ft, std, ft.size() / 3, 456);
+		test.atModify(ft, std, ft.size() / 4, 789);
+		test.atModify(ft, std, ft.size() / 5, 1234567890);
+
+		test.atLoop(ft, std);
+		test.printTestResults("Modified Int Vector");
+	}
+
+	{
+		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
+		ft::vector<std::string> ft(array, array + (sizeof(array) / sizeof(std::string)));
+		std::vector<std::string> std(array, array + (sizeof(array) / sizeof(std::string)));
+
+		test.atLoop(ft, std);
+		test.printTestResults("String Vector");
+
 		test.atModify(ft, std, 0, "The sun");
 		test.atModify(ft, std, ft.size() - 1, "had set,");
 		test.atModify(ft, std, ft.size() / 2, "and");
@@ -86,7 +123,7 @@ static void atTests() {
 		test.atModify(ft, std, ft.size() / 4, "his");
 		test.atModify(ft, std, ft.size() / 5, "grades");
 
-		test.compareAt(ft, std);
+		test.atLoop(ft, std);
 		test.printTestResults("Modified Str Vector");
 	}
 }
@@ -188,5 +225,46 @@ static void backTests() {
 		test.compareFrontBack(ft, std, BACK);
 
 		test.printTestResults("String Vector");
+	}
+}
+
+static void dataTests() {
+	vectorTester test;
+	{
+		ft::vector<int> ft;
+		std::vector<int> std;
+		test.pushLoop(ft, std, 42);
+
+		test.dataLoop(ft, std);
+		test.printTestResults("Int Vector   ");
+
+		test.dataModify(ft, std, 0, 0);
+		test.dataModify(ft, std, ft.size() - 1, 123);
+		test.dataModify(ft, std, ft.size() / 2, 123);
+		test.dataModify(ft, std, ft.size() / 3, 456);
+		test.dataModify(ft, std, ft.size() / 4, 789);
+		test.dataModify(ft, std, ft.size() / 5, 1234567890);
+
+		test.dataLoop(ft, std);
+		test.printTestResults("Modified Int Vector");
+	}
+
+	{
+		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
+		ft::vector<std::string> ft(array, array + (sizeof(array) / sizeof(std::string)));
+		std::vector<std::string> std(array, array + (sizeof(array) / sizeof(std::string)));
+
+		test.dataLoop(ft, std);
+		test.printTestResults("String Vector");
+
+		test.dataModify(ft, std, 0, "The sun");
+		test.dataModify(ft, std, ft.size() - 1, "had set,");
+		test.dataModify(ft, std, ft.size() / 2, "and");
+		test.dataModify(ft, std, ft.size() / 3, "so had");
+		test.dataModify(ft, std, ft.size() / 4, "his");
+		test.dataModify(ft, std, ft.size() / 5, "grades");
+
+		test.dataLoop(ft, std);
+		test.printTestResults("Modified Str Vector");		
 	}
 }
