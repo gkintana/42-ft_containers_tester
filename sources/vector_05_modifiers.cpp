@@ -6,13 +6,16 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:26:38 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/08 17:51:23 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/09 23:12:32 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector_templates.hpp>
 
 static void clearTests();
+static void singleInsertTests();
+static void rangedInsertTests();
+// static void iteratorInsertTests();
 static void singleEraseTests();
 static void rangedEraseTests();
 static void pushBackTests();
@@ -25,6 +28,14 @@ int main() {
 	std::cout << PURPLE "Clear Tests" DEFAULT << std::endl;
 	clearTests();
 
+	std::cout << PURPLE "Single Insert Tests" DEFAULT << std::endl;
+	singleInsertTests();
+
+	std::cout << PURPLE "Ranged Insert Tests" DEFAULT << std::endl;
+	rangedInsertTests();
+
+	// std::cout << PURPLE "Iterator Insert Tests" DEFAULT << std::endl;
+
 	std::cout << PURPLE "Single Erase Tests" DEFAULT << std::endl;
 	singleEraseTests();
 
@@ -33,6 +44,8 @@ int main() {
 
 	std::cout << PURPLE "Push Back Tests" DEFAULT << std::endl;
 	pushBackTests();
+
+	// std::cout << PURPLE "Pop Back Tests" DEFAULT << std::endl;
 
 	std::cout << PURPLE "Swap Tests" DEFAULT << std::endl;
 	swapTests();
@@ -74,6 +87,86 @@ static void clearTests() {
 		ft::vector<std::string> ft_str(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std_str(array, array + (sizeof(array) / sizeof(std::string)));
 		test.clearVectors(ft_str, std_str);
+
+		test.printTestResults("String Vector");
+	}
+}
+
+static void singleInsertTests() {
+	vectorTester test;
+	{
+		ft::vector<int> ft;
+		std::vector<int> std;
+		test.pushLoop(ft, std, 42);
+		
+		test.singleInsert(ft, std, BEGIN, 0, RNG);
+		test.singleInsert(ft, std, BEGIN, ft.size() / 2, RNG);
+		test.singleInsert(ft, std, BEGIN, ft.size() - 1, RNG);
+		test.singleInsert(ft, std, END, 1, RNG);
+		test.singleInsert(ft, std, END, ft.size() / 2, RNG);
+		test.singleInsert(ft, std, END, ft.size(), RNG);
+		
+		test.printTestResults("Int Vector   ");	
+	}
+
+	{
+		ft::vector<std::string> ft(10, "Hello!");
+		std::vector<std::string> std(10, "Hello!");
+		
+		test.singleInsert(ft, std, BEGIN, 0, "lorem");
+		test.singleInsert(ft, std, BEGIN, ft.size() / 2, "ipsum");
+		test.singleInsert(ft, std, BEGIN, ft.size() - 1, "dolor");
+		test.singleInsert(ft, std, END, 1, "sit");
+		test.singleInsert(ft, std, END, ft.size() / 2, "amet");
+		test.singleInsert(ft, std, END, ft.size(), ",");
+		
+		test.printTestResults("String Vector");	
+	}
+}
+
+static void rangedInsertTests() {
+	vectorTester test;
+	{
+		ft::vector<int> ft;
+		std::vector<int> std;
+		test.pushLoop(ft, std, 42);
+
+		test.rangedInsert(ft, std, BEGIN, 0, 42, RNG);
+		test.rangedInsert(ft, std, BEGIN, ft.size() / 2, 24, RNG);
+		test.rangedInsert(ft, std, BEGIN, ft.size() / 3, 0, RNG);
+		test.rangedInsert(ft, std, BEGIN, ft.size() / 3, 21, RNG);
+		test.rangedInsert(ft, std, BEGIN, ft.size() / 4, 100, RNG);
+		test.rangedInsert(ft, std, BEGIN, ft.size() / 5, 1, RNG);
+		test.rangedInsert(ft, std, BEGIN, ft.size() - 1, 123, RNG);
+		test.rangedInsert(ft, std, END, 1, 1, RNG);
+		test.rangedInsert(ft, std, END, 1, 20, RNG);
+		test.rangedInsert(ft, std, END, ft.size(), 42, RNG);
+		test.rangedInsert(ft, std, END, ft.size() / 2, 12, RNG);
+		test.rangedInsert(ft, std, END, ft.size() / 3, 8, RNG);
+		test.rangedInsert(ft, std, END, ft.size() / 4, 0, RNG);
+		test.rangedInsert(ft, std, END, ft.size() / 4, 15, RNG);
+
+		test.printTestResults("Int Vector   ");
+	}
+
+	{
+		ft::vector<std::string> ft(10, "Hello!");
+		std::vector<std::string> std(10, "Hello!");
+
+		test.rangedInsert(ft, std, BEGIN, 0, 42, "My");
+		test.rangedInsert(ft, std, BEGIN, ft.size() / 2, 24, "dentist");
+		test.rangedInsert(ft, std, BEGIN, ft.size() / 3, 0, "tells");
+		test.rangedInsert(ft, std, BEGIN, ft.size() / 3, 21, "me");
+		test.rangedInsert(ft, std, BEGIN, ft.size() / 4, 100, "that");
+		test.rangedInsert(ft, std, BEGIN, ft.size() / 5, 1, "chewing");
+		test.rangedInsert(ft, std, BEGIN, ft.size() - 1, 123, "bricks");
+		test.rangedInsert(ft, std, END, 1, 1, "is");
+		test.rangedInsert(ft, std, END, 1, 20, "very");
+		test.rangedInsert(ft, std, END, ft.size(), 42, "bad");
+		test.rangedInsert(ft, std, END, ft.size() / 2, 12, "for");
+		test.rangedInsert(ft, std, END, ft.size() / 3, 8, "your");
+		test.rangedInsert(ft, std, END, ft.size() / 4, 0, "teeth");
+		test.rangedInsert(ft, std, END, ft.size() / 4, 15, "😬");
 
 		test.printTestResults("String Vector");
 	}

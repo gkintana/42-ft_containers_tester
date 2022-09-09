@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/09 20:30:30 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/09 22:58:20 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 #define RBEGIN    3
 #define REND      4
 
+#define RNG       std::rand() % 999999999
 // #define OK         1
 // #define WARNING    2
 // #define KO         3
@@ -342,6 +343,32 @@ class vectorTester {
 		}
 
 		template <typename T>
+		void singleInsert(ft::vector<T> &ft, std::vector<T> &std, size_t option,
+		                  size_t offset, typename identity<T>::type value) {
+			if (option == BEGIN) {
+				ft.insert(ft.begin() + offset, value);
+				std.insert(std.begin() + offset, value);
+			} else if (option == END) {
+				ft.insert(ft.end() - offset, value);
+				std.insert(std.end() - offset, value);
+			}
+			compareVectors(ft, std);
+		}
+
+		template <typename T>
+		void rangedInsert(ft::vector<T> &ft, std::vector<T> &std, size_t option,
+		                  size_t offset, size_t n, typename identity<T>::type value) {
+			if (option == BEGIN) {
+				ft.insert(ft.begin() + offset, n, value);
+				std.insert(std.begin() + offset, n, value);
+			} else if (option == END) {
+				ft.insert(ft.end() - offset, n, value);
+				std.insert(std.end() - offset, n, value);
+			}
+			compareVectors(ft, std);
+		}
+
+		template <typename T>
 		void singleErase(ft::vector<T> &ft, std::vector<T> &std, size_t option,
 		                 size_t offset) {
 			if (option == BEGIN) {
@@ -479,7 +506,7 @@ class vectorTester {
 
 		template <typename T>
 		void dataModify(ft::vector<T> &ft, std::vector<T> &std, size_t n,
-		                    typename identity<T>::type value) {
+		                typename identity<T>::type value) {
 			if (n >= ft.size()) {
 				std::cerr << YELLOW "Index (" << n << ") exceeds vector size, and will cause undefined behavior. Skipping Test Case" DEFAULT << std::endl;
 				return;
