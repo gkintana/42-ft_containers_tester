@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/08 17:53:43 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/09 14:28:00 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,16 @@ class vectorTester {
 			this->KO++;
 		}
 
-		void printOK() { std::cout << GREEN "OK" DEFAULT; }
-		void printWARNING() { std::cout << YELLOW "WARNING: " << this->WARNING << " potential error(s)" << DEFAULT; }
-		void printKO() { std::cout << RED "KO: " << this->KO << " error(s)" << DEFAULT; }
+		void printOK() { std::cout << GREEN "OK" DEFAULT << std::endl; }
+
+		void printWarning() { std::cout << YELLOW "WARNING: " << this->WARNING << " potential error(s)" << DEFAULT << std::endl; }
+
+		void printKO() { std::cout << RED "KO: " << this->KO << " error(s)" << DEFAULT << std::endl; }
+
+		void printWarningAndKO () {
+			std::cout << YELLOW "WARNING: " << this->WARNING << " potential error(s)" << DEFAULT << std::endl
+			          << RED "KO: " << this->KO << " error(s)" << DEFAULT << std::endl;
+		}
 
 		void resetTestCount() {
 			this->OK = 0;
@@ -174,11 +181,12 @@ class vectorTester {
 				std::cout << "  ➢ " << test_name << "\t\t";
 			}
 
-			!this->WARNING && !this->KO ? printOK() : this->WARNING && !this->KO ? printWARNING() : printKO();
-			std::cout << std::endl;
+			this->WARNING && this->KO ? printWarningAndKO() :
+			!this->WARNING && !this->KO ? printOK() :
+			this->WARNING && !this->KO ? printWarning() : printKO();
 
 			if (this->WARNING || this->KO) {
-				std::cout << RED "    Check report.txt for more details" DEFAULT << std::endl;
+				std::cout << RED "\t\t\t\tCheck report.txt for more details" DEFAULT << std::endl;
 				// report.open()
 			}
 			this->resetTestCount();
@@ -390,6 +398,34 @@ class vectorTester {
 				for (size_t i = 0; i < ft.size(); i++) {
 					ft.at(i) == std.at(i) ? addOK() : addKO();
 				}
+			}
+		}
+
+		template <typename T>
+		void atModify(ft::vector<T> &ft, std::vector<T> &std, size_t n, int value) {
+			ft.at(n) = value;
+			std.at(n) = value;
+		}
+
+		template <typename T>
+		void atModify(ft::vector<T> &ft, std::vector<T> &std, size_t n, std::string str) {
+			ft.at(n) = str;
+			std.at(n) = str;
+		}
+
+		template <typename T>
+		void atException(ft::vector<T> &ft, std::vector<T> &std, size_t n) {
+			try {
+				ft.at(n);
+				/**
+				** @brief    the ft.at(n) above would usually throw an error provided that
+				**           n is greater than or equal to ft.size(). However if n is within
+				**           range of the vector's size, I will then compare it's value to
+				**           the std vector and add an OK or KO accordingly
+				*/
+				ft.at(n) == std.at(n) ? addOK() : addKO();
+			} catch (std::out_of_range &e) {
+				addOK();
 			}
 		}
 };
