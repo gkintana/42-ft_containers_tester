@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:26:38 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/09 23:12:32 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/10 10:26:29 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,26 @@ int main() {
 static void clearTests() {
 	vectorTester test;
 	{
-		ft::vector<int> ft_vec;
-		std::vector<int> std_vec;
-		test.clearVectors(ft_vec, std_vec);
+		ft::vector<int> ft;
+		std::vector<int> std;
+		test.clearVectors(ft, std);
 
 		test.printTestResults("Empty Int Vector");
 	}
 
 	{
-		ft::vector<char> ft_vec(42, 'A');
-		std::vector<char> std_vec(42, 'A');
-		test.clearVectors(ft_vec, std_vec);
+		ft::vector<char> ft(42, 'A');
+		std::vector<char> std(42, 'A');
+		test.clearVectors(ft, std);
 
 		test.printTestResults("Char Vector   ");
 	}
 
 	{
-		ft::vector<int> ft_vec;
-		std::vector<int> std_vec;
-		test.pushLoop(ft_vec, std_vec, 42);
-		test.clearVectors(ft_vec, std_vec);
+		ft::vector<int> ft;
+		std::vector<int> std;
+		test.pushLoop(ft, std, 42);
+		test.clearVectors(ft, std);
 
 		test.printTestResults("Int Vector    ");
 	}
@@ -175,31 +175,31 @@ static void rangedInsertTests() {
 static void singleEraseTests() {
 	vectorTester test;
 	{
-		ft::vector<int> ft_vec;
-		std::vector<int> std_vec;
-		test.pushLoop(ft_vec, std_vec, 42);
+		ft::vector<int> ft;
+		std::vector<int> std;
+		test.pushLoop(ft, std, 42);
 
-		test.singleErase(ft_vec, std_vec, BEGIN, 0);
-		test.singleErase(ft_vec, std_vec, BEGIN, ft_vec.size() / 2);
-		test.singleErase(ft_vec, std_vec, BEGIN, ft_vec.size() - 1);
-		test.singleErase(ft_vec, std_vec, END, 1);
-		test.singleErase(ft_vec, std_vec, END, ft_vec.size() / 2);
-		test.singleErase(ft_vec, std_vec, END, ft_vec.size());
+		test.singleErase(ft, std, BEGIN, 0);
+		test.singleErase(ft, std, BEGIN, ft.size() / 2);
+		test.singleErase(ft, std, BEGIN, ft.size() - 1);
+		test.singleErase(ft, std, END, 1);
+		test.singleErase(ft, std, END, ft.size() / 2);
+		test.singleErase(ft, std, END, ft.size());
 
 		test.printTestResults("Int Vector   ");
 	}
 
 	{
 		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
-		ft::vector<std::string> ft_vec(array, array + (sizeof(array) / sizeof(std::string)));
-		std::vector<std::string> std_vec(array, array + (sizeof(array) / sizeof(std::string)));
+		ft::vector<std::string> ft(array, array + (sizeof(array) / sizeof(std::string)));
+		std::vector<std::string> std(array, array + (sizeof(array) / sizeof(std::string)));
 
-		test.singleErase(ft_vec, std_vec, BEGIN, 0);
-		test.singleErase(ft_vec, std_vec, BEGIN, ft_vec.size() / 2);
-		test.singleErase(ft_vec, std_vec, BEGIN, ft_vec.size() - 1);
-		test.singleErase(ft_vec, std_vec, END, 1);
-		test.singleErase(ft_vec, std_vec, END, ft_vec.size() / 2);
-		test.singleErase(ft_vec, std_vec, END, ft_vec.size());
+		test.singleErase(ft, std, BEGIN, 0);
+		test.singleErase(ft, std, BEGIN, ft.size() / 2);
+		test.singleErase(ft, std, BEGIN, ft.size() - 1);
+		test.singleErase(ft, std, END, 1);
+		test.singleErase(ft, std, END, ft.size() / 2);
+		test.singleErase(ft, std, END, ft.size());
 
 		test.printTestResults("String Vector   ");
 	}
@@ -208,18 +208,18 @@ static void singleEraseTests() {
 static void rangedEraseTests() {
 	vectorTester test;
 	{
-		ft::vector<int> ft_vec;
-		std::vector<int> std_vec;
-		test.pushLoop(ft_vec, std_vec, 256);
+		ft::vector<int> ft;
+		std::vector<int> std;
+		test.pushLoop(ft, std, 256);
 
-		test.rangedErase(ft_vec, std_vec, BEGIN, 0, BEGIN, 0);
-		test.rangedErase(ft_vec, std_vec, BEGIN, 0, BEGIN, ft_vec.size());
-		test.rangedErase(ft_vec, std_vec, BEGIN, 0, END, 0);
-		test.rangedErase(ft_vec, std_vec, BEGIN, ft_vec.size() / 2, END, 0);
-		test.rangedErase(ft_vec, std_vec, BEGIN, ft_vec.size() - 1, END, 0);
-		test.rangedErase(ft_vec, std_vec, BEGIN, ft_vec.size(), END, 0);
-		test.rangedErase(ft_vec, std_vec, END, 1, BEGIN, ft_vec.size());
-		test.rangedErase(ft_vec, std_vec, END, 1, END, 1);
+		test.rangedErase(ft, std, BEGIN, 0, BEGIN, 0);
+		test.rangedErase(ft, std, BEGIN, 0, BEGIN, ft.size());
+		test.rangedErase(ft, std, BEGIN, 0, END, 0);
+		test.rangedErase(ft, std, BEGIN, ft.size() / 2, END, 0);
+		test.rangedErase(ft, std, BEGIN, ft.size() - 1, END, 0);
+		test.rangedErase(ft, std, BEGIN, ft.size(), END, 0);
+		test.rangedErase(ft, std, END, 1, BEGIN, ft.size());
+		test.rangedErase(ft, std, END, 1, END, 1);
 
 		test.printTestResults("Int Vector   ");
 	}
@@ -228,28 +228,28 @@ static void rangedEraseTests() {
 static void pushBackTests() {
 	vectorTester test;
 	{
-		ft::vector<char> ft_vec;
-		std::vector<char> std_vec;
-		test.pushLoop(ft_vec, std_vec, 42);
+		ft::vector<char> ft;
+		std::vector<char> std;
+		test.pushLoop(ft, std, 42);
 		test.printTestResults("Char Vector   ");
 	}
 	// {
-	// 	ft::vector<size_t> ft_vec;
-	// 	std::vector<size_t> std_vec;
-	// 	test.pushLoop(ft_vec, std_vec, 999999);
+	// 	ft::vector<size_t> ft;
+	// 	std::vector<size_t> std;
+	// 	test.pushLoop(ft, std, 999999);
 	// 	test.printTestResults("SIZE_MAX    ");
 	// }
 	{
-		ft::vector<int> ft_vec;
-		std::vector<int> std_vec;
-		test.pushLoop(ft_vec, std_vec, 42);
+		ft::vector<int> ft;
+		std::vector<int> std;
+		test.pushLoop(ft, std, 42);
 		test.printTestResults("Int Vector   ");
 	}
 
 	{
-		ft::vector<std::string> ft_vec;
-		std::vector<std::string> std_vec;
-		test.pushLoop(ft_vec, std_vec, 42, "Hello World!");
+		ft::vector<std::string> ft;
+		std::vector<std::string> std;
+		test.pushLoop(ft, std, 42, "Hello World!");
 		test.printTestResults("String Vector");
 	}
 }
@@ -261,35 +261,35 @@ static void pushBackTests() {
 static void swapTests() {
 	vectorTester test;
 	{
-		ft::vector<int> ft_vec1;
-		std::vector<int> std_vec1;
-		test.pushLoop(ft_vec1, std_vec1, 24);
-		ft::vector<int> ft_vec2;
-		std::vector<int> std_vec2;
-		test.pushLoop(ft_vec2, std_vec2, ft_vec1.size() * 3);
+		ft::vector<int> ft1;
+		std::vector<int> std1;
+		test.pushLoop(ft1, std1, 24);
+		ft::vector<int> ft2;
+		std::vector<int> std2;
+		test.pushLoop(ft2, std2, ft1.size() * 3);
 
-		ft_vec1.swap(ft_vec2);
-		std_vec1.swap(std_vec2);
+		ft1.swap(ft2);
+		std1.swap(std2);
 
-		test.compareVectors(ft_vec1, std_vec1);
-		test.compareVectors(ft_vec2, std_vec2);
+		test.compareVectors(ft1, std1);
+		test.compareVectors(ft2, std2);
 
 		test.printTestResults("Int Vector   ");
 	}
 
 	{
-		ft::vector<std::string> ft_vec1;
-		std::vector<std::string> std_vec1;
-		test.pushLoop(ft_vec1, std_vec1, 24, "42 Abu Dhabi is Awesome!");
-		ft::vector<std::string> ft_vec2;
-		std::vector<std::string> std_vec2;
-		test.pushLoop(ft_vec1, std_vec1, 42, "Hello World!");
+		ft::vector<std::string> ft1;
+		std::vector<std::string> std1;
+		test.pushLoop(ft1, std1, 24, "42 Abu Dhabi is Awesome!");
+		ft::vector<std::string> ft2;
+		std::vector<std::string> std2;
+		test.pushLoop(ft1, std1, 42, "Hello World!");
 
-		ft_vec1.swap(ft_vec2);
-		std_vec1.swap(std_vec2);
+		ft1.swap(ft2);
+		std1.swap(std2);
 
-		test.compareVectors(ft_vec1, std_vec1);
-		test.compareVectors(ft_vec2, std_vec2);
+		test.compareVectors(ft1, std1);
+		test.compareVectors(ft2, std2);
 
 		test.printTestResults("String Vector");
 	}

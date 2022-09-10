@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:26:11 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/08 10:23:04 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/10 10:27:18 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ int main() {
 static void beginTests() {
 	vectorTester test;
 
-	ft::vector<int> ft_vec;
-	std::vector<int> std_vec;
-	test.pushLoop(ft_vec, std_vec, 42);
+	ft::vector<int> ft;
+	std::vector<int> std;
+	test.pushLoop(ft, std, 42);
 
-	test.compareIterToStd(ft_vec, std_vec, 0, BEGIN);
-	test.compareIterToStd(ft_vec, std_vec, ft_vec.size() / 2, BEGIN);
-	test.compareIterToStd(ft_vec, std_vec, ft_vec.size() - 1, BEGIN);
+	test.compareIterToStd(ft, std, 0, BEGIN);
+	test.compareIterToStd(ft, std, ft.size() / 2, BEGIN);
+	test.compareIterToStd(ft, std, ft.size() - 1, BEGIN);
 
 	test.printTestResults("Begin       ");
 }
@@ -66,13 +66,13 @@ static void beginTests() {
 static void endTests() {
 	vectorTester test;
 
-	ft::vector<int> ft_vec;
-	std::vector<int> std_vec;
-	test.pushLoop(ft_vec, std_vec, 42);
+	ft::vector<int> ft;
+	std::vector<int> std;
+	test.pushLoop(ft, std, 42);
 
-	test.compareIterToStd(ft_vec, std_vec, 1, END);
-	test.compareIterToStd(ft_vec, std_vec, ft_vec.size() / 2, END);
-	test.compareIterToStd(ft_vec, std_vec, ft_vec.size(), END);
+	test.compareIterToStd(ft, std, 1, END);
+	test.compareIterToStd(ft, std, ft.size() / 2, END);
+	test.compareIterToStd(ft, std, ft.size(), END);
 
 	test.printTestResults("End         ");
 }
@@ -80,25 +80,25 @@ static void endTests() {
 static void iteratorLoopTests() {
 	vectorTester test;
 
-	ft::vector<int> ft_vec;
-	std::vector<int> std_vec;
-	test.pushLoop(ft_vec, std_vec, 42);
+	ft::vector<int> ft;
+	std::vector<int> std;
+	test.pushLoop(ft, std, 42);
 
-	test.iterLoop(ft_vec, std_vec, ft_vec.begin(), ft_vec.end());
-	test.iterLoop(ft_vec, std_vec, ft_vec.begin() + (ft_vec.size() / 2), ft_vec.end());
-	test.iterLoop(ft_vec, std_vec, ft_vec.begin() + (ft_vec.size() - 1), ft_vec.end());
-	test.iterLoop(ft_vec, std_vec, ft_vec.begin() + ft_vec.size(), ft_vec.end());
-	test.iterLoop(ft_vec, std_vec, ft_vec.begin(), ft_vec.end() - (ft_vec.size() / 4));
-	test.iterLoop(ft_vec, std_vec, ft_vec.begin(), ft_vec.end() - (ft_vec.size() / 2));
-	test.iterLoop(ft_vec, std_vec, ft_vec.begin(), ft_vec.end() - (ft_vec.size() - 1));
-	test.iterLoop(ft_vec, std_vec, ft_vec.begin(), ft_vec.end() - ft_vec.size());
-	test.iterLoop(ft_vec, std_vec, ft_vec.begin() + (ft_vec.size() / 4), ft_vec.end() - (ft_vec.size() / 2));
-	test.iterLoop(ft_vec, std_vec, ft_vec.begin() + (ft_vec.size() / 3), ft_vec.end() - (ft_vec.size() / 3));
-	test.iterLoop(ft_vec, std_vec, ft_vec.begin() + (ft_vec.size() / 2), ft_vec.end() - (ft_vec.size() / 4));
-	test.iterLoop(ft_vec, std_vec, ft_vec.end(), ft_vec.end());
-	test.iterLoop(ft_vec, std_vec, ft_vec.end() - ft_vec.size(), ft_vec.end());
-	test.iterLoop(ft_vec, std_vec, ft_vec.end() - (ft_vec.size() / 2), ft_vec.end());
-	test.iterLoop(ft_vec, std_vec, ft_vec.end() - (ft_vec.size() / 2), ft_vec.end() - (ft_vec.size() / 4));
+	test.iterLoop(ft, std, ft.begin(), ft.end());
+	test.iterLoop(ft, std, ft.begin() + (ft.size() / 2), ft.end());
+	test.iterLoop(ft, std, ft.begin() + (ft.size() - 1), ft.end());
+	test.iterLoop(ft, std, ft.begin() + ft.size(), ft.end());
+	test.iterLoop(ft, std, ft.begin(), ft.end() - (ft.size() / 4));
+	test.iterLoop(ft, std, ft.begin(), ft.end() - (ft.size() / 2));
+	test.iterLoop(ft, std, ft.begin(), ft.end() - (ft.size() - 1));
+	test.iterLoop(ft, std, ft.begin(), ft.end() - ft.size());
+	test.iterLoop(ft, std, ft.begin() + (ft.size() / 4), ft.end() - (ft.size() / 2));
+	test.iterLoop(ft, std, ft.begin() + (ft.size() / 3), ft.end() - (ft.size() / 3));
+	test.iterLoop(ft, std, ft.begin() + (ft.size() / 2), ft.end() - (ft.size() / 4));
+	test.iterLoop(ft, std, ft.end(), ft.end());
+	test.iterLoop(ft, std, ft.end() - ft.size(), ft.end());
+	test.iterLoop(ft, std, ft.end() - (ft.size() / 2), ft.end());
+	test.iterLoop(ft, std, ft.end() - (ft.size() / 2), ft.end() - (ft.size() / 4));
 
 	test.printTestResults("Iterator Loop");
 }
@@ -106,13 +106,13 @@ static void iteratorLoopTests() {
 static void rbeginTests() {
 	vectorTester test;
 
-	ft::vector<int> ft_vec;
-	std::vector<int> std_vec;
-	test.pushLoop(ft_vec, std_vec, 42);
+	ft::vector<int> ft;
+	std::vector<int> std;
+	test.pushLoop(ft, std, 42);
 
-	test.compareIterToStd(ft_vec, std_vec, 0, RBEGIN);
-	test.compareIterToStd(ft_vec, std_vec, ft_vec.size() / 2, RBEGIN);
-	test.compareIterToStd(ft_vec, std_vec, ft_vec.size() - 1, RBEGIN);
+	test.compareIterToStd(ft, std, 0, RBEGIN);
+	test.compareIterToStd(ft, std, ft.size() / 2, RBEGIN);
+	test.compareIterToStd(ft, std, ft.size() - 1, RBEGIN);
 
 	test.printTestResults("Rbegin      ");
 }
@@ -120,13 +120,13 @@ static void rbeginTests() {
 static void rendTests() {
 	vectorTester test;
 
-	ft::vector<int> ft_vec;
-	std::vector<int> std_vec;
-	test.pushLoop(ft_vec, std_vec, 42);
+	ft::vector<int> ft;
+	std::vector<int> std;
+	test.pushLoop(ft, std, 42);
 
-	test.compareIterToStd(ft_vec, std_vec, 1, REND);
-	test.compareIterToStd(ft_vec, std_vec, ft_vec.size() / 2, REND);
-	test.compareIterToStd(ft_vec, std_vec, ft_vec.size() - 1, REND);
+	test.compareIterToStd(ft, std, 1, REND);
+	test.compareIterToStd(ft, std, ft.size() / 2, REND);
+	test.compareIterToStd(ft, std, ft.size() - 1, REND);
 
 	test.printTestResults("Rend        ");
 }
@@ -134,25 +134,25 @@ static void rendTests() {
 static void reverseIteratorLoopTests() {
 	vectorTester test;
 
-	ft::vector<int> ft_vec;
-	std::vector<int> std_vec;
-	test.pushLoop(ft_vec, std_vec, 42);
+	ft::vector<int> ft;
+	std::vector<int> std;
+	test.pushLoop(ft, std, 42);
 
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rend() - 1, ft_vec.rbegin());
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rend() - (ft_vec.size() / 2), ft_vec.rbegin());
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rend() - (ft_vec.size() - 1), ft_vec.rbegin());
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rend() - ft_vec.size(), ft_vec.rbegin());
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rend() - 1, ft_vec.rbegin() + (ft_vec.size() / 4));
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rend() - 1, ft_vec.rbegin() + (ft_vec.size() / 3));
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rend() - 1, ft_vec.rbegin() + (ft_vec.size() / 2));
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rend() - 1, ft_vec.rbegin() + ft_vec.size() - 1);
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rend() - (ft_vec.size() / 4), ft_vec.rbegin() + (ft_vec.size() / 2));
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rend() - (ft_vec.size() / 3), ft_vec.rbegin() + (ft_vec.size() / 3));
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rend() - (ft_vec.size() / 2), ft_vec.rbegin() + (ft_vec.size() / 4));
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rbegin() + 1, ft_vec.rbegin());
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rbegin() + (ft_vec.size() - 1), ft_vec.rbegin());
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rbegin() + (ft_vec.size() / 2), ft_vec.rbegin());
-	test.revIterLoop(ft_vec, std_vec, ft_vec.rbegin() + (ft_vec.size() / 2), ft_vec.rbegin() + (ft_vec.size() / 4));
+	test.revIterLoop(ft, std, ft.rend() - 1, ft.rbegin());
+	test.revIterLoop(ft, std, ft.rend() - (ft.size() / 2), ft.rbegin());
+	test.revIterLoop(ft, std, ft.rend() - (ft.size() - 1), ft.rbegin());
+	test.revIterLoop(ft, std, ft.rend() - ft.size(), ft.rbegin());
+	test.revIterLoop(ft, std, ft.rend() - 1, ft.rbegin() + (ft.size() / 4));
+	test.revIterLoop(ft, std, ft.rend() - 1, ft.rbegin() + (ft.size() / 3));
+	test.revIterLoop(ft, std, ft.rend() - 1, ft.rbegin() + (ft.size() / 2));
+	test.revIterLoop(ft, std, ft.rend() - 1, ft.rbegin() + ft.size() - 1);
+	test.revIterLoop(ft, std, ft.rend() - (ft.size() / 4), ft.rbegin() + (ft.size() / 2));
+	test.revIterLoop(ft, std, ft.rend() - (ft.size() / 3), ft.rbegin() + (ft.size() / 3));
+	test.revIterLoop(ft, std, ft.rend() - (ft.size() / 2), ft.rbegin() + (ft.size() / 4));
+	test.revIterLoop(ft, std, ft.rbegin() + 1, ft.rbegin());
+	test.revIterLoop(ft, std, ft.rbegin() + (ft.size() - 1), ft.rbegin());
+	test.revIterLoop(ft, std, ft.rbegin() + (ft.size() / 2), ft.rbegin());
+	test.revIterLoop(ft, std, ft.rbegin() + (ft.size() / 2), ft.rbegin() + (ft.size() / 4));
 
 	test.printTestResults("Reverse Iter Loop");
 }

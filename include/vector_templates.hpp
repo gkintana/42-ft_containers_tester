@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/09 22:58:20 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/10 10:43:14 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -413,109 +413,28 @@ class vectorTester {
 			}
 		}
 
-
+		// Element Access Test Templates
 		template <typename T>
-		void KOLoop(ft::vector<T> &ft, std::vector<T> &std) {
-			for (size_t i = 0; i < std::max(ft.size(), std.size()); i++) {
-				addKO();
-			}
-		}
-
+		void KOLoop(ft::vector<T> &ft, std::vector<T> &std);
 		template <typename T>
-		void operatorLoop(ft::vector<T> &ft, std::vector<T> &std) {
-			if (ft.size() != std.size()) {
-				KOLoop(ft, std);				
-			} else {
-				for (size_t i = 0; i < ft.size(); i++) {
-					ft[i] == std[i] ? addOK() : addKO();
-				}
-			}
-		}
-
+		void operatorLoop(ft::vector<T> &ft, std::vector<T> &std);
 		template <typename T>
-		void operatorModify(ft::vector<T> &ft, std::vector<T> &std, size_t n,
-		                    typename identity<T>::type value) {
-			if (n >= ft.size()) {
-				std::cerr << YELLOW "Index (" << n << ") exceeds vector size, and will cause undefined behavior. Skipping Test Case" DEFAULT << std::endl;
-				return;
-			}
-			ft[n] = std[n] = value;
-		}
-
+		void operatorModify(ft::vector<T> &ft, std::vector<T> &std, size_t n, typename identity<T>::type value);
 		template <typename T>
-		void atLoop(ft::vector<T> &ft, std::vector<T> &std) {
-			if (ft.size() != std.size()) {
-				KOLoop(ft, std);
-			} else {
-				for (size_t i = 0; i < ft.size(); i++) {
-					ft.at(i) == std.at(i) ? addOK() : addKO();
-				}
-			}
-		}
-
+		void atLoop(ft::vector<T> &ft, std::vector<T> &std);
 		template <typename T>
-		void atModify(ft::vector<T> &ft, std::vector<T> &std, size_t n,
-		              typename identity<T>::type value) {
-			ft.at(n) = std.at(n) = value;
-		}
-
+		void atModify(ft::vector<T> &ft, std::vector<T> &std, size_t n, typename identity<T>::type value);
 		template <typename T>
-		void atException(ft::vector<T> &ft, std::vector<T> &std, size_t n) {
-			try {
-				ft.at(n);
-				/**
-				** @brief    the ft.at(n) above would usually throw an error provided that
-				**           n is greater than or equal to ft.size(). However if n is within
-				**           range of the vector's size, I will then compare it's value to
-				**           the std vector and add an OK or KO accordingly
-				*/
-				ft.at(n) == std.at(n) ? addOK() : addKO();
-			} catch (std::out_of_range &e) {
-				addOK();
-			}
-		}
-
+		void atException(ft::vector<T> &ft, std::vector<T> &std, size_t n);
 		template <typename T>
-		void compareFrontBack(ft::vector<T> &ft, std::vector<T> &std, bool is_front) {
-			/**
-			** @brief    added an if statement to check if both the ft and std containers
-			**           are empty or not before proceeding with the tests, to ensure that
-			**           undefined behavior will not be encountered
-			*/
-			if (!ft.empty() && !std.empty()) {
-				if (is_front) {
-					ft.front() == std.front() ? addOK() : addKO();
-				} else {
-					ft.back() == std.back() ? addOK() : addKO();
-				}
-			}
-		}
-
+		void compareFrontBack(ft::vector<T> &ft, std::vector<T> &std, bool is_front);
 		template <typename T>
-		void dataLoop(ft::vector<T> &ft, std::vector<T> &std) {
-			if (ft.size() != std.size()) {
-				KOLoop(ft, std);
-			} else {
-				T *ft_ptr = ft.data(),
-				  *std_ptr = std.data();
-				for (size_t i = 0; i < ft.size(); i++) {
-					*ft_ptr == *std_ptr ? addOK() : addKO();
-				}
-			}
-		}
-
+		void dataLoop(ft::vector<T> &ft, std::vector<T> &std);
 		template <typename T>
-		void dataModify(ft::vector<T> &ft, std::vector<T> &std, size_t n,
-		                typename identity<T>::type value) {
-			if (n >= ft.size()) {
-				std::cerr << YELLOW "Index (" << n << ") exceeds vector size, and will cause undefined behavior. Skipping Test Case" DEFAULT << std::endl;
-				return;
-			}
-			T *ft_ptr = ft.data() + n,
-			  *std_ptr = std.data() + n;
-			*ft_ptr = *std_ptr = value;
-		}
+		void dataModify(ft::vector<T> &ft, std::vector<T> &std, size_t n, typename identity<T>::type value);
 };
+
+#include <vector_tpp/vector_element_access.tpp>
 
 // /*----------------------------------------------------------------------------*/
 
