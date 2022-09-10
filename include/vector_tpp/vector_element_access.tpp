@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 10:29:11 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/10 10:39:22 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/10 10:45:31 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void vectorTester::operatorLoop(ft::vector<T> &ft, std::vector<T> &std) {
 
 template <typename T>
 void vectorTester::operatorModify(ft::vector<T> &ft, std::vector<T> &std, size_t n,
-					typename identity<T>::type value) {
+                                  typename identity<T>::type value) {
 	if (n >= ft.size()) {
 		std::cerr << YELLOW "Index (" << n << ") exceeds vector size, and will cause undefined behavior. Skipping Test Case" DEFAULT << std::endl;
 		return;
@@ -51,7 +51,7 @@ void vectorTester::atLoop(ft::vector<T> &ft, std::vector<T> &std) {
 
 template <typename T>
 void vectorTester::atModify(ft::vector<T> &ft, std::vector<T> &std, size_t n,
-				typename identity<T>::type value) {
+                            typename identity<T>::type value) {
 	ft.at(n) = std.at(n) = value;
 }
 
@@ -93,7 +93,8 @@ void vectorTester::dataLoop(ft::vector<T> &ft, std::vector<T> &std) {
 		KOLoop(ft, std);
 	} else {
 		T *ft_ptr = ft.data(),
-			*std_ptr = std.data();
+          *std_ptr = std.data();
+
 		for (size_t i = 0; i < ft.size(); i++) {
 			*ft_ptr == *std_ptr ? addOK() : addKO();
 		}
@@ -102,13 +103,14 @@ void vectorTester::dataLoop(ft::vector<T> &ft, std::vector<T> &std) {
 
 template <typename T>
 void vectorTester::dataModify(ft::vector<T> &ft, std::vector<T> &std, size_t n,
-				typename identity<T>::type value) {
+                              typename identity<T>::type value) {
 	if (n >= ft.size()) {
 		std::cerr << YELLOW "Index (" << n << ") exceeds vector size, and will cause undefined behavior. Skipping Test Case" DEFAULT << std::endl;
 		return;
 	}
+
 	T *ft_ptr = ft.data() + n,
-		*std_ptr = std.data() + n;
+      *std_ptr = std.data() + n;
+
 	*ft_ptr = *std_ptr = value;
 }
-
