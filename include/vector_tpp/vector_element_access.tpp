@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 10:29:11 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/10 10:45:31 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/10 10:53:24 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void vectorTester::dataLoop(ft::vector<T> &ft, std::vector<T> &std) {
 		KOLoop(ft, std);
 	} else {
 		T *ft_ptr = ft.data(),
-          *std_ptr = std.data();
+		  *std_ptr = std.data();
 
 		for (size_t i = 0; i < ft.size(); i++) {
 			*ft_ptr == *std_ptr ? addOK() : addKO();
@@ -110,7 +110,7 @@ void vectorTester::dataModify(ft::vector<T> &ft, std::vector<T> &std, size_t n,
 	}
 
 	T *ft_ptr = ft.data() + n,
-      *std_ptr = std.data() + n;
+	  *std_ptr = std.data() + n;
 
 	*ft_ptr = *std_ptr = value;
 }

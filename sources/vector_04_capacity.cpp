@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 22:28:50 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/10 10:26:59 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/10 13:18:18 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,24 @@ static void resizeExceptionTests() {
 		ft::vector<int> ft;
 		std::vector<int> std;
 
-		test.checkExceptions(ft, std, ft.max_size(), RESIZE);
-		test.checkExceptions(ft, std, +0, RESIZE);
-		test.checkExceptions(ft, std, -0, RESIZE);
-		test.checkExceptions(ft, std, CHAR_BIT, RESIZE);
-		test.checkExceptions(ft, std, CHAR_MIN, RESIZE);
-		test.checkExceptions(ft, std, CHAR_MAX, RESIZE);
-		test.checkExceptions(ft, std, SCHAR_MIN, RESIZE);
-		test.checkExceptions(ft, std, SCHAR_MAX, RESIZE);
-		test.checkExceptions(ft, std, INT_MIN, RESIZE);
-		test.checkExceptions(ft, std, SHRT_MIN, RESIZE);
-		test.checkExceptions(ft, std, SHRT_MAX, RESIZE);
-		test.checkExceptions(ft, std, USHRT_MAX, RESIZE);
-		test.checkExceptions(ft, std, LONG_MIN, RESIZE);
-		test.checkExceptions(ft, std, LONG_MAX, RESIZE);
-		test.checkExceptions(ft, std, ULONG_MAX, RESIZE);
+		test.capacityExceptions(ft, std, ft.max_size(), RESIZE);
+		test.capacityExceptions(ft, std, +0, RESIZE);
+		test.capacityExceptions(ft, std, -0, RESIZE);
+		test.capacityExceptions(ft, std, CHAR_BIT, RESIZE);
+		test.capacityExceptions(ft, std, CHAR_MIN, RESIZE);
+		test.capacityExceptions(ft, std, CHAR_MAX, RESIZE);
+		test.capacityExceptions(ft, std, SCHAR_MIN, RESIZE);
+		test.capacityExceptions(ft, std, SCHAR_MAX, RESIZE);
+		test.capacityExceptions(ft, std, INT_MIN, RESIZE);
+		test.capacityExceptions(ft, std, SHRT_MIN, RESIZE);
+		test.capacityExceptions(ft, std, SHRT_MAX, RESIZE);
+		test.capacityExceptions(ft, std, USHRT_MAX, RESIZE);
+		test.capacityExceptions(ft, std, LONG_MIN, RESIZE);
+		test.capacityExceptions(ft, std, LONG_MAX, RESIZE);
+		test.capacityExceptions(ft, std, ULONG_MAX, RESIZE);
 		// the following cases gets stuck or a SIGKILL on campus macs, so I disabled them
-		// test.checkExceptions(ft, std, INT_MAX, RESIZE);
-		// test.checkExceptions(ft, std, UINT_MAX, RESIZE);
+		// test.capacityExceptions(ft, std, INT_MAX, RESIZE);
+		// test.capacityExceptions(ft, std, UINT_MAX, RESIZE);
 
 		test.printTestResults("");
 	}
@@ -127,21 +127,21 @@ static void reserveExceptionTests() {
 		ft::vector<int> ft;
 		std::vector<int> std;
 
-		test.checkExceptions(ft, std, ft.max_size(), RESERVE);
-		test.checkExceptions(ft, std, +0, RESERVE);
-		test.checkExceptions(ft, std, -0, RESERVE);
-		test.checkExceptions(ft, std, CHAR_BIT, RESERVE);
-		test.checkExceptions(ft, std, CHAR_MIN, RESERVE);
-		test.checkExceptions(ft, std, CHAR_MAX, RESERVE);
-		test.checkExceptions(ft, std, SCHAR_MIN, RESERVE);
-		test.checkExceptions(ft, std, SCHAR_MAX, RESERVE);
-		test.checkExceptions(ft, std, INT_MIN, RESERVE);
-		test.checkExceptions(ft, std, SHRT_MIN, RESERVE);
-		test.checkExceptions(ft, std, SHRT_MAX, RESERVE);
-		test.checkExceptions(ft, std, USHRT_MAX, RESERVE);
-		test.checkExceptions(ft, std, LONG_MIN, RESERVE);
-		test.checkExceptions(ft, std, LONG_MAX, RESERVE);
-		test.checkExceptions(ft, std, ULONG_MAX, RESERVE);
+		test.capacityExceptions(ft, std, ft.max_size(), RESERVE);
+		test.capacityExceptions(ft, std, +0, RESERVE);
+		test.capacityExceptions(ft, std, -0, RESERVE);
+		test.capacityExceptions(ft, std, CHAR_BIT, RESERVE);
+		test.capacityExceptions(ft, std, CHAR_MIN, RESERVE);
+		test.capacityExceptions(ft, std, CHAR_MAX, RESERVE);
+		test.capacityExceptions(ft, std, SCHAR_MIN, RESERVE);
+		test.capacityExceptions(ft, std, SCHAR_MAX, RESERVE);
+		test.capacityExceptions(ft, std, INT_MIN, RESERVE);
+		test.capacityExceptions(ft, std, SHRT_MIN, RESERVE);
+		test.capacityExceptions(ft, std, SHRT_MAX, RESERVE);
+		test.capacityExceptions(ft, std, USHRT_MAX, RESERVE);
+		test.capacityExceptions(ft, std, LONG_MIN, RESERVE);
+		test.capacityExceptions(ft, std, LONG_MAX, RESERVE);
+		test.capacityExceptions(ft, std, ULONG_MAX, RESERVE);
 
 		test.printTestResults("");
 	}
