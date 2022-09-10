@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 10:55:37 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/10 12:13:05 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/10 21:46:09 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,9 @@ void vectorTester::rangedErase(ft::vector<T> &ft, std::vector<T> &std, size_t op
 /**
 ** @brief    pushes random values to both ft and std containers
 **
-** @param ft             address of container with ft namespace
-** @param std            address of container with std namespace
-** @param len            desired vector size
-** @param compare_vec    determines if the ft and std vector will be compared once
-**                       the push_back loop ends
-** @param add_newline    checks if the function should print a newline after testing
+** @param ft     address of container with ft namespace
+** @param std    address of container with std namespace
+** @param len    amount of times push_back will be used
 */
 template <typename T>
 void vectorTester::pushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len) {
@@ -120,6 +117,15 @@ void vectorTester::pushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len,
 	for (size_t i = 0; i < len; i++) {
 		ft.push_back(str);
 		std.push_back(str);
+		compareVectors(ft, std);
+	}
+}
+
+template <typename T>
+void vectorTester::popLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len) {
+	for (size_t i = 0; i < len; i++) {
+		ft.pop_back();
+		std.pop_back();
 		compareVectors(ft, std);
 	}
 }

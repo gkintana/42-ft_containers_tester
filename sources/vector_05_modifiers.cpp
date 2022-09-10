@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:26:38 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/10 10:26:29 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/10 21:52:04 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ static void rangedInsertTests();
 // static void iteratorInsertTests();
 static void singleEraseTests();
 static void rangedEraseTests();
-static void pushBackTests();
-// static void popBackTests();
+static void pushPopTests();
 static void swapTests();
 
 int main() {
@@ -42,10 +41,8 @@ int main() {
 	std::cout << PURPLE "Ranged Erase Tests" DEFAULT << std::endl;
 	rangedEraseTests();
 
-	std::cout << PURPLE "Push Back Tests" DEFAULT << std::endl;
-	pushBackTests();
-
-	// std::cout << PURPLE "Pop Back Tests" DEFAULT << std::endl;
+	std::cout << PURPLE "Push Back & Pop Back Tests" DEFAULT << std::endl;
+	pushPopTests();
 
 	std::cout << PURPLE "Swap Tests" DEFAULT << std::endl;
 	swapTests();
@@ -225,38 +222,65 @@ static void rangedEraseTests() {
 	}
 }
 
-static void pushBackTests() {
+static void pushPopTests() {
 	vectorTester test;
 	{
 		ft::vector<char> ft;
 		std::vector<char> std;
 		test.pushLoop(ft, std, 42);
-		test.printTestResults("Char Vector   ");
+		test.pushLoop(ft, std, 0);
+		test.pushLoop(ft, std, 24);
+		test.pushLoop(ft, std, 50);
+		test.pushLoop(ft, std, 100);
+		test.printTestResults("Char Vector (Push)");
+
+		test.popLoop(ft, std, 0);
+		test.popLoop(ft, std, ft.size() / 8);
+		test.popLoop(ft, std, ft.size() / 6);
+		test.popLoop(ft, std, ft.size() / 4);
+		test.popLoop(ft, std, ft.size() / 3);
+		test.popLoop(ft, std, ft.size() / 2);
+		test.printTestResults("Char Vector (Pop)");
 	}
-	// {
-	// 	ft::vector<size_t> ft;
-	// 	std::vector<size_t> std;
-	// 	test.pushLoop(ft, std, 999999);
-	// 	test.printTestResults("SIZE_MAX    ");
-	// }
+
 	{
 		ft::vector<int> ft;
 		std::vector<int> std;
 		test.pushLoop(ft, std, 42);
-		test.printTestResults("Int Vector   ");
+		test.pushLoop(ft, std, 0);
+		test.pushLoop(ft, std, 24);
+		test.pushLoop(ft, std, 50);
+		test.pushLoop(ft, std, 100);
+		test.printTestResults("Int Vector (Push)");
+
+		test.popLoop(ft, std, 0);
+		test.popLoop(ft, std, ft.size() / 8);
+		test.popLoop(ft, std, ft.size() / 6);
+		test.popLoop(ft, std, ft.size() / 4);
+		test.popLoop(ft, std, ft.size() / 3);
+		test.popLoop(ft, std, ft.size() / 2);
+		test.printTestResults("Int Vector (Pop)");
 	}
 
 	{
 		ft::vector<std::string> ft;
 		std::vector<std::string> std;
 		test.pushLoop(ft, std, 42, "Hello World!");
-		test.printTestResults("String Vector");
+		test.pushLoop(ft, std, 0, "!!!!!");
+		test.pushLoop(ft, std, 24, "42 Abu Dhabi is Awesome!");
+		test.pushLoop(ft, std, 50, "abcdefghijklm");
+		test.pushLoop(ft, std, 100, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean condimentum tellus eget tellus molestie fringilla");
+		test.printTestResults("Str Vector (Push)");
+
+		test.popLoop(ft, std, 0);
+		test.popLoop(ft, std, ft.size() / 8);
+		test.popLoop(ft, std, ft.size() / 6);
+		test.popLoop(ft, std, ft.size() / 4);
+		test.popLoop(ft, std, ft.size() / 3);
+		test.popLoop(ft, std, ft.size() / 2);
+		test.printTestResults("Str Vector (Pop)");
 	}
 }
-
-// // static void popBackTests() {
-	
-// // }
 
 static void swapTests() {
 	vectorTester test;

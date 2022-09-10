@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/10 13:43:02 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/10 23:31:39 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,7 +254,7 @@ class vectorTester {
 		void capacityExceptions(ft::vector<T> &ft,std::vector<T> &std, size_t new_size, bool is_resize);
 
 
-		/*---------------------------- Vector Modifier Test Templates ---------------------------*/
+		/*-------------------------------- Modifier Test Templates ------------------------------*/
 		template <typename T>
 		void clearVectors(ft::vector<T> &ft, std::vector<T> &std);
 
@@ -279,11 +279,27 @@ class vectorTester {
 		template <typename T>
 		void pushLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len, std::string str);
 
+		template <typename T>
+		void popLoop(ft::vector<T> &ft, std::vector<T> &std, size_t len);
+
+
+		/*------------------------------ Non-Member Test Templates ------------------------------*/
+		#define EQUAL            1
+		#define NOT_EQUAL        2
+		#define LESS             3
+		#define LESS_EQUAL       4
+		#define GREATER          5
+		#define GREATER_EQUAL    6
+
+		template <typename T>
+		void relationalOper(ft::vector<T> &ft1, std::vector<T> &std1, ft::vector<T> &ft2,
+		                    std::vector<T> &std2, size_t option);
 };
 
 #include "vector_tpp/vector_element_access.tpp"
 #include "vector_tpp/vector_iterator.tpp"
 #include "vector_tpp/vector_capacity.tpp"
 #include "vector_tpp/vector_modifier.tpp"
+#include "vector_tpp/vector_non_member.tpp"
 
 #endif
