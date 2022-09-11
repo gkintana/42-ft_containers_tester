@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 10:55:37 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/10 21:46:09 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/11 23:06:26 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,19 @@ void vectorTester::rangedInsert(ft::vector<T> &ft, std::vector<T> &std, size_t o
 	} else if (option == END) {
 		ft.insert(ft.end() - offset, n, value);
 		std.insert(std.end() - offset, n, value);
+	}
+	compareVectors(ft, std);
+}
+
+template <typename T, typename InputIterator>
+void vectorTester::iteratorInsert(ft::vector<T> &ft, std::vector<T> &std, size_t option,
+                                  size_t offset, InputIterator first, InputIterator last) {
+	if (option == BEGIN) {
+		ft.insert(ft.begin() + offset, first, last);
+		std.insert(std.begin() + offset, first, last);
+	} else if (option == END) {
+		ft.insert(ft.end() - offset, first, last);
+		std.insert(std.end() - offset, first, last);
 	}
 	compareVectors(ft, std);
 }

@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:26:38 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/10 21:52:04 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/11 23:14:16 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void clearTests();
 static void singleInsertTests();
 static void rangedInsertTests();
-// static void iteratorInsertTests();
+static void iteratorInsertTests();
 static void singleEraseTests();
 static void rangedEraseTests();
 static void pushPopTests();
@@ -33,7 +33,8 @@ int main() {
 	std::cout << PURPLE "Ranged Insert Tests" DEFAULT << std::endl;
 	rangedInsertTests();
 
-	// std::cout << PURPLE "Iterator Insert Tests" DEFAULT << std::endl;
+	std::cout << PURPLE "Iterator Insert Tests" DEFAULT << std::endl;
+	iteratorInsertTests();
 
 	std::cout << PURPLE "Single Erase Tests" DEFAULT << std::endl;
 	singleEraseTests();
@@ -168,6 +169,36 @@ static void rangedInsertTests() {
 		test.printTestResults("String Vector");
 	}
 }
+
+static void iteratorInsertTests() {
+	vectorTester test;
+	{
+		ft::vector<int> ft;
+		std::vector<int> std;
+		test.pushLoop(ft, std, 42);
+
+		int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
+		                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
+		                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
+
+		test.iteratorInsert(ft, std, BEGIN, 0, array, array + (sizeof(array) / sizeof(int)));
+
+		test.printTestResults("Int Vector    ");
+	}
+
+	{
+		std::string str[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
+		ft::vector<std::string> ft(str, str + (sizeof(str) / sizeof(std::string)));
+		std::vector<std::string> std(str, str + (sizeof(str) / sizeof(std::string)));
+
+		std::string array[] = { "My", "dentist", "tells", "me", "that", "chewing", "bricks", "is", "very", "bad", "for", "your", "teeth", "😬" };
+
+		test.iteratorInsert(ft, std, BEGIN, 0, array, array + (sizeof(array) / sizeof(std::string)));
+
+		test.printTestResults("String Vector");
+	}
+}
+
 
 static void singleEraseTests() {
 	vectorTester test;

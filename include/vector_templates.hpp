@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/11 21:59:20 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/11 23:06:58 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,6 +276,10 @@ class vectorTester {
 		template <typename T>
 		void rangedInsert(ft::vector<T> &ft, std::vector<T> &std, size_t option, size_t offset,
 		                  size_t n, typename identity<T>::type value);
+
+		template <typename T, typename InputIterator>
+		void iteratorInsert(ft::vector<T> &ft, std::vector<T> &std, size_t option, size_t offset,
+		                    InputIterator first, InputIterator last);
 
 		template <typename T>
 		void singleErase(ft::vector<T> &ft, std::vector<T> &std, size_t option, size_t offset);
