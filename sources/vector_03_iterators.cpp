@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:26:11 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/11 21:57:36 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/11 22:30:11 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ int main() {
 }
 
 /*----------------------------------------------------------------------------*/
+/**
+** @brief    There are multiple double declarations on the templates listed below.
+**           I'm aware that the tester compiles all cases even if I were to take
+**           away all the templates that don't contain the const keyword. However,
+**           I needed to declare them explicitly because if I don't, then all the
+**           iterators that will be used during the tests are constant; which
+**           opens up the possibility of an error going unnoticed
+*/
 
 template <typename T>
 static void beginTestSet(vectorTester test, ft::vector<T> &ft, std::vector<T> &std) {
@@ -203,8 +211,11 @@ static void beginTests() {
 static void constBeginTests() {
 	vectorTester test;
 
-	const ft::vector<int> ft(42, 42);
-	const std::vector<int> std(42, 42);
+	int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
+	                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
+	                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
+	const ft::vector<int> ft(array, array + (sizeof(array) / sizeof(int)));
+	const std::vector<int> std(array, array + (sizeof(array) / sizeof(int)));
 
 	beginTestSet(test, ft, std);
 	test.printTestResults("Begin       ");
@@ -224,8 +235,11 @@ static void endTests() {
 static void constEndTests() {
 	vectorTester test;
 
-	const ft::vector<int> ft(42, 42);
-	const std::vector<int> std(42, 42);
+	int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
+	                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
+	                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
+	const ft::vector<int> ft(array, array + (sizeof(array) / sizeof(int)));
+	const std::vector<int> std(array, array + (sizeof(array) / sizeof(int)));
 
 	endTestSet(test, ft, std);
 	test.printTestResults("End         ");
@@ -245,8 +259,11 @@ static void iteratorLoopTests() {
 static void constIterLoopTests() {
 	vectorTester test;
 
-	const ft::vector<int> ft(42, 42);
-	const std::vector<int> std(42, 42);
+	int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
+	                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
+	                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
+	const ft::vector<int> ft(array, array + (sizeof(array) / sizeof(int)));
+	const std::vector<int> std(array, array + (sizeof(array) / sizeof(int)));
 
 	iterLoopTestSet(test, ft, std);
 	test.printTestResults("Iterator Loop");
@@ -266,8 +283,11 @@ static void rbeginTests() {
 static void constRbeginTests() {
 	vectorTester test;
 
-	const ft::vector<int> ft(42, 42);
-	const std::vector<int> std(42, 42);
+	int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
+	                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
+	                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
+	const ft::vector<int> ft(array, array + (sizeof(array) / sizeof(int)));
+	const std::vector<int> std(array, array + (sizeof(array) / sizeof(int)));
 
 	rbeginTestSet(test, ft, std);
 	test.printTestResults("Rbegin      ");
@@ -287,8 +307,11 @@ static void rendTests() {
 static void constRendTests() {
 	vectorTester test;
 
-	const ft::vector<int> ft(42, 42);
-	const std::vector<int> std(42, 42);
+	int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
+	                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
+	                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
+	const ft::vector<int> ft(array, array + (sizeof(array) / sizeof(int)));
+	const std::vector<int> std(array, array + (sizeof(array) / sizeof(int)));
 
 	rendTestSet(test, ft, std);
 	test.printTestResults("Rend        ");
@@ -308,8 +331,11 @@ static void reverseIteratorLoopTests() {
 static void constRevIterLoopTests() {
 	vectorTester test;
 
-	const ft::vector<int> ft(42, 42);
-	const std::vector<int> std(42, 42);
+	int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
+	                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
+	                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
+	const ft::vector<int> ft(array, array + (sizeof(array) / sizeof(int)));
+	const std::vector<int> std(array, array + (sizeof(array) / sizeof(int)));
 
 	revIterLoopTestSet(test, ft, std);
 	test.printTestResults("Reverse Iter Loop");
