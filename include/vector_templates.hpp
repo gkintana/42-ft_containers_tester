@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/10 23:31:39 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/11 21:59:20 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,19 +227,30 @@ class vectorTester {
 
 
 		/*------------------------------- Iterator Test Templates -------------------------------*/
-		#define FT_ITER         typename ft::vector<T>::iterator
-		#define STD_ITER        typename std::vector<T>::iterator
-		#define FT_REV_ITER     typename ft::vector<T>::reverse_iterator
-		#define STD_REV_ITER    typename std::vector<T>::reverse_iterator
+		#define FT_ITER       typename ft::vector<T>::iterator
+		#define FT_C_ITER     typename ft::vector<T>::const_iterator
+		#define FT_REV        typename ft::vector<T>::reverse_iterator
+		#define FT_C_REV      typename ft::vector<T>::const_reverse_iterator
+
+		#define STD_ITER      typename std::vector<T>::iterator
+		#define STD_C_ITER    typename std::vector<T>::const_iterator
+		#define STD_REV       typename std::vector<T>::reverse_iterator
+		#define STD_C_REV     typename std::vector<T>::const_reverse_iterator
 
 		template <typename T>
 		void compareIterToStd(ft::vector<T> &ft, std::vector<T> &std, int offset, int option);
+		template <typename T>
+		void compareIterToStd(const ft::vector<T> &ft, const std::vector<T> &std, int offset, int option);
 
 		template <typename T>
 		void iterLoop(ft::vector<T> &ft, std::vector<T> &std, FT_ITER start, FT_ITER end);
+		template <typename T>
+		void iterLoop(const ft::vector<T> &ft, const std::vector<T> &std, FT_C_ITER start, FT_C_ITER end);
 
 		template <typename T>
-		void revIterLoop(ft::vector<T> &ft, std::vector<T> &std, FT_REV_ITER start, FT_REV_ITER end);
+		void revIterLoop(ft::vector<T> &ft, std::vector<T> &std, FT_REV start, FT_REV end);
+		template <typename T>
+		void revIterLoop(const ft::vector<T> &ft, const std::vector<T> &std, FT_C_REV start, FT_C_REV end);
 
 
 		/*------------------------------- Capacity Test Templates -------------------------------*/
