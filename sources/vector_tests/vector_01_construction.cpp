@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:39:42 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/12 09:14:57 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/12 23:09:23 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,7 +284,7 @@ static void fillTests() {
 		} catch (std::exception &e) {
 			test.addOK();
 		}
-		test.printTestResults("String Vector");
+		test.printTestResults("Double Vector");
 	}
 }
 

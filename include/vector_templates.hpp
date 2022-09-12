@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/11 23:06:58 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/12 22:21:43 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ class vectorTester {
 
 		void printWarningAndKO () {
 			std::cout << YELLOW "WARNING: " << this->WARNING << " potential error(s)" << DEFAULT << std::endl
-			          << RED "KO: " << this->KO << " error(s)" << DEFAULT << std::endl;
+			          << RED "\t\t\t\tKO: " << this->KO << " error(s)" << DEFAULT << std::endl;
 		}
 
 		void resetTestCount() {

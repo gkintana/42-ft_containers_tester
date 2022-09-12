@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/09/12 18:39:38 by gkintana         ###   ########.fr        #
+#    Updated: 2022/09/12 22:49:38 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,8 +29,13 @@ VEC_SRC		=	vector_01_construction.cpp \
 				vector_07_mix.cpp
 VEC_OBJ		=	$(addprefix $(OBJ_DIR)/$(VEC_DIR)/, $(VEC_SRC:%cpp=%o))
 
+TIME_DIR	=	vector_performance
+VEC_TIME	=	vector_01_construction.cpp
+TIME_OBJ	=	$(addprefix $(OBJ_DIR)/$(TIME_DIR)/, $(VEC_TIME:%cpp=%o))
+
 CXX			=	c++
 CPPFLAGS	=	-std=c++98 -g3 -Wall -Wextra -Werror
+CPPFLAGS2	=	-std=c++11 -g3 -Wall -Wextra -Werror -DNAMESPACE=std
 RM			=	rm -rf
 
 DEFAULT		=	"\033[0m"
@@ -47,9 +52,16 @@ $(OBJ_DIR)/$(VEC_DIR)/%.o : $(SRC_DIR)/$(VEC_DIR)/%.cpp
 			@$(CXX) $(CPPFLAGS) -I$(INC_DIR) -I$(CONT_DIR1) -I$(CONT_DIR2) -c $< -o $@
 			@printf "\033[A\033[2K\r"
 
+$(OBJ_DIR)/$(TIME_DIR)/%.o : $(SRC_DIR)/$(TIME_DIR)/%.cpp
+			@mkdir -p $(OBJ_DIR)
+			@mkdir -p $(OBJ_DIR)/$(TIME_DIR)
+			@echo $(YELLOW)"Compiling..."$(DEFAULT)
+			@$(CXX) $(CPPFLAGS2) -I$(INC_DIR) -I$(CONT_DIR1) -I$(CONT_DIR2) -c $< -o $@
+			@printf "\033[A\033[2K\r"
+
 # all:		$(NAME)
 
-vector:		$(VEC_OBJ)
+vector:		$(VEC_OBJ) $(TIME_OBJ)
 			@echo $(DEFAULT)$(GREEN)"Test Files Ready"$(DEFAULT)
 
 clean:
