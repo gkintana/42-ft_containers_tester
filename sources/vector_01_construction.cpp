@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:39:42 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/11 22:03:07 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/12 09:14:57 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ static void defaultTests();
 static void fillTests();
 static void rangeTests();
 static void copyTests();
+static void getAllocTests();
 
 int main() {
+	srand(time(NULL));
+
 	std::cout << PURPLE "Default Constructor Tests" DEFAULT << std::endl;
 	defaultTests();
 
@@ -29,6 +32,9 @@ int main() {
 
 	std::cout << PURPLE "Copy Constructor Tests" DEFAULT << std::endl;
 	copyTests();
+
+	std::cout << PURPLE "Get Allocator Tests" DEFAULT << std::endl;
+	getAllocTests();
 
 	return 0;
 }
@@ -407,5 +413,65 @@ static void copyTests() {
 		std = std_copy;
 		test.compareVectors(ft, std);
 		test.printTestResults("Self Assignment");
+	}
+}
+
+static void getAllocTests() {
+	vectorTester test;
+	{
+		size_t vector_size = 42;
+		ft::vector<int> ft;
+		std::vector<int> std;
+
+		int *ft_ptr = ft.get_allocator().allocate(vector_size);
+		int *std_ptr = std.get_allocator().allocate(vector_size);
+		test.compareVectors(ft, std);
+
+		for (size_t i = 0; i < vector_size; i++) {
+			size_t random_value = RNG;
+			ft.get_allocator().construct(ft_ptr + i, random_value);
+			std.get_allocator().construct(std_ptr + i, random_value);
+			test.compareVectors(ft, std);
+		}
+
+		for (size_t i = 0; i < vector_size; i++) {
+			ft.get_allocator().destroy(ft_ptr + i);
+			std.get_allocator().destroy(std_ptr + i);
+			test.compareVectors(ft, std);
+		}
+
+		ft.get_allocator().deallocate(ft_ptr, vector_size);
+		std.get_allocator().deallocate(std_ptr, vector_size);
+		test.compareVectors(ft, std);
+
+		test.printTestResults("Int Vector   ");
+	}
+	{
+		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
+		size_t vector_size = sizeof(array) / sizeof(std::string);
+		ft::vector<std::string> ft;
+		std::vector<std::string> std;
+
+		std::string *ft_ptr = ft.get_allocator().allocate(vector_size);
+		std::string *std_ptr = std.get_allocator().allocate(vector_size);
+		test.compareVectors(ft, std);
+
+		for (size_t i = 0; i < vector_size; i++) {
+			ft.get_allocator().construct(ft_ptr + i, *(array + i));
+			std.get_allocator().construct(std_ptr + i, *(array + i));
+			test.compareVectors(ft, std);
+		}
+
+		for (size_t i = 0; i < vector_size; i++) {
+			ft.get_allocator().destroy(ft_ptr + i);
+			std.get_allocator().destroy(std_ptr + i);
+			test.compareVectors(ft, std);
+		}
+
+		ft.get_allocator().deallocate(ft_ptr, vector_size);
+		std.get_allocator().deallocate(std_ptr, vector_size);
+		test.compareVectors(ft, std);
+
+		test.printTestResults("String Vector");
 	}
 }
