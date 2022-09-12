@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/09/10 22:09:35 by gkintana         ###   ########.fr        #
+#    Updated: 2022/09/12 11:24:21 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS		=	vector_01_construction.cpp \
 				vector_03_iterators.cpp \
 				vector_04_capacity.cpp \
 				vector_05_modifiers.cpp \
-				vector_06_non_member.cpp
+				vector_06_non_member.cpp \
+				vector_07_mix.cpp
 OBJS_FT		=	$(addprefix $(OBJ_DIR)/, $(SRCS:%cpp=%o))
 
 CXX			=	c++
@@ -33,13 +34,14 @@ RM			=	rm -rf
 DEFAULT		=	"\033[0m"
 RED			=	"\033[0;31m"
 GREEN		=	"\033[1;32m"
+YELLOW		=	"\033[1;33m"
 CYAN		=	"\033[3;36m"
 PURPLE		=	"\033[0;35m"
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
 			@mkdir -p $(OBJ_DIR)
-			@printf $(CYAN)
-			$(CXX) $(CPPFLAGS) -I$(INC_DIR) -I$(CONT_DIR1) -I$(CONT_DIR2) -c $< -o $@
+			@echo $(YELLOW)"Compiling..."$(DEFAULT)
+			@$(CXX) $(CPPFLAGS) -I$(INC_DIR) -I$(CONT_DIR1) -I$(CONT_DIR2) -c $< -o $@
 			@printf "\033[A\033[2K\r"
 
 all:		$(NAME)
