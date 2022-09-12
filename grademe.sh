@@ -19,6 +19,7 @@ PURPLE='\033[0;35m'
 CYAN='\033[1;36m'
 
 OBJ_DIR=objects
+VEC_DIR=vector_tests
 EXEC_DIR=executables
 
 CC=c++
@@ -35,15 +36,16 @@ RM='rm -rf'
 if [ $1 == "vector" ]; then
 	echo -e $CYAN"Vector Tester"$DEFAULT
 	$RM $EXEC_DIR
-	make re
+	make fclean && make vector
 
 	mkdir -p $EXEC_DIR
-	for file in $OBJ_DIR/*.o; do
+	mkdir -p $EXEC_DIR/$VEC_DIR
+	for file in $OBJ_DIR/$VEC_DIR/*.o; do
 		$CC $CFLAGS "$file" -o "${file%%.o}"
-		mv -- "${file%%.o}" $EXEC_DIR
+		mv -- "${file%%.o}" $EXEC_DIR/$VEC_DIR
 	done
 
-	for file in $EXEC_DIR/*; do
+	for file in $EXEC_DIR/$VEC_DIR/*; do
 		echo -e $CYAN"Testing $file"$DEFAULT
 		./$file
 		if [[ "$OSTYPE" =~ ^linux ]]; then

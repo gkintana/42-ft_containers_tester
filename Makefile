@@ -6,26 +6,28 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/09/12 11:24:21 by gkintana         ###   ########.fr        #
+#    Updated: 2022/09/12 18:39:38 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	containers
+# NAME		=	containers
 
 INC_DIR		=	include
 CONT_DIR1	=	../42-ft_containers/include/containers
 CONT_DIR2	=	../42-ft_containers/include/utilities
+
 SRC_DIR		=	sources
+VEC_DIR		=	vector_tests
 OBJ_DIR		=	objects
 
-SRCS		=	vector_01_construction.cpp \
+VEC_SRC		=	vector_01_construction.cpp \
 				vector_02_element_access.cpp \
 				vector_03_iterators.cpp \
 				vector_04_capacity.cpp \
 				vector_05_modifiers.cpp \
 				vector_06_non_member.cpp \
 				vector_07_mix.cpp
-OBJS_FT		=	$(addprefix $(OBJ_DIR)/, $(SRCS:%cpp=%o))
+VEC_OBJ		=	$(addprefix $(OBJ_DIR)/$(VEC_DIR)/, $(VEC_SRC:%cpp=%o))
 
 CXX			=	c++
 CPPFLAGS	=	-std=c++98 -g3 -Wall -Wextra -Werror
@@ -38,15 +40,16 @@ YELLOW		=	"\033[1;33m"
 CYAN		=	"\033[3;36m"
 PURPLE		=	"\033[0;35m"
 
-$(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
+$(OBJ_DIR)/$(VEC_DIR)/%.o : $(SRC_DIR)/$(VEC_DIR)/%.cpp
 			@mkdir -p $(OBJ_DIR)
+			@mkdir -p $(OBJ_DIR)/$(VEC_DIR)
 			@echo $(YELLOW)"Compiling..."$(DEFAULT)
 			@$(CXX) $(CPPFLAGS) -I$(INC_DIR) -I$(CONT_DIR1) -I$(CONT_DIR2) -c $< -o $@
 			@printf "\033[A\033[2K\r"
 
-all:		$(NAME)
+# all:		$(NAME)
 
-$(NAME):	$(OBJS_FT)
+vector:		$(VEC_OBJ)
 			@echo $(DEFAULT)$(GREEN)"Test Files Ready"$(DEFAULT)
 
 clean:
