@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:14:12 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/11 22:03:00 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/13 10:36:56 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,37 +236,31 @@ static void dataTests() {
 		ft::vector<int> ft;
 		std::vector<int> std;
 		test.pushLoop(ft, std, 42);
-
 		test.dataLoop(ft, std);
+
+		test.dataCompare(ft, std, 0);
+		test.dataCompare(ft, std, ft.size() - 1);
+		test.dataCompare(ft, std, ft.size() / 2);
+		test.dataCompare(ft, std, ft.size() / 3);
+		test.dataCompare(ft, std, ft.size() / 4);
+		test.dataCompare(ft, std, ft.size() / 5);
+
 		test.printTestResults("Int Vector   ");
-
-		test.dataModify(ft, std, 0, 0);
-		test.dataModify(ft, std, ft.size() - 1, 123);
-		test.dataModify(ft, std, ft.size() / 2, 123);
-		test.dataModify(ft, std, ft.size() / 3, 456);
-		test.dataModify(ft, std, ft.size() / 4, 789);
-		test.dataModify(ft, std, ft.size() / 5, 1234567890);
-
-		test.dataLoop(ft, std);
-		test.printTestResults("Modified Int Vector");
 	}
 
 	{
 		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
 		ft::vector<std::string> ft(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std(array, array + (sizeof(array) / sizeof(std::string)));
-
 		test.dataLoop(ft, std);
+
+		test.dataCompare(ft, std, 0);
+		test.dataCompare(ft, std, ft.size() - 1);
+		test.dataCompare(ft, std, ft.size() / 2);
+		test.dataCompare(ft, std, ft.size() / 3);
+		test.dataCompare(ft, std, ft.size() / 4);
+		test.dataCompare(ft, std, ft.size() / 5);
+
 		test.printTestResults("String Vector");
-
-		test.dataModify(ft, std, 0, "The sun");
-		test.dataModify(ft, std, ft.size() - 1, "had set,");
-		test.dataModify(ft, std, ft.size() / 2, "and");
-		test.dataModify(ft, std, ft.size() / 3, "so had");
-		test.dataModify(ft, std, ft.size() / 4, "his");
-		test.dataModify(ft, std, ft.size() / 5, "grades");
-
-		test.dataLoop(ft, std);
-		test.printTestResults("Modified Str Vector");		
 	}
 }

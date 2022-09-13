@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 10:29:11 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/10 10:53:24 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/13 10:35:30 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,7 @@ void vectorTester::dataLoop(ft::vector<T> &ft, std::vector<T> &std) {
 }
 
 template <typename T>
-void vectorTester::dataModify(ft::vector<T> &ft, std::vector<T> &std, size_t n,
-                              typename identity<T>::type value) {
+void vectorTester::dataCompare(ft::vector<T> &ft, std::vector<T> &std, size_t n) {
 	if (n >= ft.size()) {
 		std::cerr << YELLOW "Index (" << n << ") exceeds vector size, and will cause undefined behavior. Skipping Test Case" DEFAULT << std::endl;
 		return;
@@ -112,5 +111,5 @@ void vectorTester::dataModify(ft::vector<T> &ft, std::vector<T> &std, size_t n,
 	T *ft_ptr = ft.data() + n,
 	  *std_ptr = std.data() + n;
 
-	*ft_ptr = *std_ptr = value;
+	*ft_ptr == *std_ptr ? addOK() : addKO();
 }

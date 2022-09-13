@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/12 22:21:43 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/13 10:37:19 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,8 +222,7 @@ class vectorTester {
 		void dataLoop(ft::vector<T> &ft, std::vector<T> &std);
 
 		template <typename T>
-		void dataModify(ft::vector<T> &ft, std::vector<T> &std, size_t n,
-		                typename identity<T>::type value);
+		void dataCompare(ft::vector<T> &ft, std::vector<T> &std, size_t n);
 
 
 		/*------------------------------- Iterator Test Templates -------------------------------*/

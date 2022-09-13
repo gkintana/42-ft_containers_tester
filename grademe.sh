@@ -73,9 +73,9 @@ if [ $1 == "vector" ]; then
 		if [[ "${file: -3}" != "_ft" && "${file: -4}" != "_std" ]]; then
 			echo -e $CYAN"\nTesting $file"$DEFAULT
 		elif [[ "${file: -3}" == "_ft" ]]; then
-			echo -ne $YELLOW"ft::vector Time: "$DEFAULT
+			echo -ne $YELLOW"ft::vector Time:\t\t"$DEFAULT
 		elif [[ "${file: -4}" == "_std" ]]; then
-			echo -ne $YELLOW"std::vector Time: "$DEFAULT
+			echo -ne $YELLOW"std::vector Time:\t\t"$DEFAULT
 		fi
 		./$file
 
