@@ -6,11 +6,21 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:34:51 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/13 19:33:53 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/13 21:47:36 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <vector_performance.hpp>
+
+#define RESIZE     true
+#define RESERVE    false
+
+template <typename T>
+static void tryExceptions(NAMESPACE::vector<T> &vec, size_t new_size, bool is_resize) {
+	try {
+		is_resize ? vec.resize(new_size) : vec.reserve(new_size);
+	} catch (std::exception &e) {}
+}
 
 int main() {
 	using std::chrono::high_resolution_clock;
@@ -44,6 +54,27 @@ int main() {
 	}
 	// Resize Exception Tests
 	{
+		NAMESPACE::vector<int> vec;
+		
+		tryExceptions(vec, vec.max_size(), RESIZE);
+		tryExceptions(vec, 0, RESIZE);
+		tryExceptions(vec, -0, RESIZE);
+		tryExceptions(vec, CHAR_BIT, RESIZE);
+		tryExceptions(vec, CHAR_MIN, RESIZE);
+		tryExceptions(vec, CHAR_BIT, RESIZE);
+		tryExceptions(vec, SCHAR_MIN, RESIZE);
+		tryExceptions(vec, SCHAR_MAX, RESIZE);
+		tryExceptions(vec, INT_MIN, RESIZE);
+		tryExceptions(vec, INT_MAX, RESIZE);
+		tryExceptions(vec, SHRT_MIN, RESIZE);
+		tryExceptions(vec, SHRT_MAX, RESIZE);
+		tryExceptions(vec, USHRT_MAX, RESIZE);
+		tryExceptions(vec, LONG_MIN, RESIZE);
+		tryExceptions(vec, LONG_MAX, RESIZE);
+		tryExceptions(vec, ULONG_MAX, RESIZE);
+	}
+	// Reserve Tests
+	{
 		NAMESPACE::vector<int> vec(10, 12345);
 		
 		vec.reserve(42);
@@ -55,7 +86,29 @@ int main() {
 		vec.reserve('Z' + 98765 - 12345);
 		vec.reserve(*vec.begin() + (vec.size() / 2));
 	}
-	
+	// Reserve Exception Tests
+	{
+		NAMESPACE::vector<int> vec;
+		
+		tryExceptions(vec, vec.max_size(), RESERVE);
+		tryExceptions(vec, 0, RESERVE);
+		tryExceptions(vec, -0, RESERVE);
+		tryExceptions(vec, CHAR_BIT, RESERVE);
+		tryExceptions(vec, CHAR_MIN, RESERVE);
+		tryExceptions(vec, CHAR_BIT, RESERVE);
+		tryExceptions(vec, SCHAR_MIN, RESERVE);
+		tryExceptions(vec, SCHAR_MAX, RESERVE);
+		tryExceptions(vec, INT_MIN, RESERVE);
+		tryExceptions(vec, INT_MAX, RESERVE);
+		tryExceptions(vec, SHRT_MIN, RESERVE);
+		tryExceptions(vec, SHRT_MAX, RESERVE);
+		tryExceptions(vec, USHRT_MAX, RESERVE);
+		tryExceptions(vec, LONG_MIN, RESERVE);
+		tryExceptions(vec, LONG_MAX, RESERVE);
+		tryExceptions(vec, ULONG_MAX, RESERVE);
+	}
+
+
 	auto end = high_resolution_clock::now();
 	duration<double, std::milli> ms_double = end - start;
 	std::cout << std::setprecision(3) << ms_double.count() << " ms" << std::endl;

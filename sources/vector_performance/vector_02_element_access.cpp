@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 09:29:27 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/13 13:38:43 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:20:44 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int main() {
 	// Operator[] Tests
 	{
 		NAMESPACE::vector<int> vec;
-		pushBackLoop(vec);
+		pushLoop(vec, TEST_SIZE, RNG);
 		accessLoop(vec, OPERATOR);
 
 		vec[0] = 0;
@@ -88,7 +88,7 @@ int main() {
 	// At Tests
 	{
 		NAMESPACE::vector<int> vec;
-		pushBackLoop(vec);
+		pushLoop(vec, TEST_SIZE, RNG);
 		accessLoop(vec, AT);
 
 		vec.at(0) = 0;
@@ -117,7 +117,7 @@ int main() {
 	// At Exception Tests
 	{
 		NAMESPACE::vector<long> vec;
-		pushBackLoop(vec);
+		pushLoop(vec, TEST_SIZE, RNG);
 
 		atException(vec, 0);
 		atException(vec, vec.size());
@@ -144,7 +144,7 @@ int main() {
 	// Front Tests
 	{
 		NAMESPACE::vector<int> vec;
-		pushBackLoop(vec);
+		pushLoop(vec, TEST_SIZE, RNG);
 		
 		vec.front();
 		vec.at(0) = 0;
@@ -171,7 +171,7 @@ int main() {
 	// Back Tests
 	{
 		NAMESPACE::vector<int> vec;
-		pushBackLoop(vec);
+		pushLoop(vec, TEST_SIZE, RNG);
 
 		vec.back();
 		vec.at(vec.size() - 1) = 0;
@@ -198,7 +198,7 @@ int main() {
 	// Data Tests
 	{
 		NAMESPACE::vector<int> vec;
-		pushBackLoop(vec);
+		pushLoop(vec, TEST_SIZE, RNG);
 		accessLoop(vec, DATA);
 
 		int *ptr = vec.data() + 0;

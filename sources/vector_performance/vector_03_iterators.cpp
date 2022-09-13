@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 12:22:05 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/13 17:24:25 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/14 00:21:21 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ int main() {
 	// Begin Tests
 	{
 		NAMESPACE::vector<int> vec;
-		pushBackLoop(vec);
+		pushLoop(vec, TEST_SIZE, RNG);
 		beginCases(vec);
 	}
 	// Const Begin Tests
@@ -203,7 +203,7 @@ int main() {
 	// End Tests
 	{
 		NAMESPACE::vector<int> vec;
-		pushBackLoop(vec);
+		pushLoop(vec, TEST_SIZE, RNG);
 		endCases(vec);
 	}
 	// Const End Tests
@@ -214,7 +214,7 @@ int main() {
 	// Iterator Loop Tests
 	{
 		NAMESPACE::vector<int> vec;
-		pushBackLoop(vec);
+		pushLoop(vec, TEST_SIZE, RNG);
 		iterLoopCases(vec);
 	}
 	// Const Iterator Loop Tests
@@ -225,7 +225,7 @@ int main() {
 	// Rbegin Tests
 	{
 		NAMESPACE::vector<int> vec;
-		pushBackLoop(vec);
+		pushLoop(vec, TEST_SIZE, RNG);
 		rbeginCases(vec);
 	}
 	// Const Rbegin Tests
@@ -236,7 +236,7 @@ int main() {
 	// Rend Tests
 	{
 		NAMESPACE::vector<int> vec;
-		pushBackLoop(vec);
+		pushLoop(vec, TEST_SIZE, RNG);
 		rendCases(vec);
 	}
 	// Const Rend Tests
@@ -247,7 +247,7 @@ int main() {
 	// Reverse Iterator Loop Tests
 	{
 		NAMESPACE::vector<int> vec;
-		pushBackLoop(vec);
+		pushLoop(vec, TEST_SIZE, RNG);
 		revIterLoopCases(vec);
 	}
 	// Const Reverse Iterator Loop Tests

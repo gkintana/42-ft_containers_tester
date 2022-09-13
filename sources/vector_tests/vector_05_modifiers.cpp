@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:26:38 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/11 23:14:16 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/13 22:35:19 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,6 @@ int main() {
 static void clearTests() {
 	vectorTester test;
 	{
-		ft::vector<int> ft;
-		std::vector<int> std;
-		test.clearVectors(ft, std);
-
-		test.printTestResults("Empty Int Vector");
-	}
-
-	{
 		ft::vector<char> ft(42, 'A');
 		std::vector<char> std(42, 'A');
 		test.clearVectors(ft, std);
@@ -74,6 +66,7 @@ static void clearTests() {
 	{
 		ft::vector<int> ft;
 		std::vector<int> std;
+		test.clearVectors(ft, std);
 		test.pushLoop(ft, std, 42);
 		test.clearVectors(ft, std);
 
