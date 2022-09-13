@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/09/13 17:07:48 by gkintana         ###   ########.fr        #
+#    Updated: 2022/09/13 17:38:29 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ VEC_OBJ	=	$(addprefix $(OBJ_DIR)/$(VEC_DIR1)/, $(VEC_TEST:%cpp=%o))
 
 VEC_TIME	=	vector_01_construction.cpp \
 				vector_02_element_access.cpp \
-				vector_03_iterators.cpp
+				vector_03_iterators.cpp \
+				vector_04_capacity.cpp
 FT_OBJ		=	$(addprefix $(OBJ_DIR)/$(FT_DIR)/, $(VEC_TIME:%cpp=%o))
 STD_OBJ		=	$(addprefix $(OBJ_DIR)/$(STD_DIR)/, $(VEC_TIME:%cpp=%o))
 
