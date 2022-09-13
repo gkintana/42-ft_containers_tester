@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:26:11 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/11 22:30:11 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/13 12:40:52 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,9 +197,12 @@ static void revIterLoopTestSet(vectorTester test, const ft::vector<T> &ft, const
 
 /*----------------------------------------------------------------------------*/
 
+int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
+                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
+                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
+
 static void beginTests() {
 	vectorTester test;
-
 	ft::vector<int> ft;
 	std::vector<int> std;
 	test.pushLoop(ft, std, 42);
@@ -210,10 +213,6 @@ static void beginTests() {
 
 static void constBeginTests() {
 	vectorTester test;
-
-	int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
-	                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
-	                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
 	const ft::vector<int> ft(array, array + (sizeof(array) / sizeof(int)));
 	const std::vector<int> std(array, array + (sizeof(array) / sizeof(int)));
 
@@ -223,7 +222,6 @@ static void constBeginTests() {
 
 static void endTests() {
 	vectorTester test;
-
 	ft::vector<int> ft;
 	std::vector<int> std;
 	test.pushLoop(ft, std, 42);
@@ -234,10 +232,6 @@ static void endTests() {
 
 static void constEndTests() {
 	vectorTester test;
-
-	int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
-	                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
-	                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
 	const ft::vector<int> ft(array, array + (sizeof(array) / sizeof(int)));
 	const std::vector<int> std(array, array + (sizeof(array) / sizeof(int)));
 
@@ -247,7 +241,6 @@ static void constEndTests() {
 
 static void iteratorLoopTests() {
 	vectorTester test;
-
 	ft::vector<int> ft;
 	std::vector<int> std;
 	test.pushLoop(ft, std, 42);
@@ -258,10 +251,6 @@ static void iteratorLoopTests() {
 
 static void constIterLoopTests() {
 	vectorTester test;
-
-	int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
-	                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
-	                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
 	const ft::vector<int> ft(array, array + (sizeof(array) / sizeof(int)));
 	const std::vector<int> std(array, array + (sizeof(array) / sizeof(int)));
 
@@ -271,7 +260,6 @@ static void constIterLoopTests() {
 
 static void rbeginTests() {
 	vectorTester test;
-
 	ft::vector<int> ft;
 	std::vector<int> std;
 	test.pushLoop(ft, std, 42);
@@ -282,10 +270,6 @@ static void rbeginTests() {
 
 static void constRbeginTests() {
 	vectorTester test;
-
-	int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
-	                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
-	                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
 	const ft::vector<int> ft(array, array + (sizeof(array) / sizeof(int)));
 	const std::vector<int> std(array, array + (sizeof(array) / sizeof(int)));
 
@@ -295,7 +279,6 @@ static void constRbeginTests() {
 
 static void rendTests() {
 	vectorTester test;
-
 	ft::vector<int> ft;
 	std::vector<int> std;
 	test.pushLoop(ft, std, 42);
@@ -306,10 +289,6 @@ static void rendTests() {
 
 static void constRendTests() {
 	vectorTester test;
-
-	int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
-	                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
-	                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
 	const ft::vector<int> ft(array, array + (sizeof(array) / sizeof(int)));
 	const std::vector<int> std(array, array + (sizeof(array) / sizeof(int)));
 
@@ -319,7 +298,6 @@ static void constRendTests() {
 
 static void reverseIteratorLoopTests() {
 	vectorTester test;
-
 	ft::vector<int> ft;
 	std::vector<int> std;
 	test.pushLoop(ft, std, 42);
@@ -330,10 +308,6 @@ static void reverseIteratorLoopTests() {
 
 static void constRevIterLoopTests() {
 	vectorTester test;
-
-	int array[] = { 16801, 19817, 48952, 20130, 73915, 23176, 42669, 82132, 42510, 54383,
-	                81435, 2480, 46371, 64482, 89407, 5378, 46018, 33244, 16355, 88450,
-	                95943, 88707, 14117, 11984, 42966, 4000, 28060, 78251, 93742, 39744, };
 	const ft::vector<int> ft(array, array + (sizeof(array) / sizeof(int)));
 	const std::vector<int> std(array, array + (sizeof(array) / sizeof(int)));
 

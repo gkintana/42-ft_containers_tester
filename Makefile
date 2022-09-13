@@ -6,13 +6,14 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/09/13 09:41:59 by gkintana         ###   ########.fr        #
+#    Updated: 2022/09/13 17:07:48 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 INC_DIR		=	include
 CONT_DIR1	=	../42-ft_containers/include/containers
 CONT_DIR2	=	../42-ft_containers/include/utilities
+# CONT_DIR1	=	../ft_containers/includes
 
 SRC_DIR		=	sources
 VEC_DIR1	=	vector_tests
@@ -34,7 +35,8 @@ VEC_TEST	=	vector_01_construction.cpp \
 VEC_OBJ	=	$(addprefix $(OBJ_DIR)/$(VEC_DIR1)/, $(VEC_TEST:%cpp=%o))
 
 VEC_TIME	=	vector_01_construction.cpp \
-				vector_02_element_access.cpp
+				vector_02_element_access.cpp \
+				vector_03_iterators.cpp
 FT_OBJ		=	$(addprefix $(OBJ_DIR)/$(FT_DIR)/, $(VEC_TIME:%cpp=%o))
 STD_OBJ		=	$(addprefix $(OBJ_DIR)/$(STD_DIR)/, $(VEC_TIME:%cpp=%o))
 

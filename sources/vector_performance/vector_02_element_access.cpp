@@ -6,24 +6,15 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 09:29:27 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/13 10:33:41 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/13 13:38:43 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <vector_templates.hpp>
-#include <chrono>
+#include <vector_performance.hpp>
 
-#define VEC_SIZE    20
 #define OPERATOR    1
 #define AT          2
 #define DATA        3
-
-template <typename T>
-static void pushBackLoop(NAMESPACE::vector<T> &vec) {
-	for (size_t i = 0; i < VEC_SIZE; i++) {
-		vec.push_back(RNG);
-	}
-}
 
 template <typename T>
 static void accessLoop(NAMESPACE::vector<T> &vec, int option) {
@@ -233,5 +224,7 @@ int main() {
 
 	auto end = high_resolution_clock::now();
 	duration<double, std::milli> ms_double = end - start;
-	std::cout << std::setprecision(3) << ms_double.count() << " ms" << std::endl;	
+	std::cout << std::setprecision(3) << ms_double.count() << " ms" << std::endl;
+
+	return 0;
 }
