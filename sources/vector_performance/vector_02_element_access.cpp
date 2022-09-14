@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 09:29:27 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/14 00:20:44 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:15:21 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,7 @@ int main() {
 		ptr = vec.data() + (vec.size() / 3);
 		ptr = vec.data() + (vec.size() / 4);
 		ptr = vec.data() + (vec.size() / 5);
+		(void)ptr;
 	}
 	{
 		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
@@ -219,6 +220,7 @@ int main() {
 		ptr = vec.data() + (vec.size() / 3);
 		ptr = vec.data() + (vec.size() / 4);
 		ptr = vec.data() + (vec.size() / 5);
+		(void)ptr;
 	}
 
 

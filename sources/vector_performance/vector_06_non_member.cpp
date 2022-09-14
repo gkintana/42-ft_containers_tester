@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 21:49:36 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/14 00:22:28 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:15:29 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void relationalOperator() {
 		pushLoop(vec_1, 500, RNG);
 		NAMESPACE::vector<int> vec_2;
 		pushLoop(vec_2, vec_1.size() * 3, RNG);
-		size_t temp[2];
+		size_t temp[2] = {0};
 
 		vec_1 == vec_2 ? temp[0]++ : temp[1]++;
 		vec_1 != vec_2 ? temp[0]++ : temp[1]++;
@@ -48,7 +48,7 @@ static void relationalOperator() {
 	{
 		NAMESPACE::vector<std::string> vec_1(500, "Hello");
 		NAMESPACE::vector<std::string> vec_2(vec_1.size() * 3, "World!");
-		size_t temp[2];
+		size_t temp[2] = {0};
 
 		vec_1 == vec_2 ? temp[0]++ : temp[1]++;
 		vec_1 != vec_2 ? temp[0]++ : temp[1]++;

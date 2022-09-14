@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 17:34:51 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/13 21:47:36 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/14 14:17:18 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,24 @@ int main() {
 	}
 	// Resize Exception Tests
 	{
-		NAMESPACE::vector<int> vec;
+		// NAMESPACE::vector<int> vec;
 		
-		tryExceptions(vec, vec.max_size(), RESIZE);
-		tryExceptions(vec, 0, RESIZE);
-		tryExceptions(vec, -0, RESIZE);
-		tryExceptions(vec, CHAR_BIT, RESIZE);
-		tryExceptions(vec, CHAR_MIN, RESIZE);
-		tryExceptions(vec, CHAR_BIT, RESIZE);
-		tryExceptions(vec, SCHAR_MIN, RESIZE);
-		tryExceptions(vec, SCHAR_MAX, RESIZE);
-		tryExceptions(vec, INT_MIN, RESIZE);
-		tryExceptions(vec, INT_MAX, RESIZE);
-		tryExceptions(vec, SHRT_MIN, RESIZE);
-		tryExceptions(vec, SHRT_MAX, RESIZE);
-		tryExceptions(vec, USHRT_MAX, RESIZE);
-		tryExceptions(vec, LONG_MIN, RESIZE);
-		tryExceptions(vec, LONG_MAX, RESIZE);
-		tryExceptions(vec, ULONG_MAX, RESIZE);
+		// tryExceptions(vec, vec.max_size(), RESIZE);
+		// tryExceptions(vec, 0, RESIZE);
+		// tryExceptions(vec, -0, RESIZE);
+		// tryExceptions(vec, CHAR_BIT, RESIZE);
+		// tryExceptions(vec, CHAR_MIN, RESIZE);
+		// tryExceptions(vec, CHAR_BIT, RESIZE);
+		// tryExceptions(vec, SCHAR_MIN, RESIZE);
+		// tryExceptions(vec, SCHAR_MAX, RESIZE);
+		// tryExceptions(vec, INT_MIN, RESIZE);
+		// tryExceptions(vec, INT_MAX, RESIZE);
+		// tryExceptions(vec, SHRT_MIN, RESIZE);
+		// tryExceptions(vec, SHRT_MAX, RESIZE);
+		// tryExceptions(vec, USHRT_MAX, RESIZE);
+		// tryExceptions(vec, LONG_MIN, RESIZE);
+		// tryExceptions(vec, LONG_MAX, RESIZE);
+		// tryExceptions(vec, ULONG_MAX, RESIZE);
 	}
 	// Reserve Tests
 	{
@@ -88,24 +88,24 @@ int main() {
 	}
 	// Reserve Exception Tests
 	{
-		NAMESPACE::vector<int> vec;
+		// NAMESPACE::vector<int> vec;
 		
-		tryExceptions(vec, vec.max_size(), RESERVE);
-		tryExceptions(vec, 0, RESERVE);
-		tryExceptions(vec, -0, RESERVE);
-		tryExceptions(vec, CHAR_BIT, RESERVE);
-		tryExceptions(vec, CHAR_MIN, RESERVE);
-		tryExceptions(vec, CHAR_BIT, RESERVE);
-		tryExceptions(vec, SCHAR_MIN, RESERVE);
-		tryExceptions(vec, SCHAR_MAX, RESERVE);
-		tryExceptions(vec, INT_MIN, RESERVE);
-		tryExceptions(vec, INT_MAX, RESERVE);
-		tryExceptions(vec, SHRT_MIN, RESERVE);
-		tryExceptions(vec, SHRT_MAX, RESERVE);
-		tryExceptions(vec, USHRT_MAX, RESERVE);
-		tryExceptions(vec, LONG_MIN, RESERVE);
-		tryExceptions(vec, LONG_MAX, RESERVE);
-		tryExceptions(vec, ULONG_MAX, RESERVE);
+		// tryExceptions(vec, vec.max_size(), RESERVE);
+		// tryExceptions(vec, 0, RESERVE);
+		// tryExceptions(vec, -0, RESERVE);
+		// tryExceptions(vec, CHAR_BIT, RESERVE);
+		// tryExceptions(vec, CHAR_MIN, RESERVE);
+		// tryExceptions(vec, CHAR_BIT, RESERVE);
+		// tryExceptions(vec, SCHAR_MIN, RESERVE);
+		// tryExceptions(vec, SCHAR_MAX, RESERVE);
+		// tryExceptions(vec, INT_MIN, RESERVE);
+		// tryExceptions(vec, INT_MAX, RESERVE);
+		// tryExceptions(vec, SHRT_MIN, RESERVE);
+		// tryExceptions(vec, SHRT_MAX, RESERVE);
+		// tryExceptions(vec, USHRT_MAX, RESERVE);
+		// tryExceptions(vec, LONG_MIN, RESERVE);
+		// tryExceptions(vec, LONG_MAX, RESERVE);
+		// tryExceptions(vec, ULONG_MAX, RESERVE);
 	}
 
 
