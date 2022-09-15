@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:26:11 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/13 12:40:52 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/15 22:54:03 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ int main() {
 */
 
 template <typename T>
-static void beginTestSet(vectorTester test, ft::vector<T> &ft, std::vector<T> &std) {
+static void beginTestSet(vectorTester &test, ft::vector<T> &ft, std::vector<T> &std) {
 	test.compareIterToStd(ft, std, 0, BEGIN);
 	test.compareIterToStd(ft, std, ft.size() / 2, BEGIN);
 	test.compareIterToStd(ft, std, ft.size() - 1, BEGIN);
 }
 template <typename T>
-static void beginTestSet(vectorTester test, const ft::vector<T> &ft, const std::vector<T> &std) {
+static void beginTestSet(vectorTester &test, const ft::vector<T> &ft, const std::vector<T> &std) {
 	test.compareIterToStd(ft, std, 0, BEGIN);
 	test.compareIterToStd(ft, std, ft.size() / 2, BEGIN);
 	test.compareIterToStd(ft, std, ft.size() - 1, BEGIN);
@@ -79,13 +79,13 @@ static void beginTestSet(vectorTester test, const ft::vector<T> &ft, const std::
 
 
 template <typename T>
-static void endTestSet(vectorTester test, ft::vector<T> &ft, std::vector<T> &std) {
+static void endTestSet(vectorTester &test, ft::vector<T> &ft, std::vector<T> &std) {
 	test.compareIterToStd(ft, std, 1, END);
 	test.compareIterToStd(ft, std, ft.size() / 2, END);
 	test.compareIterToStd(ft, std, ft.size(), END);
 }
 template <typename T>
-static void endTestSet(vectorTester test, const ft::vector<T> &ft, const std::vector<T> &std) {
+static void endTestSet(vectorTester &test, const ft::vector<T> &ft, const std::vector<T> &std) {
 	test.compareIterToStd(ft, std, 1, END);
 	test.compareIterToStd(ft, std, ft.size() / 2, END);
 	test.compareIterToStd(ft, std, ft.size(), END);
@@ -93,7 +93,7 @@ static void endTestSet(vectorTester test, const ft::vector<T> &ft, const std::ve
 
 
 template <typename T>
-static void iterLoopTestSet(vectorTester test, ft::vector<T> &ft, std::vector<T> &std) {
+static void iterLoopTestSet(vectorTester &test, ft::vector<T> &ft, std::vector<T> &std) {
 	test.iterLoop(ft, std, ft.begin(), ft.end());
 	test.iterLoop(ft, std, ft.begin() + (ft.size() / 2), ft.end());
 	test.iterLoop(ft, std, ft.begin() + (ft.size() - 1), ft.end());
@@ -111,7 +111,7 @@ static void iterLoopTestSet(vectorTester test, ft::vector<T> &ft, std::vector<T>
 	test.iterLoop(ft, std, ft.end() - (ft.size() / 2), ft.end() - (ft.size() / 4));
 }
 template <typename T>
-static void iterLoopTestSet(vectorTester test, const ft::vector<T> &ft, const std::vector<T> &std) {
+static void iterLoopTestSet(vectorTester &test, const ft::vector<T> &ft, const std::vector<T> &std) {
 	test.iterLoop(ft, std, ft.begin(), ft.end());
 	test.iterLoop(ft, std, ft.begin() + (ft.size() / 2), ft.end());
 	test.iterLoop(ft, std, ft.begin() + (ft.size() - 1), ft.end());
@@ -131,13 +131,13 @@ static void iterLoopTestSet(vectorTester test, const ft::vector<T> &ft, const st
 
 
 template <typename T>
-static void rbeginTestSet(vectorTester test, ft::vector<T> &ft, std::vector<T> &std) {
+static void rbeginTestSet(vectorTester &test, ft::vector<T> &ft, std::vector<T> &std) {
 	test.compareIterToStd(ft, std, 0, RBEGIN);
 	test.compareIterToStd(ft, std, ft.size() / 2, RBEGIN);
 	test.compareIterToStd(ft, std, ft.size() - 1, RBEGIN);
 }
 template <typename T>
-static void rbeginTestSet(vectorTester test, const ft::vector<T> &ft, const std::vector<T> &std) {
+static void rbeginTestSet(vectorTester &test, const ft::vector<T> &ft, const std::vector<T> &std) {
 	test.compareIterToStd(ft, std, 0, RBEGIN);
 	test.compareIterToStd(ft, std, ft.size() / 2, RBEGIN);
 	test.compareIterToStd(ft, std, ft.size() - 1, RBEGIN);
@@ -145,13 +145,13 @@ static void rbeginTestSet(vectorTester test, const ft::vector<T> &ft, const std:
 
 
 template <typename T>
-static void rendTestSet(vectorTester test, ft::vector<T> &ft, std::vector<T> &std) {
+static void rendTestSet(vectorTester &test, ft::vector<T> &ft, std::vector<T> &std) {
 	test.compareIterToStd(ft, std, 1, REND);
 	test.compareIterToStd(ft, std, ft.size() / 2, REND);
 	test.compareIterToStd(ft, std, ft.size() - 1, REND);
 }
 template <typename T>
-static void rendTestSet(vectorTester test, const ft::vector<T> &ft, const std::vector<T> &std) {
+static void rendTestSet(vectorTester &test, const ft::vector<T> &ft, const std::vector<T> &std) {
 	test.compareIterToStd(ft, std, 1, REND);
 	test.compareIterToStd(ft, std, ft.size() / 2, REND);
 	test.compareIterToStd(ft, std, ft.size() - 1, REND);
@@ -159,7 +159,7 @@ static void rendTestSet(vectorTester test, const ft::vector<T> &ft, const std::v
 
 
 template <typename T>
-static void revIterLoopTestSet(vectorTester test, ft::vector<T> &ft, std::vector<T> &std) {
+static void revIterLoopTestSet(vectorTester &test, ft::vector<T> &ft, std::vector<T> &std) {
 	test.revIterLoop(ft, std, ft.rend() - 1, ft.rbegin());
 	test.revIterLoop(ft, std, ft.rend() - (ft.size() / 2), ft.rbegin());
 	test.revIterLoop(ft, std, ft.rend() - (ft.size() - 1), ft.rbegin());
@@ -177,7 +177,7 @@ static void revIterLoopTestSet(vectorTester test, ft::vector<T> &ft, std::vector
 	test.revIterLoop(ft, std, ft.rbegin() + (ft.size() / 2), ft.rbegin() + (ft.size() / 4));
 }
 template <typename T>
-static void revIterLoopTestSet(vectorTester test, const ft::vector<T> &ft, const std::vector<T> &std) {
+static void revIterLoopTestSet(vectorTester &test, const ft::vector<T> &ft, const std::vector<T> &std) {
 	test.revIterLoop(ft, std, ft.rend() - 1, ft.rbegin());
 	test.revIterLoop(ft, std, ft.rend() - (ft.size() / 2), ft.rbegin());
 	test.revIterLoop(ft, std, ft.rend() - (ft.size() - 1), ft.rbegin());

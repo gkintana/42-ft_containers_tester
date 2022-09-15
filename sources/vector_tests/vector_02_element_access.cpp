@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:14:12 by gkintana          #+#    #+#             */
-/*   Updated: 2022/09/13 10:36:56 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/09/15 22:35:30 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int main() {
 
 /*----------------------------------------------------------------------------*/
 
+std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
+
 static void operatorTests() {
 	vectorTester test;
 	{
@@ -70,7 +72,6 @@ static void operatorTests() {
 	}
 
 	{
-		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
 		ft::vector<std::string> ft(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std(array, array + (sizeof(array) / sizeof(std::string)));
 
@@ -111,7 +112,6 @@ static void atTests() {
 	}
 
 	{
-		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
 		ft::vector<std::string> ft(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std(array, array + (sizeof(array) / sizeof(std::string)));
 
@@ -179,7 +179,6 @@ static void frontTests() {
 	}
 
 	{
-		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
 		ft::vector<std::string> ft(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std(array, array + (sizeof(array) / sizeof(std::string)));
 
@@ -214,7 +213,6 @@ static void backTests() {
 	}
 
 	{
-		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
 		ft::vector<std::string> ft(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std(array, array + (sizeof(array) / sizeof(std::string)));
 
@@ -249,7 +247,6 @@ static void dataTests() {
 	}
 
 	{
-		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing", "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
 		ft::vector<std::string> ft(array, array + (sizeof(array) / sizeof(std::string)));
 		std::vector<std::string> std(array, array + (sizeof(array) / sizeof(std::string)));
 		test.dataLoop(ft, std);
