@@ -15,7 +15,7 @@ DEFAULT='\033[0m'
 RED='\033[1;31m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
-PURPLE='\033[0;35m'
+PURPLE='\033[1;35m'
 CYAN='\033[1;36m'
 
 CC=c++
@@ -167,7 +167,7 @@ elif [ $1 == "map" ]; then
 	done
 
 	for file in $TEST_DIR/$STD_MAP/*.txt; do
-		echo -ne "Test Type: $(basename -- $file .txt)\t\t"
+		echo -ne "Test Type:$PURPLE $(basename -- $file .txt)$DEFAULT\t\t"
 		if [ -f $TEST_DIR/$FT_MAP/${file##*/} ]; then
 			echo -ne "Compiled:$GREEN OK $DEFAULT |  "
 			diff <(head -n -1 $file) <(head -n -1 $TEST_DIR/$FT_MAP/${file##*/}) > diff
@@ -195,14 +195,3 @@ else
 	echo -e $RED"Error: Unknown Container Type"$DEFAULT
 	exit 1
 fi
-
-
-#######################################
-#               Cleanup               #
-#######################################
-
-# if [[ "$OSTYPE" =~ ^linux ]]; then
-# 	printf "\033[A"
-# fi
-$RM $EXEC_DIR
-make fclean
