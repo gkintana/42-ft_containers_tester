@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/03 23:30:22 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/04 23:08:18 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ MAP_DIR		=	map_tests
 STD_MAP_DIR =	std_map
 FT_MAP_DIR	=	ft_map
 
-MAP_TEST	=	insert.cpp
+MAP_TEST	=	insert.cpp \
+				find.cpp
 
 STD_MAP_OBJ	=	$(addprefix $(OBJ_DIR)/$(STD_MAP_DIR)/, $(MAP_TEST:%cpp=%o))
 FT_MAP_OBJ	=	$(addprefix $(OBJ_DIR)/$(FT_MAP_DIR)/, $(MAP_TEST:%cpp=%o))

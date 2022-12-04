@@ -1,4 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   insert.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/03 14:58:40 by gkintana          #+#    #+#             */
+/*   Updated: 2022/12/04 23:49:17 by gkintana         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
+#include <iomanip>
 #include <map>
 #include "map.hpp"
 #include <sys/time.h>
@@ -64,6 +77,6 @@ int main() {
 
 	gettimeofday(&exec_time, NULL);
 	double end = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
-	std::cout << (end - start) / 1000 << " ms" << std::endl;
+	std::cout << std::fixed << std::setprecision(3) << (end - start) / 1000 << " ms" << std::endl;
 	return 0;
 }

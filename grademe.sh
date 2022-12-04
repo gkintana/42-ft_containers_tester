@@ -11,7 +11,7 @@ fi
 #             Definitions             #
 #######################################
 
-DEFAULT='\033[0m'
+DEFAULT=$(tput sgr0)
 RED='\033[1;31m'
 GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
@@ -167,7 +167,7 @@ elif [ $1 == "map" ]; then
 	done
 
 	for file in $TEST_DIR/$STD_MAP/*.txt; do
-		echo -ne "Test Type:$PURPLE $(basename -- $file .txt)$DEFAULT\t\t"
+		printf $PURPLE'%-25s' " • $(basename -- $file .txt)$DEFAULT"
 		if [ -f $TEST_DIR/$FT_MAP/${file##*/} ]; then
 			echo -ne "Compiled:$GREEN OK $DEFAULT |  "
 			diff <(head -n -1 $file) <(head -n -1 $TEST_DIR/$FT_MAP/${file##*/}) > diff
