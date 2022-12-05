@@ -170,7 +170,7 @@ elif [ $1 == "map" ]; then
 		printf $PURPLE'%-25s' " • $(basename -- $file .txt)$DEFAULT"
 		if [ -f $TEST_DIR/$FT_MAP/${file##*/} ]; then
 			echo -ne "Compiled:$GREEN OK $DEFAULT |  "
-			diff <(head -n -1 $file) <(head -n -1 $TEST_DIR/$FT_MAP/${file##*/}) > diff
+			diff <(sed '$d' $file) <(sed '$d' $TEST_DIR/$FT_MAP/${file##*/}) > diff
 			if [ -s diff ]; then
 				echo -ne "Result:$RED KO $DEFAULT"
 			else

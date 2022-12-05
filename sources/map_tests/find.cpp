@@ -32,8 +32,12 @@ int main() {
 
 	int value = 3;
 	std::cout << "find (" << value << ") = " << test_map.find(value)->first << std::endl;
+
+	value = 1;
+	std::cout << "find (" << value << ") = " << test_map.find(value)->first << std::endl;
+
 	value = 300;
-	if (&test_map.find(value)->first) {
+	if (test_map.find(value)->first == test_map.end()->first) {
 		std::cout << "find (" << value << ") has been safely accessed." << std::endl;
 	}
 
