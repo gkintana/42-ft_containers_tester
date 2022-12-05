@@ -6,24 +6,11 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 14:58:40 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/05 09:50:00 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/05 21:15:52 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <iomanip>
-#include <map>
-#include "map.hpp"
-#include <sys/time.h>
-
-template <typename key, typename value>
-void printContent(NAMESPACE::map<key, value> &map) {
-	std::cout << "Map Contents:" << std::endl;
-	for (typename NAMESPACE::map<key, value>::iterator it = map.begin(); it != map.end(); it++) {
-		std::cout << "Key = " << it->first << "\t\t| Value = " << it->second << std::endl;
-	}
-	std::cout << std::endl;
-}
+#include "map_templates.hpp"
 
 #if __linux__
 int main() {
@@ -59,8 +46,8 @@ int main() {
 		printContent(test_map);
 
 		test_map.insert((--(--(--test_map.begin()))), NAMESPACE::make_pair(9, "🙃🙃🙃"));
-		test_map.insert(++(++(test_map.begin())), NAMESPACE::make_pair(90, "😊"));
 		test_map.insert(++(++(test_map.end())), NAMESPACE::make_pair(7825, "😉😉😉"));
+		test_map.insert(++(++(test_map.begin())), NAMESPACE::make_pair(90, "😊"));
 		printContent(test_map);
 
 		/*---------------------------------------------------------------------------------------*/
@@ -82,6 +69,7 @@ int main() {
 	return 0;
 }
 #endif
+
 
 #if __APPLE__
 int main() {

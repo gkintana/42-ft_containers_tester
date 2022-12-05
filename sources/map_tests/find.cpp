@@ -6,15 +6,11 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 22:58:30 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/04 23:59:08 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/05 21:23:46 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <iomanip>
-#include <map>
-#include "map.hpp"
-#include <sys/time.h>
+#include "map_templates.hpp"
 
 int main() {
 	timeval exec_time;
@@ -22,6 +18,7 @@ int main() {
 	double start = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
 
 	NAMESPACE::map<int, int> test_map;
+	NAMESPACE::map<int, int>::iterator it = test_map.end();
 
 	test_map.insert(NAMESPACE::make_pair(2, 2));
 	test_map.insert(NAMESPACE::make_pair(1, 1));
@@ -40,6 +37,15 @@ int main() {
 	if (test_map.find(value)->first == test_map.end()->first) {
 		std::cout << "find (" << value << ") has been safely accessed." << std::endl;
 	}
+
+	value = 2;
+	std::cout << "Is map::find("<< value << ") == map::end()? "
+	          << std::boolalpha << (test_map.find(value) == test_map.end()) << std::endl;
+	value = 42;
+	std::cout << "Is map::find("<< value << ") == map::end()? "
+	          << (test_map.find(value) == test_map.end()) << std::endl
+			  << "Is map::find("<< value << ") == it? "
+	          << (test_map.find(value) == it) << std::endl;
 
 	gettimeofday(&exec_time, NULL);
 	double end = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
