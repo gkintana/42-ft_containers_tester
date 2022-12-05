@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 21:11:47 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/05 21:14:11 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/05 21:45:57 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void printContent(NAMESPACE::map<key, value> &map) {
 	          << "map::size() = " << map.size() << std::endl
 	          << "Contents:" << std::endl;
 	for (typename NAMESPACE::map<key, value>::iterator it = map.begin(); it != map.end(); it++) {
-		std::cout << "Key = " << it->first << "\t\t| Value = " << it->second << std::endl;
+		std::cout << "Key = " << it->first << "   |   Value = " << it->second << std::endl;
 	}
 	std::cout << std::endl;
 }
