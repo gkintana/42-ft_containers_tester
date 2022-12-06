@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/06 10:43:27 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/06 12:41:47 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ STD_MAP_DIR =	std_map
 FT_MAP_DIR	=	ft_map
 
 MAP_TEST	=	bounds_and_range.cpp \
+				constructors.cpp \
 				find.cpp \
 				insert.cpp \
 				iterators.cpp
