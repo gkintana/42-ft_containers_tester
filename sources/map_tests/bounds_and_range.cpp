@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 21:31:26 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/05 23:22:24 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/06 09:40:32 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ int main() {
 	double start = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
 
 	NAMESPACE::map<char, int> test;
-	test.insert(NAMESPACE::pair<char, int>('k', 107));
-	test.insert(NAMESPACE::pair<char, int>('|', 124));
-	test.insert(NAMESPACE::make_pair('A', 65));
-	test.insert(NAMESPACE::make_pair('#', 35));
-	test['k'] = 0;
-	test['+'] = 45;
-	test[' '] = 32;
-	test.insert(--test.end(), NAMESPACE::make_pair('1', 49));
-	test.insert(++test.begin(), NAMESPACE::make_pair('[', 91));
+	insertValue(test, INSERT_BY_PAIR, 'k', 107);
+	insertValue(test, INSERT_BY_PAIR, '|', 124);
+	insertValue(test, INSERT_BY_MAKE_PAIR, 'A', 65);
+	insertValue(test, INSERT_BY_MAKE_PAIR, '#', 35);
+	insertValue(test, INSERT_BY_OPERATOR, 'k', 0);
+	insertValue(test, INSERT_BY_OPERATOR, '+', 45);
+	insertValue(test, INSERT_BY_OPERATOR, ' ', 32);
+	insertValue(test, --test.end(), '1', 49);
+	insertValue(test, ++test.begin(), '[', 91);
 	printContent(test);
 
 	/*-------------------------------------------------------------------------------------------*/

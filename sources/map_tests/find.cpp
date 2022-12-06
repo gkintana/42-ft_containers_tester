@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 22:58:30 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/05 21:23:46 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/06 09:47:55 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,36 @@ int main() {
 	gettimeofday(&exec_time, NULL);
 	double start = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
 
-	NAMESPACE::map<int, int> test_map;
-	NAMESPACE::map<int, int>::iterator it = test_map.end();
+	NAMESPACE::map<int, int> test;
+	NAMESPACE::map<int, int>::iterator it = test.end();
 
-	test_map.insert(NAMESPACE::make_pair(2, 2));
-	test_map.insert(NAMESPACE::make_pair(1, 1));
-	test_map.insert(NAMESPACE::make_pair(3, 3));
-	test_map.insert(NAMESPACE::make_pair(6, 25));
-	test_map.insert(NAMESPACE::make_pair(4, 40));
-	test_map.insert(NAMESPACE::make_pair(5, 50));
+	insertValue(test, INSERT_BY_PAIR, 2, 20);
+	insertValue(test, INSERT_BY_PAIR, 1, 10);
+	insertValue(test, INSERT_BY_PAIR, 3, 30);
+	insertValue(test, INSERT_BY_MAKE_PAIR, 6, 25);
+	insertValue(test, INSERT_BY_MAKE_PAIR, 4, 40);
+	insertValue(test, INSERT_BY_MAKE_PAIR, 5, 50);
+	printContent(test);
 
 	int value = 3;
-	std::cout << "find (" << value << ") = " << test_map.find(value)->first << std::endl;
+	std::cout << "find (" << value << ") = " << test.find(value)->first << std::endl;
 
 	value = 1;
-	std::cout << "find (" << value << ") = " << test_map.find(value)->first << std::endl;
+	std::cout << "find (" << value << ") = " << test.find(value)->first << std::endl;
 
 	value = 300;
-	if (test_map.find(value)->first == test_map.end()->first) {
+	if (test.find(value)->first == test.end()->first) {
 		std::cout << "find (" << value << ") has been safely accessed." << std::endl;
 	}
 
 	value = 2;
 	std::cout << "Is map::find("<< value << ") == map::end()? "
-	          << std::boolalpha << (test_map.find(value) == test_map.end()) << std::endl;
+	          << std::boolalpha << (test.find(value) == test.end()) << std::endl;
 	value = 42;
 	std::cout << "Is map::find("<< value << ") == map::end()? "
-	          << (test_map.find(value) == test_map.end()) << std::endl
-			  << "Is map::find("<< value << ") == it? "
-	          << (test_map.find(value) == it) << std::endl;
+	          << (test.find(value) == test.end()) << std::endl
+	          << "Is map::find("<< value << ") == it? "
+	          << (test.find(value) == it) << std::endl;
 
 	gettimeofday(&exec_time, NULL);
 	double end = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;

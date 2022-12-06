@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 21:11:47 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/05 21:45:57 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/06 09:37:20 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,33 @@ void printContent(NAMESPACE::map<key, value> &map) {
 		std::cout << "Key = " << it->first << "   |   Value = " << it->second << std::endl;
 	}
 	std::cout << std::endl;
+}
+
+#define INSERT_BY_PAIR         1
+#define INSERT_BY_MAKE_PAIR    2
+#define INSERT_BY_OPERATOR     3
+
+template <typename key, typename value>
+void insertValue(NAMESPACE::map<key, value> &map, int insert_style,
+                 typename NAMESPACE::map<key, value>::key_type first,
+                 typename NAMESPACE::map<key, value>::mapped_type second) {
+	if (insert_style == INSERT_BY_PAIR) {
+		map.insert(NAMESPACE::pair<key, value>(first, second));
+	} else if (insert_style == INSERT_BY_MAKE_PAIR) {
+		map.insert(NAMESPACE::make_pair(first, second));
+	} else if (insert_style == INSERT_BY_OPERATOR) {
+		map[first] = second;
+	} else {
+		throw std::out_of_range("Incorrect insert style");
+	}
+}
+
+template <typename key, typename value>
+void insertValue(NAMESPACE::map<key, value> &map,
+                 typename NAMESPACE::map<key, value>::iterator position,
+                 typename NAMESPACE::map<key, value>::key_type first,
+                 typename NAMESPACE::map<key, value>::mapped_type second) {
+	map.insert(position, NAMESPACE::make_pair(first, second));
 }
 
 #endif
