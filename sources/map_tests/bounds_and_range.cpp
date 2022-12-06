@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 21:31:26 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/06 09:40:32 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/06 10:25:04 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,3 @@ void printRange(NAMESPACE::map<key, value> &map,
 	std::cout << "map::equal_range(" << k << ").first->first = " << result.first->first << std::endl
 	          << "map::equal_range(" << k << ").second->first = " << result.second->first << std::endl;
 }
-

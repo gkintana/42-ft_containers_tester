@@ -119,13 +119,15 @@ $RM $EXEC_DIR
 
 if [ $1 == "vector" ]; then
 	echo -e $CYAN"Vector Tester"$DEFAULT
+	echo -e $YELLOW"Currently being refactored"$DEFAULT
+	exit 1
 
-	make fclean && make vector
-	mkdir -p $EXEC_DIR
-	mkdir -p $EXEC_DIR/$VEC_DIR
+	# make fclean && make vector
+	# mkdir -p $EXEC_DIR
+	# mkdir -p $EXEC_DIR/$VEC_DIR
 
-	compile_vector_tests
-	print_vector_test_results
+	# compile_vector_tests
+	# print_vector_test_results
 
 elif [ $1 == "stack" ]; then
 	echo -e $CYAN"Stack Tester"$DEFAULT

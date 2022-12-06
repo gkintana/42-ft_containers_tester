@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/05 21:41:12 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/06 10:43:27 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,8 +51,9 @@ STD_MAP_DIR =	std_map
 FT_MAP_DIR	=	ft_map
 
 MAP_TEST	=	bounds_and_range.cpp \
+				find.cpp \
 				insert.cpp \
-				find.cpp
+				iterators.cpp
 
 STD_MAP_OBJ	=	$(addprefix $(OBJ_DIR)/$(STD_MAP_DIR)/, $(MAP_TEST:%cpp=%o))
 FT_MAP_OBJ	=	$(addprefix $(OBJ_DIR)/$(FT_MAP_DIR)/, $(MAP_TEST:%cpp=%o))
