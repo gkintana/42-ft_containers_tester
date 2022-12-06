@@ -36,6 +36,7 @@ MAP_DIR=map_tests
 STD_MAP=std_map
 FT_MAP=ft_map
 FT_MAP_LEAKS=ft_map_leak_summary
+STD_MAP_LEAKS=std_map_leak_summary
 
 
 #######################################
@@ -143,6 +144,7 @@ elif [ $1 == "map" ]; then
 	# (if OS is linux) create an extra folder to store leak reports
 	if [[ "$OSTYPE" =~ ^linux ]]; then
 		mkdir -p $TEST_DIR/$FT_MAP_LEAKS
+		mkdir -p $TEST_DIR/$STD_MAP_LEAKS
 	fi
 
 	for file in $TEST_DIR/$FT_MAP/*.o; do
@@ -163,6 +165,10 @@ elif [ $1 == "map" ]; then
 		# compile object files then run and redirect output to a text file
 		$CC $CFLAGS $file -o ${file%%.o}
 		./${file%%.o} > ${file%%.o}.txt
+
+		if [[ "$OSTYPE" =~ ^linux ]]; then
+			$VALGRIND $VFLAGS ./${file%%.o} > $TEST_DIR/$STD_MAP_LEAKS/$(basename -- $file .o).txt 2>&1
+		fi
 
 		# delete object and executable file
 		rm $file ${file%%.o}
