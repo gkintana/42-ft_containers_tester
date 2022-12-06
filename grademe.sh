@@ -175,7 +175,7 @@ elif [ $1 == "map" ]; then
 	done
 
 	for file in $TEST_DIR/$STD_MAP/*.txt; do
-		printf $PURPLE'%-30s' " • $(basename -- $file .txt)$DEFAULT"
+		printf $PURPLE'%-35s' " • $(basename -- $file .txt)$DEFAULT"
 		if [ -f $TEST_DIR/$FT_MAP/${file##*/} ]; then
 			echo -ne "Compiled:$GREEN OK $DEFAULT |  "
 			diff <(sed '$d' $file) <(sed '$d' $TEST_DIR/$FT_MAP/${file##*/}) > diff
