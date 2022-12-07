@@ -6,23 +6,23 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 08:41:39 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/07 23:06:42 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/07 23:16:40 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_templates.hpp"
 
 int main() {
-    timeval exec_time;
+	timeval exec_time;
 	gettimeofday(&exec_time, NULL);
 	double start = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
 
-    NAMESPACE::map<int, int> test;
-    NAMESPACE::map<int, int>::iterator iter_begin = test.begin();
-    NAMESPACE::map<int, int>::iterator iter_end = test.end();
+	NAMESPACE::map<int, int> test;
+	NAMESPACE::map<int, int>::iterator iter_begin = test.begin();
+	NAMESPACE::map<int, int>::iterator iter_end = test.end();
 
-    std::cout << "Is map.begin() == map.end()? " << std::boolalpha
-              << (test.begin() == test.end()) << std::endl;
+	std::cout << "Is map.begin() == map.end()? " << std::boolalpha
+	          << (test.begin() == test.end()) << std::endl;
 
 	insertValue(test, INSERT_BY_PAIR, -864, -2587);
 	insertValue(test, INSERT_BY_PAIR, -8009, -4062);
@@ -40,7 +40,7 @@ int main() {
 	insertValue(test, INSERT_BY_OPERATOR, 3919, -8373);
 	insertValue(test, INSERT_BY_OPERATOR, 2339, 3903);
 
-    std::cout << "Is map.begin() == iter_begin? "
+	std::cout << "Is map.begin() == iter_begin? "
 	          << (test.begin() == iter_begin) << std::endl
 	          << "Is map.end() == iter_end? "
 	          << (test.end() == iter_end) << std::endl
@@ -73,7 +73,7 @@ int main() {
 	          << "Is iter_end == const_iter_end? "
 	          << (iter_end == const_iter_end) << std::endl;
 
-    gettimeofday(&exec_time, NULL);
+	gettimeofday(&exec_time, NULL);
 	double end = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
 	std::cout << std::fixed << std::setprecision(3) << (end - start) / 1000 << " ms" << std::endl;
 	return 0;
