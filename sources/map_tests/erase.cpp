@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 12:39:41 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/06 18:02:33 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/07 22:19:10 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,30 @@ int main() {
 	insertValue(test, INSERT_BY_OPERATOR, 2339, 3903);
 	printContent(test);
 	
-	{
-		NAMESPACE::map<int, int> clone(test);
-		printContent(clone);
+	NAMESPACE::map<int, int> clone(test);
+	printContent(clone);
 
-		clone.erase(1234);
-		clone.erase(2339);
-		clone.erase(9876);
-		clone.erase(3919);
-		printContent(clone);
+	clone.erase(1234);
+	clone.erase(2339);
+	clone.erase(9876);
+	clone.erase(3919);
+	printContent(clone);
 
-		clone.erase(clone.begin(), clone.begin());
-		clone.erase(clone.end(), clone.end());
-		printContent(clone);
+	clone.erase(clone.begin(), clone.begin());
+	clone.erase(clone.end(), clone.end());
+	printContent(clone);
 
-		clone.erase(++(++(clone.begin())));
-		clone.erase(++(clone.begin()));
-		clone.erase(--clone.end());
-		printContent(clone);
+	clone.swap(test);
+	printContent(test);
+	printContent(clone);
 
-		clone.erase(++(++clone.begin()), clone.end());
-		printContent(clone);
-	}
+	clone.erase(++(++(clone.begin())));
+	clone.erase(++(clone.begin()));
+	clone.erase(--clone.end());
+	printContent(clone);
+
+	clone.erase(++(++clone.begin()), clone.end());
+	printContent(clone);
 
 	test.erase(test.begin(), test.end());
 	printContent(test);

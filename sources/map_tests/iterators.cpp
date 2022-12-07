@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 08:41:39 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/06 11:20:17 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/07 23:06:42 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int main() {
     NAMESPACE::map<int, int>::iterator iter_begin = test.begin();
     NAMESPACE::map<int, int>::iterator iter_end = test.end();
 
-    std::cout << "Is map.begin() == map.end()? "
-              << std::boolalpha << (test.begin() == test.end()) << std::endl;
+    std::cout << "Is map.begin() == map.end()? " << std::boolalpha
+              << (test.begin() == test.end()) << std::endl;
 
 	insertValue(test, INSERT_BY_PAIR, -864, -2587);
 	insertValue(test, INSERT_BY_PAIR, -8009, -4062);
@@ -41,14 +41,37 @@ int main() {
 	insertValue(test, INSERT_BY_OPERATOR, 2339, 3903);
 
     std::cout << "Is map.begin() == iter_begin? "
-              << std::boolalpha << (test.begin() == iter_begin) << std::endl;
-    std::cout << "Is map.end() == iter_end? "
-              << std::boolalpha << (test.end() == iter_end) << std::endl;
+	          << (test.begin() == iter_begin) << std::endl
+	          << "Is map.end() == iter_end? "
+	          << (test.end() == iter_end) << std::endl
+	          << "Is map.begin() == map.end()? "
+	          << (test.begin() == test.end()) << std::endl;
 
-    printByIterator(test, test.begin(), test.end());
-    printByIterator(test, --test.end(), test.begin(), false);
-    printByReverseIterator(test, test.rbegin(), test.rend());
-    printByReverseIterator(test, --test.rend(), test.rbegin(), false);
+	printByIterator(test, test.begin(), test.end());
+	printByIterator(test, --test.end(), test.begin(), false);
+
+	printByConstIterator(test, test.begin(), test.end());
+	printByConstIterator(test, --test.end(), test.begin(), false);
+
+	printByReverseIterator(test, test.rbegin(), test.rend());
+	printByReverseIterator(test, --test.rend(), test.rbegin(), false);
+
+	printByConstReverseIterator(test, test.rbegin(), test.rend());
+	printByConstReverseIterator(test, --test.rend(), test.rbegin(), false);
+
+	/*---------------------------------------------------------------------------------------*/
+
+	NAMESPACE::map<int, int>::const_iterator const_iter_begin = test.begin();
+	std::cout << "Is const_iter_begin == iter_begin? "
+	          << (const_iter_begin == iter_begin) << std::endl
+	          << "Is iter_begin == const_iter_begin? "
+	          << (iter_begin == const_iter_begin) << std::endl;
+
+	NAMESPACE::map<int, int>::const_iterator const_iter_end = test.end();
+	std::cout << "Is const_iter_end == iter_end? "
+	          << (const_iter_end == iter_end) << std::endl
+	          << "Is iter_end == const_iter_end? "
+	          << (iter_end == const_iter_end) << std::endl;
 
     gettimeofday(&exec_time, NULL);
 	double end = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;

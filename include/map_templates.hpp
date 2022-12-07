@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 21:11:47 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/06 22:49:23 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/07 22:59:22 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,20 @@ void printByIterator(NAMESPACE::map<key, value> &map,
                      typename NAMESPACE::map<key, value>::iterator end,
                      bool increment = true) {
 	printMapInfo(map);
-	if (increment) {
-		for (typename NAMESPACE::map<key, value>::iterator it = start; it != end; it++) {
-			std::cout << "Key = " << it->first << "   |   Value = " << it->second << std::endl;
-		}
-	} else {
-		for (typename NAMESPACE::map<key, value>::iterator it = start; it != end; it--) {
-			std::cout << "Key = " << it->first << "   |   Value = " << it->second << std::endl;
-		}
+	for (typename NAMESPACE::map<key, value>::iterator it = start; it != end; increment ? it++ : it--) {
+		std::cout << "Key = " << it->first << "   |   Value = " << it->second << std::endl;
+	}
+	std::cout << std::endl;
+}
+
+template <typename key, typename value>
+void printByConstIterator(NAMESPACE::map<key, value> &map,
+                          typename NAMESPACE::map<key, value>::const_iterator start,
+                          typename NAMESPACE::map<key, value>::const_iterator end,
+                          bool increment = true) {
+	printMapInfo(map);
+	for (typename NAMESPACE::map<key, value>::const_iterator it = start; it != end; increment ? it++ : it--) {
+		std::cout << "Key = " << it->first << "   |   Value = " << it->second << std::endl;
 	}
 	std::cout << std::endl;
 }
@@ -62,14 +68,20 @@ void printByReverseIterator(NAMESPACE::map<key, value> &map,
                             typename NAMESPACE::map<key, value>::reverse_iterator end,
                             bool increment = true) {
 	printMapInfo(map);
-	if (increment) {
-		for (typename NAMESPACE::map<key, value>::reverse_iterator it = start; it != end; it++) {
-			std::cout << "Key = " << it->first << "   |   Value = " << it->second << std::endl;
-		}
-	} else {
-		for (typename NAMESPACE::map<key, value>::reverse_iterator it = start; it != end; it--) {
-			std::cout << "Key = " << it->first << "   |   Value = " << it->second << std::endl;
-		}
+	for (typename NAMESPACE::map<key, value>::reverse_iterator it = start; it != end; increment ? it++ : it--) {
+		std::cout << "Key = " << it->first << "   |   Value = " << it->second << std::endl;
+	}
+	std::cout << std::endl;
+}
+
+template <typename key, typename value>
+void printByConstReverseIterator(NAMESPACE::map<key, value> &map,
+                                 typename NAMESPACE::map<key, value>::const_reverse_iterator start,
+                                 typename NAMESPACE::map<key, value>::const_reverse_iterator end,
+                                 bool increment = true) {
+	printMapInfo(map);
+	for (typename NAMESPACE::map<key, value>::const_reverse_iterator it = start; it != end; increment ? it++ : it--) {
+		std::cout << "Key = " << it->first << "   |   Value = " << it->second << std::endl;
 	}
 	std::cout << std::endl;
 }
