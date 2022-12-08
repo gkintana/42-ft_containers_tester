@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 21:11:47 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/07 22:59:22 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:37:35 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,13 @@ void insertValue(NAMESPACE::map<key, value> &map,
                  typename NAMESPACE::map<key, value>::key_type first,
                  typename NAMESPACE::map<key, value>::mapped_type second) {
 	map.insert(position, NAMESPACE::make_pair(first, second));
+}
+
+template <typename key, typename value>
+void insertRandomValues(NAMESPACE::map<key, value> &map, size_t size) {
+	for (size_t i = 0; i < size; i++) {
+		insertValue(map, 1 + (std::rand() % 3), 10000 + (std::rand() % 20000), 10000 + (std::rand() % 30000));
+	}
 }
 
 #endif

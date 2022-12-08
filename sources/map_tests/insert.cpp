@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 14:58:40 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/06 09:47:40 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:38:39 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,9 @@ int main() {
 	{
 		NAMESPACE::map<int, int> test;
 
-		insertValue(test, INSERT_BY_MAKE_PAIR, 1, 10);
-		insertValue(test, INSERT_BY_MAKE_PAIR, 2, 20);
-		insertValue(test, INSERT_BY_MAKE_PAIR, 3, 30);
+		insertRandomValues(test, 10);
 		printContent(test);
-
-		insertValue(test, INSERT_BY_PAIR, 2, 20);
-		insertValue(test, INSERT_BY_PAIR, 1, 10);
-		insertValue(test, INSERT_BY_PAIR, 3, 30);
-		insertValue(test, INSERT_BY_MAKE_PAIR, 6, 25);
-		insertValue(test, INSERT_BY_MAKE_PAIR, 4, 40);
-		insertValue(test, INSERT_BY_MAKE_PAIR, 5, 50);
+		insertRandomValues(test, 20);
 		printContent(test);
 	}
 
@@ -81,17 +73,9 @@ int main() {
 	{
 		NAMESPACE::map<int, int> test;
 
-		insertValue(test, INSERT_BY_MAKE_PAIR, 1, 10);
-		insertValue(test, INSERT_BY_MAKE_PAIR, 2, 20);
-		insertValue(test, INSERT_BY_MAKE_PAIR, 3, 30);
+		insertRandomValues(test, 10);
 		printContent(test);
-
-		insertValue(test, INSERT_BY_PAIR, 2, 20);
-		insertValue(test, INSERT_BY_PAIR, 1, 10);
-		insertValue(test, INSERT_BY_PAIR, 3, 30);
-		insertValue(test, INSERT_BY_MAKE_PAIR, 6, 25);
-		insertValue(test, INSERT_BY_MAKE_PAIR, 4, 40);
-		insertValue(test, INSERT_BY_MAKE_PAIR, 5, 50);
+		insertRandomValues(test, 20);
 		printContent(test);
 	}
 

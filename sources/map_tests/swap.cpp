@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:17:20 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/08 10:22:44 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/08 12:46:05 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,13 @@ int main() {
 		NAMESPACE::map<int, int> map_1;
 		NAMESPACE::map<int, int>::iterator it_begin_1 = map_1.begin();
 		NAMESPACE::map<int, int>::iterator it_end_1 = map_1.end();
-		insertValue(map_1, INSERT_BY_OPERATOR, 9040, -1143);
-		insertValue(map_1, INSERT_BY_OPERATOR, 19340, 18827);
-		insertValue(map_1, INSERT_BY_OPERATOR, -11346, -19857);
-		insertValue(map_1, INSERT_BY_OPERATOR, 10036, -12137);
-		insertValue(map_1, INSERT_BY_OPERATOR, -2727, 16606);
-		insertValue(map_1, INSERT_BY_OPERATOR, -12302, 14583);
+		insertRandomValues(map_1, 15);
 		printContent(map_1);
 
 		NAMESPACE::map<int, int> map_2;
 		NAMESPACE::map<int, int>::iterator it_begin_2 = map_2.begin();
 		NAMESPACE::map<int, int>::iterator it_end_2 = map_2.end();
-		insertValue(map_2, INSERT_BY_OPERATOR, -8101, 12848);
-		insertValue(map_2, INSERT_BY_OPERATOR, 11129, 10015);
-		insertValue(map_2, INSERT_BY_OPERATOR, 9366, 3005);
+		insertRandomValues(map_2, 8);
 		printContent(map_2);
 
 		std::cout << std::boolalpha
