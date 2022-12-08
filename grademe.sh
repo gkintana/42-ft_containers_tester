@@ -23,6 +23,7 @@ CFLAGS='-Wall -Wextra -Werror'
 VALGRIND=valgrind
 VFLAGS='--leak-check=full --show-leak-kinds=all'
 RM='rm -rf'
+LOG=compilation.log
 
 
 TEST_DIR=test_reports
@@ -137,9 +138,12 @@ elif [ $1 == "stack" ]; then
 
 elif [ $1 == "map" ]; then
 	echo -e $CYAN"Map Tester"$DEFAULT
+	echo -e $YELLOW"Compiling..."$DEFAULT
 
-	# use Makefile to create object files of tests case
-	make fclean && make map
+	# use Makefile to create object files of tests case. If compilation
+	# errors are encountered, redirect output to compilation.log file
+	make fclean && make -k map 2> $LOG
+	printf "\033[A\033[2K\r"
 
 	# (if OS is linux) create an extra folder to store leak reports
 	if [[ "$OSTYPE" =~ ^linux ]]; then
@@ -189,7 +193,7 @@ elif [ $1 == "map" ]; then
 			map_valgrind_report
 			rm diff
 		else
-			echo -e "Compiled:$RED KO $DEFAULT |  Result:$RED KO $DEFAULT"
+			printf "Compiled:$RED KO $DEFAULT |  Result:$RED KO $DEFAULT"
 		fi
 		echo
 	done

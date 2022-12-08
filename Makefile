@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/07 23:24:10 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/08 22:20:22 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CONT_DIR2	=	../42-ft_containers/include/utilities
 
 SRC_DIR		=	sources
 OBJ_DIR		=	test_reports
+LOG			=	compilation.log
 
 VEC_DIR1	=	vector_tests
 VEC_DIR2	=	vector_performance
@@ -50,7 +51,8 @@ MAP_DIR		=	map_tests
 STD_MAP_DIR =	std_map
 FT_MAP_DIR	=	ft_map
 
-MAP_TEST	=	bounds_and_range.cpp \
+MAP_TEST	=	allocator.cpp \
+				bounds_and_range.cpp \
 				constructors.cpp \
 				count.cpp \
 				element_access.cpp \
@@ -104,16 +106,13 @@ $(OBJ_DIR)/$(STD_DIR)/%.o : $(SRC_DIR)/$(VEC_DIR2)/%.cpp
 $(OBJ_DIR)/$(STD_MAP_DIR)/%.o : $(SRC_DIR)/$(MAP_DIR)/%.cpp
 			@mkdir -p $(OBJ_DIR)
 			@mkdir -p $(OBJ_DIR)/$(STD_MAP_DIR)
-			@echo $(YELLOW)"Compiling..."$(DEFAULT)
 			@$(CXX) $(CPPFLAGS_98) $(NS_STD) -I$(INC_DIR) -I$(CONT_DIR1) -I$(CONT_DIR2) -c $< -o $@
-			@printf "\033[A\033[2K\r"
+
 # FT MAP
 $(OBJ_DIR)/$(FT_MAP_DIR)/%.o : $(SRC_DIR)/$(MAP_DIR)/%.cpp
 			@mkdir -p $(OBJ_DIR)
 			@mkdir -p $(OBJ_DIR)/$(FT_MAP_DIR)
-			@echo $(YELLOW)"Compiling..."$(DEFAULT)
 			@$(CXX) $(CPPFLAGS_98) $(NS_FT) -I$(INC_DIR) -I$(CONT_DIR1) -I$(CONT_DIR2) -c $< -o $@
-			@printf "\033[A\033[2K\r"
 
 vector:		$(VEC_OBJ) $(FT_OBJ) $(STD_OBJ)
 			@echo $(DEFAULT)$(GREEN)"Vector Test Cases Ready"$(DEFAULT)
@@ -121,7 +120,7 @@ vector:		$(VEC_OBJ) $(FT_OBJ) $(STD_OBJ)
 map:		$(STD_MAP_OBJ) $(FT_MAP_OBJ)
 
 clean:
-			@$(RM) $(OBJ_DIR)
+			@$(RM) $(OBJ_DIR) $(LOG)
 
 fclean:		clean
 
