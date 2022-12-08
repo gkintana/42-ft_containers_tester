@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/08 22:20:22 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/08 23:22:04 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ MAP_TEST	=	allocator.cpp \
 				find.cpp \
 				insert.cpp \
 				iterators.cpp \
+				map_of_maps.cpp \
 				relational_operators.cpp \
 				swap.cpp
 
