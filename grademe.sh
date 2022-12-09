@@ -151,6 +151,7 @@ elif [ $1 == "map" ]; then
 		mkdir -p $TEST_DIR/$STD_MAP_LEAKS
 	fi
 
+	echo -e $YELLOW"Turning ft::map objects into executables & saving their output to a .txt file"$DEFAULT
 	for file in $TEST_DIR/$FT_MAP/*.o; do
 		# compile object files then run and redirect output to a text file
 		$CC $CFLAGS $file -o ${file%%.o}
@@ -164,7 +165,9 @@ elif [ $1 == "map" ]; then
 		# delete object and executable file
 		rm $file ${file%%.o}
 	done
+	printf "\033[A\033[2K\r"
 
+	echo -e $YELLOW"Turning std::map objects into executables & saving their output to a .txt file"$DEFAULT
 	for file in $TEST_DIR/$STD_MAP/*.o; do
 		# compile object files then run and redirect output to a text file
 		$CC $CFLAGS $file -o ${file%%.o}
@@ -177,6 +180,7 @@ elif [ $1 == "map" ]; then
 		# delete object and executable file
 		rm $file ${file%%.o}
 	done
+	printf "\033[A\033[2K\r"
 
 	for file in $TEST_DIR/$STD_MAP/*.txt; do
 		printf $PURPLE'%-35s' " • $(basename -- $file .txt)$DEFAULT"
@@ -197,6 +201,13 @@ elif [ $1 == "map" ]; then
 		fi
 		echo
 	done
+	echo -e $YELLOW"Details about the output can be found in the test_reports directory"$DEFAULT
+
+	if [ -s $LOG ]; then
+		echo -e $RED"Encountered some compilation errors, please check $LOG for more details"$DEFAULT
+	else
+		$RM $LOG
+	fi
 
 elif [ $1 == "set" ]; then
 	echo -e $CYAN"Set Tester"$DEFAULT

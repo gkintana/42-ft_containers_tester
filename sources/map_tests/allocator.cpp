@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 18:44:57 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/09 00:00:05 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/09 11:27:28 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int main() {
 	temp = test.get_allocator().allocate(sample_size);
 
 	for (size_t i = 0; i < sample_size; i++) {
-		test.get_allocator().construct(temp + i, NAMESPACE::make_pair('0' + i, "Hello World!"));
-		std::cout << "Key = " << temp->first << "  |  Value = " << temp->second << std::endl;
+		test.get_allocator().construct(temp + i, NAMESPACE::make_pair(i + '0', "Hello World!"));
+		std::cout << "Key = " << (temp + i)->first << "  |  Value = " << (temp + i)->second << std::endl;
 	}
 
 	temp_size = sizeof(NAMESPACE::map<char, std::string>::value_type) * sample_size;

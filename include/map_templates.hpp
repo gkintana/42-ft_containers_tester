@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 21:11:47 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/08 12:37:35 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/09 09:05:53 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <cstdlib>
 #include <sys/time.h>
 #include <map>
 #include "map.hpp"
