@@ -6,30 +6,11 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:39:42 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/09 20:10:23 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/09 23:56:13 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <iomanip>
-#include <cstdlib>
-#include <climits>
-#include <cfloat>
-#include <sys/time.h>
-#include <vector>
-#include "vector.hpp"
-
-template <typename T>
-void printVectorInfo(NAMESPACE::vector<T> &vector) {
-	std::cout << "--------------------------------------------------" << std::endl << std::boolalpha
-	          << "vector::empty() = " << vector.empty() << std::endl
-	          << "vector::size() = " << vector.size() << std::endl
-	          << "vector::max_size() = " << vector.max_size() << std::endl
-	          << "Contents:" << std::endl;
-	for (size_t i = 0; i < vector.size(); i++) {
-		std::cout << vector[i] << std::endl;
-	}
-}
+#include "vector_templates.hpp"
 
 static void defaultConstructor();
 static void fillConstructor();

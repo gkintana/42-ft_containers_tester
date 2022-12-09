@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/09 17:39:31 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/10 00:22:19 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,9 @@ VEC_DIR		=	vector
 STD_VEC_DIR	=	std_vector
 FT_VEC_DIR	=	ft_vector
 
-VEC_TEST	=	constructors.cpp
+VEC_TEST	=	constructors.cpp \
+		        reserve.cpp \
+		        resize.cpp
 
 STD_VEC_OBJ	=	$(addprefix $(OBJ_DIR)/$(STD_VEC_DIR)/, $(VEC_TEST:%cpp=%o))
 FT_VEC_OBJ	=	$(addprefix $(OBJ_DIR)/$(FT_VEC_DIR)/, $(VEC_TEST:%cpp=%o))
