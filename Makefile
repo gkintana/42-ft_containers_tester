@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/10 00:22:19 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/10 00:33:32 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ STD_VEC_DIR	=	std_vector
 FT_VEC_DIR	=	ft_vector
 
 VEC_TEST	=	constructors.cpp \
+		        element_access.cpp \
 		        reserve.cpp \
 		        resize.cpp
 

@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 22:28:50 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/10 00:14:02 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/10 00:35:03 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,41 +32,41 @@ int main() {
 static void basicTests() {
 	{
 		NAMESPACE::vector<long> test;
-		printVectorInfo(test);
+		printByOperator(test);
 
 		test.resize(7, 1234567890);
-		printVectorInfo(test);
+		printByOperator(test);
 		test.resize(12, 42);
-		printVectorInfo(test);
+		printByOperator(test);
 		test.resize(0, INT_MAX);
-		printVectorInfo(test);
+		printByOperator(test);
 		test.resize(25, 'A');
-		printVectorInfo(test);
+		printByOperator(test);
 		test.resize(5, 123);
-		printVectorInfo(test);
+		printByOperator(test);
 		test.resize(8, 'z');
-		printVectorInfo(test);
+		printByOperator(test);
 		test.resize(12, 789789789);
-		printVectorInfo(test);
+		printByOperator(test);
 	}
 	{
 		NAMESPACE::vector<std::string> test;
-		printVectorInfo(test);
+		printByOperator(test);
 
 		test.resize(7, "Lorem ipsum dolor sit amet");
-		printVectorInfo(test);
+		printByOperator(test);
 		test.resize(12, "Proin tellus sem, facilisis vel faucibus nec, convallis in ex");
-		printVectorInfo(test);
+		printByOperator(test);
 		test.resize(0, "Quisque accumsan fringilla eros, faucibus auctor leo gravida a. Maecenas sed mi sed tellus pulvinar mattis. Nulla auctor pretium nunc id auctor. Vivamus tincidunt leo sit amet est posuere tincidunt");
-		printVectorInfo(test);
+		printByOperator(test);
 		test.resize(25, "Sed a rutrum metus, vitae iaculis leo. Donec vulputate lacus nisl, et viverra quam blandit vitae. Mauris tempor mollis gravida. Morbi sed mauris at diam pretium rhoncus sit amet auctor odio. Ut sed nunc id leo ultrices dapibus sed a ligula. Fusce eget quam felis. Fusce dignissim elementum pretium. Quisque consectetur lectus non enim molestie efficitur");
-		printVectorInfo(test);
+		printByOperator(test);
 		test.resize(5, "Mauris in eros pharetra, congue sapien at, varius lorem. Aenean cursus nulla at lectus eleifend suscipit. Aliquam sed lectus sed ante sodales sagittis ut et erat. Aenean eu lacus est. Proin et libero ultrices, lacinia ipsum quis, ultricies lectus. Ut volutpat libero ac lobortis accumsan. Etiam purus quam, convallis non blandit eu, sollicitudin vel sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus eleifend euismod euismod. Curabitur interdum sollicitudin est ut volutpat. Suspendisse molestie, mauris sit amet ultricies pulvinar, ante nisl posuere lorem, vel aliquet velit eros quis erat. Aliquam vel neque eu massa rhoncus convallis a non augue. Praesent venenatis magna condimentum nibh pulvinar pretium. Etiam maximus malesuada hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris mollis erat ut risus mollis, a dictum diam tincidunt");
-		printVectorInfo(test);
+		printByOperator(test);
 		test.resize(8, "Hello World!");
-		printVectorInfo(test);
+		printByOperator(test);
 		test.resize(12, "012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789");
-		printVectorInfo(test);
+		printByOperator(test);
 	}
 }
 

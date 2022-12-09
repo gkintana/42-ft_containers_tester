@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/10 00:11:00 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/10 01:00:26 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,13 @@ void printVectorInfo(NAMESPACE::vector<T> &vector) {
 	          << "vector::size() = " << vector.size() << std::endl
 	          << "vector::max_size() = " << vector.max_size() << std::endl
 	          << "Contents:" << std::endl;
+}
+
+template <typename T>
+void printByOperator(NAMESPACE::vector<T> &vector) {
+	printVectorInfo(vector);
 	for (size_t i = 0; i < vector.size(); i++) {
-		std::cout << vector[i] << std::endl;
+		std::cout << "vector[" << i << "] = " << vector[i] << std::endl;
 	}
 }
 
@@ -43,6 +48,21 @@ void capacityExceptionCheck(NAMESPACE::vector<T> &vector, size_t new_size, bool 
 	}
 }
 
+template <typename T>
+void atExceptionCheck(NAMESPACE::vector<T> &vector, size_t n) {
+	try {
+		std::cout << "vector.at(" << n << ") = " << vector.at(n) << std::endl;
+	} catch (std::exception &e) {
+		std::cout << "Caught exception" << std::endl;
+	}
+}
+
+template <typename T>
+void pushRandomValues(NAMESPACE::vector<T> &vector, size_t size) {
+	for (size_t i = 0; i < size; i++) {
+		vector.push_back(10000 + (std::rand() % 50000));
+	}
+}
 
 // #define DEFAULT    "\033[0m"
 // #define RED        "\033[1;31m"

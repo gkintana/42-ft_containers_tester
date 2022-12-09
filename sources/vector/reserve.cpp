@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 22:28:50 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/10 00:19:53 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/10 00:35:07 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,24 @@ static void basicTests() {
 	size_t size = 10,
 	       value = 12345;
 	NAMESPACE::vector<int> test(size, value);
-	printVectorInfo(test);
+	printByOperator(test);
 
 	test.reserve(42);
-	printVectorInfo(test);
+	printByOperator(test);
 	test.reserve('a');
-	printVectorInfo(test);
+	printByOperator(test);
 	test.reserve(0);
-	printVectorInfo(test);
+	printByOperator(test);
 	test.reserve(999999999);
-	printVectorInfo(test);
+	printByOperator(test);
 	test.reserve(test.capacity());
-	printVectorInfo(test);
+	printByOperator(test);
 	test.reserve(123456789);
-	printVectorInfo(test);
+	printByOperator(test);
 	test.reserve('Z' + 98765 - 12345);
-	printVectorInfo(test);
+	printByOperator(test);
 	test.reserve(*test.begin() + (test.size() / 2));
-	printVectorInfo(test);
+	printByOperator(test);
 }
 
 static void exceptionTests() {
