@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 12:39:42 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/09 17:46:29 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/09 20:10:23 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void printVectorInfo(NAMESPACE::vector<T> &vector) {
 
 static void defaultConstructor();
 static void fillConstructor();
+static void rangeConstructor();
+static void copyTests();
 
 int main() {
 	timeval exec_time;
@@ -41,6 +43,8 @@ int main() {
 
 	defaultConstructor();
 	fillConstructor();
+	rangeConstructor();
+	copyTests();
 
 	gettimeofday(&exec_time, NULL);
 	double end = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
@@ -51,10 +55,13 @@ int main() {
 static void defaultConstructor() {
 	NAMESPACE::vector<int> test_char;
 	printVectorInfo(test_char);
+
 	NAMESPACE::vector<int> test_int;
 	printVectorInfo(test_int);
+
 	NAMESPACE::vector<double> test_double;
 	printVectorInfo(test_double);
+
 	NAMESPACE::vector<std::string> test_string;
 	printVectorInfo(test_string);
 }
@@ -96,4 +103,75 @@ static void fillConstructor() {
 	} catch (std::exception &e) {
 		std::cout << "Exception Caught" << std::endl;
 	}
+}
+
+static void rangeConstructor() {
+	size_t size = 30,
+	       value = 42;
+	NAMESPACE::vector<int> test(size, value);
+	printVectorInfo(test);
+
+	{
+		NAMESPACE::vector<int> range(test.begin(), test.end());
+		printVectorInfo(range);
+	}
+	{
+		NAMESPACE::vector<int> range(test.begin() + (test.size() / 4), test.end() - (test.size() / 4));
+		printVectorInfo(range);
+	}
+
+	try {
+		NAMESPACE::vector<int> range(test.begin() + (test.size() * 42), test.end() - (test.size() * 42));
+	} catch (std::exception &e) {
+		std::cout << "Exception Caught" << std::endl;
+	}
+	try {
+		NAMESPACE::vector<int> range(test.rend(), test.rbegin());
+	} catch (std::exception &e) {
+		std::cout << "Exception Caught" << std::endl;
+	}
+
+	{
+		char array[] = { 0, 32, 48, 57, 97, 122 };
+		NAMESPACE::vector<char> char_array(array, array + (sizeof(array) / sizeof(char)));
+		printVectorInfo(char_array);
+	}
+	{
+		int array[] = { 12, 34, 56, 78, 90, 123, 456, 789, 12345, 67890 };
+		NAMESPACE::vector<int> int_array(array, array + (sizeof(array) / sizeof(int)));
+		printVectorInfo(int_array);
+	}
+	{
+		std::string array[] = { "lorem", "ipsum", "dolor", "sit", "amet", ",", "consectetur", "adipiscing" };
+		NAMESPACE::vector<std::string> str_array(array, array + (sizeof(array) / sizeof(std::string)));
+		printVectorInfo(str_array);
+	}
+}
+
+static void copyTests() {
+	size_t size = 30,
+	       value = 42;
+
+	// Copy Constructor
+	NAMESPACE::vector<int> test(size, value);
+	printVectorInfo(test);
+	NAMESPACE::vector<int> copy_1(test);
+	printVectorInfo(copy_1);
+	NAMESPACE::vector<int> copy_2 = test;
+	printVectorInfo(copy_2);
+
+	// Copy Assignment
+	NAMESPACE::vector<int> copy_3;
+	copy_3 = test;
+	printVectorInfo(copy_3);
+
+	// Self Assignment
+	size = 10;
+	value = INT_MAX;
+	NAMESPACE::vector<int> self(size, value);
+	NAMESPACE::vector<int> copy(self);
+	printVectorInfo(self);
+	printVectorInfo(copy);
+	self = copy;
+	printVectorInfo(self);
 }
