@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/10 15:45:53 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/10 19:36:36 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ FT_VEC_DIR	=	ft_vector
 VEC_TEST	=	allocator.cpp \
 		        constructors.cpp \
 		        element_access.cpp \
+		        insert.cpp \
 		        iterators.cpp \
 		        relational_operators.cpp \
 		        reserve.cpp \

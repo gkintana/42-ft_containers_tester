@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:26:11 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/10 16:52:15 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/10 19:44:44 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ static void constRendTests(const NAMESPACE::vector<T> vector);
 template <typename T>
 static void constRevPrintTests(const NAMESPACE::vector<T> vector);
 
-int array[] = { 32587, 24716, 17501, 38466, 28705,
-                10169, 46290, 44120, 28848, 18504,
-                25731, 11261, 14575, 21852, 42483,
-                15585, 48612, 44087, 20330, 38142 };
+int array[] = { 32587, 24716, 17501, 38466, 28705, 10169, 46290, 44120, 28848, 18504,
+                25731, 11261, 14575, 21852, 42483, 15585, 48612, 44087, 20330, 38142 };
 
 int main() {
 	timeval exec_time;
@@ -88,7 +86,7 @@ static void beginTests(NAMESPACE::vector<T> vector) {
 	          << "--------------------------------------------------" << std::endl
 	          << *vector.begin() << std::endl
 	          << *(vector.begin() + (vector.size() / 2)) << std::endl
-			  << *(vector.begin() + (vector.size() - 1)) << std::endl;
+	          << *(vector.begin() + (vector.size() - 1)) << std::endl;
 }
 
 template <typename T>
@@ -98,7 +96,7 @@ static void endTests(NAMESPACE::vector<T> vector) {
 	          << "--------------------------------------------------" << std::endl
 	          << *(vector.end() - 1) << std::endl
 	          << *(vector.end() - (vector.size() / 2)) << std::endl
-			  << *(vector.end() - vector.size()) << std::endl;
+	          << *(vector.end() - vector.size()) << std::endl;
 }
 
 template <typename T>
@@ -139,7 +137,7 @@ static void rendTests(NAMESPACE::vector<T> vector) {
 	          << "--------------------------------------------------" << std::endl
 	          << *(vector.rend() - 1) << std::endl
 	          << *(vector.rend() - (vector.size() / 2)) << std::endl
-			  << *(vector.rend() - vector.size()) << std::endl;
+	          << *(vector.rend() - vector.size()) << std::endl;
 }
 
 template <typename T>
@@ -170,7 +168,7 @@ static void constBeginTests(const NAMESPACE::vector<T> vector) {
 	          << "--------------------------------------------------" << std::endl
 	          << *vector.begin() << std::endl
 	          << *(vector.begin() + (vector.size() / 2)) << std::endl
-			  << *(vector.begin() + (vector.size() - 1)) << std::endl;
+	          << *(vector.begin() + (vector.size() - 1)) << std::endl;
 }
 
 template <typename T>
@@ -180,7 +178,7 @@ static void constEndTests(const NAMESPACE::vector<T> vector) {
 	          << "--------------------------------------------------" << std::endl
 	          << *(vector.end() - 1) << std::endl
 	          << *(vector.end() - (vector.size() / 2)) << std::endl
-			  << *(vector.end() - vector.size()) << std::endl;
+	          << *(vector.end() - vector.size()) << std::endl;
 }
 
 template <typename T>
@@ -221,7 +219,7 @@ static void constRendTests(const NAMESPACE::vector<T> vector) {
 	          << "--------------------------------------------------" << std::endl
 	          << *(vector.rend() - 1) << std::endl
 	          << *(vector.rend() - (vector.size() / 2)) << std::endl
-			  << *(vector.rend() - vector.size()) << std::endl;
+	          << *(vector.rend() - vector.size()) << std::endl;
 }
 
 template <typename T>

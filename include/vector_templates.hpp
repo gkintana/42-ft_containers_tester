@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/10 16:42:42 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:56:05 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void printByIterator(NAMESPACE::vector<T> &vector,
                      typename NAMESPACE::vector<T>::iterator start,
                      typename NAMESPACE::vector<T>::iterator end) {
 	printVectorInfo(vector);
-	size_t i = 0;
-	for (typename NAMESPACE::vector<T>::iterator iter = start; iter != end; iter++, i++) {
+	for (typename NAMESPACE::vector<T>::iterator iter = start; iter != end; iter++) {
 		std::cout << "*iter = " << *iter << std::endl;
 	}
 }
@@ -64,8 +63,7 @@ void printByIterator(const NAMESPACE::vector<T> &vector,
                      typename NAMESPACE::vector<T>::const_iterator start,
                      typename NAMESPACE::vector<T>::const_iterator end) {
 	printVectorInfo(vector);
-	size_t i = 0;
-	for (typename NAMESPACE::vector<T>::const_iterator iter = start; iter != end; iter++, i++) {
+	for (typename NAMESPACE::vector<T>::const_iterator iter = start; iter != end; iter++) {
 		std::cout << "*iter = " << *iter << std::endl;
 	}
 }
@@ -75,8 +73,7 @@ void printByReverseIterator(NAMESPACE::vector<T> &vector,
                             typename NAMESPACE::vector<T>::reverse_iterator start,
                             typename NAMESPACE::vector<T>::reverse_iterator end) {
 	printVectorInfo(vector);
-	size_t i = 0;
-	for (typename NAMESPACE::vector<T>::reverse_iterator iter = start; iter != end; iter--, i++) {
+	for (typename NAMESPACE::vector<T>::reverse_iterator iter = start; iter != end; iter--) {
 		std::cout << "*iter = " << *iter << std::endl;
 	}
 }
@@ -86,8 +83,7 @@ void printByReverseIterator(const NAMESPACE::vector<T> &vector,
                             typename NAMESPACE::vector<T>::const_reverse_iterator start,
                             typename NAMESPACE::vector<T>::const_reverse_iterator end) {
 	printVectorInfo(vector);
-	size_t i = 0;
-	for (typename NAMESPACE::vector<T>::const_reverse_iterator iter = start; iter != end; iter--, i++) {
+	for (typename NAMESPACE::vector<T>::const_reverse_iterator iter = start; iter != end; iter--) {
 		std::cout << "*iter = " << *iter << std::endl;
 	}
 }
