@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:17:20 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/08 12:46:05 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/10 12:46:05 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int main() {
 		NAMESPACE::map<int, int>::iterator it_begin_3 = map_3.begin();
 
 		std::cout << "Is map_3.begin() == it_begin_1? " << (map_3.begin() == it_begin_1) << std::endl
-		          << "Is map_3.end() == it_end_1? " << (map_3.end() == it_end_1) << std::endl
-		          << "Is map_3.begin() == it_begin_2? " << (map_3.begin() == it_begin_2) << std::endl
-		          << "Is map_3.end() == it_end_2? " << (map_3.end() == it_end_2) << std::endl;
+		          << "Is map_3.begin() == it_begin_2? " << (map_3.begin() == it_begin_2) << std::endl;
+		        //   << "Is map_3.end() == it_end_1? " << (map_3.end() == it_end_1) << std::endl
+		        //   << "Is map_3.end() == it_end_2? " << (map_3.end() == it_end_2) << std::endl;
 
 		map_3.swap(map_1);
 		printByIterator(map_1, it_begin_3, map_1.end());
@@ -109,13 +109,18 @@ int main() {
 		printByIterator(map_1, it_begin_2, map_1.end());
 		printByIterator(map_2, it_begin_1, map_2.end());
 
+		std::cout << "Is map_1.begin() == it_begin_1? " << (map_1.begin() == it_begin_1) << std::endl
+		          << "Is map_1.begin() == it_begin_2? " << (map_1.begin() == it_begin_2) << std::endl
+		          << "Is map_2.begin() == it_begin_1? " << (map_2.begin() == it_begin_1) << std::endl
+		          << "Is map_2.begin() == it_begin_2? " << (map_2.begin() == it_begin_2) << std::endl;
+
 		NAMESPACE::map<char, std::string> map_3(map_1);
 		NAMESPACE::map<char, std::string>::iterator it_begin_3 = map_3.begin();
 
 		std::cout << "Is map_3.begin() == it_begin_1? " << (map_3.begin() == it_begin_1) << std::endl
-		          << "Is map_3.end() == it_end_1? " << (map_3.end() == it_end_1) << std::endl
-		          << "Is map_3.begin() == it_begin_2? " << (map_3.begin() == it_begin_2) << std::endl
-		          << "Is map_3.end() == it_end_2? " << (map_3.end() == it_end_2) << std::endl;
+		          << "Is map_3.begin() == it_begin_2? " << (map_3.begin() == it_begin_2) << std::endl;
+		        //   << "Is map_3.end() == it_end_1? " << (map_3.end() == it_end_1) << std::endl
+		        //   << "Is map_3.end() == it_end_2? " << (map_3.end() == it_end_2) << std::endl;
 
 		map_3.swap(map_2);
 		printByIterator(map_2, it_begin_3, map_2.end());
