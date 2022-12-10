@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/10 01:38:25 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/10 01:51:44 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,10 @@ FT_VEC_DIR	=	ft_vector
 VEC_TEST	=	allocator.cpp \
 		        constructors.cpp \
 		        element_access.cpp \
+		        relational_operators.cpp \
 		        reserve.cpp \
-		        resize.cpp
+		        resize.cpp \
+		        swap.cpp
 
 STD_VEC_OBJ	=	$(addprefix $(OBJ_DIR)/$(STD_VEC_DIR)/, $(VEC_TEST:%cpp=%o))
 FT_VEC_OBJ	=	$(addprefix $(OBJ_DIR)/$(FT_VEC_DIR)/, $(VEC_TEST:%cpp=%o))

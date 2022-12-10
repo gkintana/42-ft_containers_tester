@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/10 01:00:26 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/10 12:21:22 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ void printByOperator(NAMESPACE::vector<T> &vector) {
 	printVectorInfo(vector);
 	for (size_t i = 0; i < vector.size(); i++) {
 		std::cout << "vector[" << i << "] = " << vector[i] << std::endl;
+	}
+}
+
+template <typename T>
+void printByIterator(NAMESPACE::vector<T> &vector,
+                     typename NAMESPACE::vector<T>::iterator start,
+                     typename NAMESPACE::vector<T>::iterator end) {
+	printVectorInfo(vector);
+	size_t i = 0;
+	for (typename NAMESPACE::vector<T>::iterator iter = start; iter != end; iter++, i++) {
+		std::cout << "(vector.begin() + " << i << ") = " << *iter << std::endl;
 	}
 }
 
