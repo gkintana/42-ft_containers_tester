@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/11 12:10:30 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/11 13:59:54 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LOG			=	compilation.log
 NS_FT		=	-D NAMESPACE=ft
 NS_STD		=	-D NAMESPACE=std
 
-VEC_DIR		=	vector
+VEC_DIR		=	vector_tests
 STD_VEC_DIR	=	std_vector
 FT_VEC_DIR	=	ft_vector
 
