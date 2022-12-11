@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/11 16:57:30 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/11 17:24:52 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ $(OBJ_DIR)/$(FT_VEC_DIR)/%.o : $(SRC_DIR)/$(VEC_DIR)/%.cpp
 ###################################################################################################
 
 MAP_DIR		=	map_tests
-STD_MAP_DIR =	std_map
+STD_MAP_DIR	=	std_map
 FT_MAP_DIR	=	ft_map
 MAP_TEST	=	allocator.cpp \
 		        bounds_and_range.cpp \
@@ -89,9 +89,10 @@ $(OBJ_DIR)/$(FT_MAP_DIR)/%.o : $(SRC_DIR)/$(MAP_DIR)/%.cpp
 ###################################################################################################
 
 STK_DIR		=	stack_tests
-STD_STK_DIR =	std_stack
+STD_STK_DIR	=	std_stack
 FT_STK_DIR	=	ft_stack
-STK_TEST	=	constructors.cpp
+STK_TEST	=	constructors.cpp \
+		        push_and_pop.cpp
 STD_STK_OBJ	=	$(addprefix $(OBJ_DIR)/$(STD_STK_DIR)/, $(STK_TEST:%cpp=%o))
 FT_STK_OBJ	=	$(addprefix $(OBJ_DIR)/$(FT_STK_DIR)/, $(STK_TEST:%cpp=%o))
 

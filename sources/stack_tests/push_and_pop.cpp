@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   constructors.cpp                                   :+:      :+:    :+:   */
+/*   push_and_pop.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/11 16:58:19 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/11 17:41:19 by gkintana         ###   ########.fr       */
+/*   Created: 2022/12/11 17:24:28 by gkintana          #+#    #+#             */
+/*   Updated: 2022/12/11 17:33:30 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ int main() {
 
 	NAMESPACE::stack<int> test;
 
-	pushRandomValues(test, 5);
+	pushRandomValues(test, 20);
+	printStack(test);
+	pushRandomValues(test, test.size() / 4);
 	printStack(test);
 
-	NAMESPACE::stack<int> clone(test);
-	pushRandomValues(clone, 5);
-	printStack(clone);
+	popLoop(test, test.size() / 2);
+	printStack(test);
+	popLoop(test, test.size());
+	printStack(test);
 
 	gettimeofday(&exec_time, NULL);
 	double end = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
