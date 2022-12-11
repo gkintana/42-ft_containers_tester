@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/10 16:56:05 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/11 11:51:58 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,19 @@ template <typename T>
 void pushRandomValues(NAMESPACE::vector<T> &vector, size_t size) {
 	for (size_t i = 0; i < size; i++) {
 		vector.push_back(10000 + (std::rand() % 50000));
+	}
+}
+
+void pushString(NAMESPACE::vector<std::string> &vector, size_t size, std::string str) {
+	for (size_t i = 0; i < size; i++) {
+		vector.push_back(str);
+	}
+}
+
+template <typename T>
+void popLoop(NAMESPACE::vector<T> &vector, size_t size) {
+	for (size_t i = 0; i < size; i++) {
+		vector.pop_back();
 	}
 }
 

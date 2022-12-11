@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:26:38 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/10 22:05:37 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/10 22:09:47 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main() {
 	test.clear();
 	printByOperator(test);
 	printByOperator(clone);
-	
+
 	clone.clear();
 	printByOperator(test);
 	printByOperator(clone);
