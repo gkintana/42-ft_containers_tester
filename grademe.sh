@@ -93,7 +93,7 @@ check_valgrind_report() {
 
 print_test_results() {
 	for file in $TEST_DIR/$1/*.txt; do
-		printf $PURPLE'%-35s' " • $(basename -- $file .txt)$DEFAULT"
+		printf $PURPLE'%-37s' " • $(basename -- $file .txt)$DEFAULT"
 		if [ -f $TEST_DIR/$2/${file##*/} ]; then
 			echo -ne "Compiled:$GREEN OK $DEFAULT |  "
 			diff <(sed '$d' $file) <(sed '$d' $TEST_DIR/$2/${file##*/}) > diff

@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/11 12:03:00 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/11 12:10:30 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ VEC_TEST	=	allocator.cpp \
 		        erase.cpp \
 		        insert.cpp \
 		        iterators.cpp \
+		        multidimensional_vector.cpp \
 		        push_and_pop_back.cpp \
 		        relational_operators.cpp \
 		        reserve.cpp \
