@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/11 17:24:52 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/11 21:07:43 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,9 @@ STK_DIR		=	stack_tests
 STD_STK_DIR	=	std_stack
 FT_STK_DIR	=	ft_stack
 STK_TEST	=	constructors.cpp \
-		        push_and_pop.cpp
+		        multidimensional_stack.cpp \
+		        push_and_pop.cpp \
+		        relational_operators.cpp
 STD_STK_OBJ	=	$(addprefix $(OBJ_DIR)/$(STD_STK_DIR)/, $(STK_TEST:%cpp=%o))
 FT_STK_OBJ	=	$(addprefix $(OBJ_DIR)/$(FT_STK_DIR)/, $(STK_TEST:%cpp=%o))
 
