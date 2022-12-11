@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 21:11:47 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/09 09:05:53 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/11 16:21:33 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,26 @@ void printByConstReverseIterator(NAMESPACE::map<key, value> &map,
 		std::cout << "Key = " << it->first << "   |   Value = " << it->second << std::endl;
 	}
 	std::cout << std::endl;
+}
+
+template <typename key, typename value, typename compare>
+void printByKeyCompare(NAMESPACE::map<key, value, compare> &map,
+                       typename NAMESPACE::map<key, value, compare>::key_compare comp) {
+	std::cout << "--------------------------------------------------" << std::endl
+	          << "map::empty() = " << std::boolalpha << map.empty() << std::endl
+	          << "map::size() = " << map.size() << std::endl
+	          << "Contents:" << std::endl;
+	for (typename NAMESPACE::map<key, value, compare>::iterator it = map.begin(); comp(it->first, map.rbegin()->first); it++) {
+		std::cout << "Key = " << it->first << "   |   Value = " << it->second << std::endl;
+	}
+}
+
+template <typename key, typename value>
+void printByValueCompare(NAMESPACE::map<key, value> &map) {
+	printMapInfo(map);
+	for (typename NAMESPACE::map<key, value>::iterator it = map.begin(); map.value_comp()(*it, *map.rbegin()); it++) {
+		std::cout << "Key = " << it->first << "   |   Value = " << it->second << std::endl;
+	}
 }
 
 /*---------------------------------------------------------------------------------------------------------*/

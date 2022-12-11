@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/11 13:59:54 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/11 15:34:57 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ FT_MAP_DIR	=	ft_map
 
 MAP_TEST	=	allocator.cpp \
 		        bounds_and_range.cpp \
+		        compare.cpp \
 		        constructors.cpp \
 		        count.cpp \
 		        element_access.cpp \
