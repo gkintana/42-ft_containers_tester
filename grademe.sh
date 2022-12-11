@@ -39,6 +39,12 @@ STD_MAP_LEAKS=std_map_leak_summary
 FT_MAP=ft_map
 FT_MAP_LEAKS=ft_map_leak_summary
 
+STACK_DIR=stack_tests
+STD_STACK=std_stack
+STD_STACK_LEAKS=std_stack_leak_summary
+FT_STACK=ft_stack
+FT_STACK_LEAKS=ft_stack_leak_summary
+
 #######################################
 #              Functions              #
 #######################################
@@ -132,21 +138,20 @@ start_tests() {
 if [ $1 == "vector" ]; then
 	echo -e $CYAN"Vector Tester"$DEFAULT
 	echo -e $YELLOW"Compiling..."$DEFAULT
-
 	make fclean && make -k vector 2> $LOG
 	start_tests $FT_VEC $FT_VEC_LEAKS $STD_VEC $STD_VEC_LEAKS "vector"
-
-elif [ $1 == "stack" ]; then
-	echo -e $CYAN"Stack Tester"$DEFAULT
-	echo -e $YELLOW"Will be available in the future"$DEFAULT
-	exit 1
 
 elif [ $1 == "map" ]; then
 	echo -e $CYAN"Map Tester"$DEFAULT
 	echo -e $YELLOW"Compiling..."$DEFAULT
-
 	make fclean && make -k map 2> $LOG
 	start_tests $FT_MAP $FT_MAP_LEAKS $STD_MAP $STD_MAP_LEAKS "map"
+
+elif [ $1 == "stack" ]; then
+	echo -e $CYAN"Stack Tester"$DEFAULT
+	echo -e $YELLOW"Compiling..."$DEFAULT
+	make fclean && make -k stack 2> $LOG
+	start_tests $FT_STACK $FT_STACK_LEAKS $STD_STACK $STD_STACK_LEAKS "stack"
 
 elif [ $1 == "set" ]; then
 	echo -e $CYAN"Set Tester"$DEFAULT
