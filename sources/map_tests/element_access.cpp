@@ -6,15 +6,15 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:18:14 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/08 14:01:52 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/12 22:41:13 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "map_templates.hpp"
 
-template <typename key, typename value>
-void mapAtExceptionCheck(NAMESPACE::map<key, value> &map,
-                         typename NAMESPACE::map<key, value>::key_type k);
+// template <typename key, typename value>
+// void mapAtExceptionCheck(NAMESPACE::map<key, value> &map,
+//                          typename NAMESPACE::map<key, value>::key_type k);
 
 int main() {
 	timeval exec_time;
@@ -25,13 +25,13 @@ int main() {
 	insertRandomValues(test, 30);
 
 	for (NAMESPACE::map<int, int>::iterator it = test.begin(); it != test.end(); it++) {
-		std::cout << "map::at(" << it->first << ") = " << test.at(it->first) << "\t|\t"
-		          << "map::operator[" << it->first << "] = " << test[it->first] << std::endl;
+		std::cout << "map::operator[" << it->first << "] = " << test[it->first] << std::endl;
+		        //   << "map::at(" << it->first << ") = " << test.at(it->first) << "\t|\t";
 	}
 
-	for (size_t i = 0; i < 30; i++) {
-		mapAtExceptionCheck(test, 9900 + (std::rand() % 20000));
-	}
+	// for (size_t i = 0; i < 30; i++) {
+	// 	mapAtExceptionCheck(test, 9900 + (std::rand() % 20000));
+	// }
 
 	gettimeofday(&exec_time, NULL);
 	double end = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
@@ -39,12 +39,12 @@ int main() {
 	return 0;
 }
 
-template <typename key, typename value>
-void mapAtExceptionCheck(NAMESPACE::map<key, value> &map,
-                         typename NAMESPACE::map<key, value>::key_type k) {
-	try {
-		std::cout << "map::at(" << k << ") = " << map.at(k) << std::endl;
-	} catch (std::out_of_range &e) {
-		std::cout << "Caught an out_of_range exception" << std::endl;
-	}
-}
+// template <typename key, typename value>
+// void mapAtExceptionCheck(NAMESPACE::map<key, value> &map,
+//                          typename NAMESPACE::map<key, value>::key_type k) {
+// 	try {
+// 		std::cout << "map::at(" << k << ") = " << map.at(k) << std::endl;
+// 	} catch (std::out_of_range &e) {
+// 		std::cout << "Caught an out_of_range exception" << std::endl;
+// 	}
+// }
