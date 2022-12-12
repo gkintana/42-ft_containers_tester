@@ -1,14 +1,13 @@
-# 42 - FT_CONTAINERS TESTER
+# FT_CONTAINERS TESTER
 
-This repository is a work in progress. Currently tests a few functions in vectors.
-
-Will automatically run with valgrind if the system being used is Linux.
+A simple tester for the mandatory part of 42's ft_containers project.
 
 ## Usage
 1. Clone this repository inside your ft_containers project
 
 2. Modify the Makefile's CONT_DIR1 path to the directory where your \<container>\.hpp files are located
 
-3. Remove CONT_DIR2 on `line 17` and -I$(CONT_DIR2) on `line 41`
+3. Run the tester with bash grademe.sh \<container>
 
-4. Run the tester with bash grademe.sh
+### Note
+Automatically runs with valgrind if the system being used is Linux.
