@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 22:58:30 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/08 13:13:06 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/13 01:09:39 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,7 @@ int main() {
 		std::cout << "map::find(" << it->first << ") = " << test.find(it->first)->first << std::endl;
 	}
 
-	NAMESPACE::map<int, int>::key_type value = 42;
-	if (test.find(value)->first == test.end()->first) {
-		std::cout << "map::find(" << value << ") has been safely accessed." << std::endl;
-	}
-
-	value = (++(++test.begin()))->first;
+	NAMESPACE::map<int, int>::key_type value = (++(++test.begin()))->first;
 	std::cout << "Is map::find("<< value << ") == map::end()? "
 	          << std::boolalpha << (test.find(value) == test.end()) << std::endl;
 

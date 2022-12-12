@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 22:28:50 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/10 00:35:03 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/13 01:22:31 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ static void exceptionTests() {
 	capacityExceptionCheck(test, SCHAR_MIN, true);
 	capacityExceptionCheck(test, SCHAR_MAX, true);
 	capacityExceptionCheck(test, INT_MIN, true);
-	capacityExceptionCheck(test, INT_MAX, true);
-	capacityExceptionCheck(test, UINT_MAX, true);
+	// capacityExceptionCheck(test, INT_MAX, true);
+	// capacityExceptionCheck(test, UINT_MAX, true);
 	capacityExceptionCheck(test, SHRT_MIN, true);
 	capacityExceptionCheck(test, SHRT_MAX, true);
 	capacityExceptionCheck(test, USHRT_MAX, true);

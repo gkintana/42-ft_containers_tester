@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 21:58:35 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/10 12:45:51 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/13 01:29:49 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int main() {
 		printByOperator(vector_2);
 
 		std::cout << std::boolalpha
-		          << "Is it_begin_1 == it_begin_2? " << (it_begin_1 == it_begin_2) << std::endl
-		          << "Is it_end_1 == it_end_2? " << (it_end_1 == it_end_2) << std::endl
 		          << "Is vector_1.begin() == it_begin_1? " << (vector_1.begin() == it_begin_1) << std::endl
 		          << "Is vector_1.end() == it_end_1? " << (vector_1.end() == it_end_1) << std::endl
 		          << "Is vector_2.begin() == it_begin_2? " << (vector_2.begin() == it_begin_2) << std::endl
@@ -94,10 +92,7 @@ int main() {
 		vector_2.push_back("The quick brown fox jumps over the lazy dog");
 		printByOperator(vector_2);
 
-		std::cout << std::boolalpha
-		          << "Is it_begin_1 == it_begin_2? " << (it_begin_1 == it_begin_2) << std::endl
-		          << "Is it_end_1 == it_end_2? " << (it_end_1 == it_end_2) << std::endl
-		          << "Is vector_1.begin() == it_begin_1? " << (vector_1.begin() == it_begin_1) << std::endl
+		std::cout << "Is vector_1.begin() == it_begin_1? " << (vector_1.begin() == it_begin_1) << std::endl
 		          << "Is vector_1.end() == it_end_1? " << (vector_1.end() == it_end_1) << std::endl
 		          << "Is vector_2.begin() == it_begin_2? " << (vector_2.begin() == it_begin_2) << std::endl
 		          << "Is vector_2.end() == it_end_2? " << (vector_2.end() == it_end_2) << std::endl;

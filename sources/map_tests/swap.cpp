@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:17:20 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/10 12:46:05 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/13 01:28:21 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int main() {
 		printContent(map_2);
 
 		std::cout << std::boolalpha
-		          << "Is it_begin_1 == it_begin_2? " << (it_begin_1 == it_begin_2) << std::endl
-		          << "Is it_end_1 == it_end_2? " << (it_end_1 == it_end_2) << std::endl
 		          << "Is map_1.begin() == it_begin_1? " << (map_1.begin() == it_begin_1) << std::endl
 		          << "Is map_1.end() == it_end_1? " << (map_1.end() == it_end_1) << std::endl
 		          << "Is map_2.begin() == it_begin_2? " << (map_2.begin() == it_begin_2) << std::endl
@@ -57,8 +55,6 @@ int main() {
 
 		std::cout << "Is map_3.begin() == it_begin_1? " << (map_3.begin() == it_begin_1) << std::endl
 		          << "Is map_3.begin() == it_begin_2? " << (map_3.begin() == it_begin_2) << std::endl;
-		        //   << "Is map_3.end() == it_end_1? " << (map_3.end() == it_end_1) << std::endl
-		        //   << "Is map_3.end() == it_end_2? " << (map_3.end() == it_end_2) << std::endl;
 
 		map_3.swap(map_1);
 		printByIterator(map_1, it_begin_3, map_1.end());
@@ -93,9 +89,7 @@ int main() {
 		insertValue(map_2, INSERT_BY_MAKE_PAIR, '@', "");
 		insertValue(map_2, INSERT_BY_MAKE_PAIR, '\'', "The quick brown fox jumps over the lazy dog");
 
-		std::cout << "Is it_begin_1 == it_begin_2? " << (it_begin_1 == it_begin_2) << std::endl
-		          << "Is it_end_1 == it_end_2? " << (it_end_1 == it_end_2) << std::endl
-		          << "Is map_1.begin() == it_begin_1? " << (map_1.begin() == it_begin_1) << std::endl
+		std::cout << "Is map_1.begin() == it_begin_1? " << (map_1.begin() == it_begin_1) << std::endl
 		          << "Is map_1.end() == it_end_1? " << (map_1.end() == it_end_1) << std::endl
 		          << "Is map_2.begin() == it_begin_2? " << (map_2.begin() == it_begin_2) << std::endl
 		          << "Is map_2.end() == it_end_2? " << (map_2.end() == it_end_2) << std::endl;
@@ -119,8 +113,6 @@ int main() {
 
 		std::cout << "Is map_3.begin() == it_begin_1? " << (map_3.begin() == it_begin_1) << std::endl
 		          << "Is map_3.begin() == it_begin_2? " << (map_3.begin() == it_begin_2) << std::endl;
-		        //   << "Is map_3.end() == it_end_1? " << (map_3.end() == it_end_1) << std::endl
-		        //   << "Is map_3.end() == it_end_2? " << (map_3.end() == it_end_2) << std::endl;
 
 		map_3.swap(map_2);
 		printByIterator(map_2, it_begin_3, map_2.end());
