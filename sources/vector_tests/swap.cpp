@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 21:58:35 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/13 01:29:49 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/14 00:09:13 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main() {
 	gettimeofday(&exec_time, NULL);
 	double start = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
 
+	// member function swap
 	{
 		NAMESPACE::vector<int> vector_1;
 		NAMESPACE::vector<int>::iterator it_begin_1 = vector_1.begin();
@@ -70,6 +71,7 @@ int main() {
 		printByIterator(vector_3, vector_3.begin(), vector_3.end());
 	}
 
+	// non-member function swap
 	{
 		NAMESPACE::vector<std::string> vector_1;
 		NAMESPACE::vector<std::string>::iterator it_begin_1 = vector_1.begin();
@@ -102,7 +104,7 @@ int main() {
 		it_begin_2 = vector_2.begin();
 		it_end_2 = vector_2.end();
 
-		vector_1.swap(vector_2);
+		NAMESPACE::swap(vector_1, vector_2);
 		printByIterator(vector_1, it_begin_2, vector_1.end());
 		printByIterator(vector_2, it_begin_1, vector_2.end());
 
@@ -117,7 +119,7 @@ int main() {
 		std::cout << "Is vector_3.begin() == it_begin_1? " << (vector_3.begin() == it_begin_1) << std::endl
 		          << "Is vector_3.begin() == it_begin_2? " << (vector_3.begin() == it_begin_2) << std::endl;
 
-		vector_3.swap(vector_2);
+		NAMESPACE::swap(vector_3, vector_2);
 		printByIterator(vector_2, it_begin_3, vector_2.end());
 		printByIterator(vector_3, it_begin_1, vector_3.end());
 

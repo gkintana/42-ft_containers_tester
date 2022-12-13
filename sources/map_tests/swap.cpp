@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 12:17:20 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/13 01:28:21 by gkintana         ###   ########.fr       */
+/*   Updated: 2022/12/14 00:09:08 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int main() {
 	gettimeofday(&exec_time, NULL);
 	double start = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
 
+	// member function swap
 	{
 		NAMESPACE::map<int, int> map_1;
 		NAMESPACE::map<int, int>::iterator it_begin_1 = map_1.begin();
@@ -70,6 +71,7 @@ int main() {
 		printContent(map_3);
 	}
 
+	// non-member function swap
 	{
 		NAMESPACE::map<char, std::string> map_1;
 		NAMESPACE::map<char, std::string>::iterator it_begin_1 = map_1.begin();
@@ -99,7 +101,7 @@ int main() {
 		it_begin_2 = map_2.begin();
 		it_end_2 = map_2.end();
 
-		map_1.swap(map_2);
+		NAMESPACE::swap(map_1, map_2);
 		printByIterator(map_1, it_begin_2, map_1.end());
 		printByIterator(map_2, it_begin_1, map_2.end());
 
@@ -114,7 +116,7 @@ int main() {
 		std::cout << "Is map_3.begin() == it_begin_1? " << (map_3.begin() == it_begin_1) << std::endl
 		          << "Is map_3.begin() == it_begin_2? " << (map_3.begin() == it_begin_2) << std::endl;
 
-		map_3.swap(map_2);
+		NAMESPACE::swap(map_3, map_2);
 		printByIterator(map_2, it_begin_3, map_2.end());
 		printByIterator(map_3, it_begin_1, map_3.end());
 
