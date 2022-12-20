@@ -6,15 +6,18 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/11 21:07:43 by gkintana         ###   ########.fr        #
+#    Updated: 2022/12/20 11:17:36 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-INC_DIR		=	include
-CONT_DIR1	=	../42-ft_containers/include/containers
-CONT_DIR2	=	../42-ft_containers/include/utilities
-# CONT_DIR1	=	../ft_containers/includes
+CONT_DIR1	=	../
+CONT_DIR2	=	$CONT_DIR1
 
+# my personal config
+# CONT_DIR1	=	../42-ft_containers/include/containers
+# CONT_DIR2	=	../42-ft_containers/include/utilities
+
+INC_DIR		=	include
 SRC_DIR		=	sources
 OBJ_DIR		=	test_reports
 
@@ -123,4 +126,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:		vector map stack clean fclean re
