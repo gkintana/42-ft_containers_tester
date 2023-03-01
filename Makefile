@@ -6,7 +6,7 @@
 #    By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/06 17:01:53 by gkintana          #+#    #+#              #
-#    Updated: 2022/12/20 11:17:36 by gkintana         ###   ########.fr        #
+#    Updated: 2023/03/01 22:29:54 by gkintana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ $(OBJ_DIR)/$(STD_VEC_DIR)/%.o : $(SRC_DIR)/$(VEC_DIR)/%.cpp
 # FT VECTOR
 $(OBJ_DIR)/$(FT_VEC_DIR)/%.o : $(SRC_DIR)/$(VEC_DIR)/%.cpp
 			@mkdir -p $(OBJ_DIR) && mkdir -p $(OBJ_DIR)/$(FT_VEC_DIR)
-			@$(CXX) $(CPPFLAGS) $(NS_STD) -I$(INC_DIR) -I$(CONT_DIR1) -I$(CONT_DIR2) -c $< -o $@
+			@$(CXX) $(CPPFLAGS) $(NS_FT) -I$(INC_DIR) -I$(CONT_DIR1) -I$(CONT_DIR2) -c $< -o $@
 
 ###################################################################################################
 
