@@ -57,7 +57,7 @@ static void printMultiDimensinalVector(NAMESPACE::vector<NAMESPACE::vector<NAMES
 	std::cout << "--------------------------------------------------" << std::endl << std::boolalpha
 	          << "vector::empty() = " << vector.empty() << std::endl
 	          << "vector::size() = " << vector.size() << std::endl
-	          << "vector::max_size() = " << vector.max_size() << std::endl
+	        //   << "vector::max_size() = " << vector.max_size() << std::endl
 	          << "Contents:" << std::endl;
 	for (size_t i = 0; i < vector.size(); i++) {
 		for (size_t j = 0; j < vector[i].size(); j++) {
