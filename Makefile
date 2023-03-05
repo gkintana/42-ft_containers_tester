@@ -122,8 +122,4 @@ stack:		$(STD_STK_OBJ) $(FT_STK_OBJ)
 clean:
 			@$(DELETE) $(OBJ_DIR) *.log
 
-fclean:		clean
-
-re:			fclean all
-
-.PHONY:		vector map stack clean fclean re
+.PHONY:		vector map stack clean

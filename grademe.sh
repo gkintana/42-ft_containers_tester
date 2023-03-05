@@ -138,19 +138,19 @@ start_tests() {
 if [ $1 == "vector" ]; then
 	echo -e $CYAN"Vector Tester"$DEFAULT
 	echo -e $YELLOW"Compiling..."$DEFAULT
-	make fclean && make -k vector 2> $LOG
+	make clean && make -k vector 2> $LOG
 	start_tests $FT_VEC $FT_VEC_LEAKS $STD_VEC $STD_VEC_LEAKS "vector"
 
 elif [ $1 == "map" ]; then
 	echo -e $CYAN"Map Tester"$DEFAULT
 	echo -e $YELLOW"Compiling..."$DEFAULT
-	make fclean && make -k map 2> $LOG
+	make clean && make -k map 2> $LOG
 	start_tests $FT_MAP $FT_MAP_LEAKS $STD_MAP $STD_MAP_LEAKS "map"
 
 elif [ $1 == "stack" ]; then
 	echo -e $CYAN"Stack Tester"$DEFAULT
 	echo -e $YELLOW"Compiling..."$DEFAULT
-	make fclean && make -k stack 2> $LOG
+	make clean && make -k stack 2> $LOG
 	start_tests $FT_STACK $FT_STACK_LEAKS $STD_STACK $STD_STACK_LEAKS "stack"
 
 elif [ $1 == "set" ]; then
