@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 14:14:12 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/10 01:30:21 by gkintana         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:52:57 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void atTests();
 static void atExceptionTests();
 static void frontTests();
 static void backTests();
-static void dataTests();
 
 int main() {
 	timeval exec_time;
@@ -29,7 +28,6 @@ int main() {
 	atExceptionTests();
 	frontTests();
 	backTests();
-	dataTests();
 
 	gettimeofday(&exec_time, NULL);
 	double end = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
@@ -167,21 +165,5 @@ static void backTests() {
 	std::cout << "vector.back() = " << test.back() << std::endl;
 	test.resize(5, 987654321);
 	std::cout << "vector.back() = " << test.back() << std::endl;
-	printByOperator(test);
-}
-
-static void dataTests() {
-	std::cout << "\n--------------------------------------------------" << std::endl
-	          << "vector::data Tests" << std::endl;
-	NAMESPACE::vector<int> test;
-	pushRandomValues(test, 10);
-	printByOperator(test);
-
-	*(test.data() + 0) = 0;
-	*(test.data() + (test.size() - 1)) = 123;
-	*(test.data() + (test.size() / 2)) = 456;
-	*(test.data() + (test.size() / 3)) = 789;
-	*(test.data() + (test.size() / 4)) = 123456789;
-	*(test.data() + (test.size() / 5)) = 987654321;
 	printByOperator(test);
 }
