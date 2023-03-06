@@ -6,7 +6,7 @@
 /*   By: gkintana <gkintana@student.42abudhabi.ae>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/31 22:11:55 by gkintana          #+#    #+#             */
-/*   Updated: 2022/12/11 14:06:03 by gkintana         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:27:14 by gkintana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void printVectorInfo(NAMESPACE::vector<T> &vector) {
 	std::cout << "--------------------------------------------------" << std::endl << std::boolalpha
 	          << "vector::empty() = " << vector.empty() << std::endl
 	          << "vector::size() = " << vector.size() << std::endl
-	          << "vector::max_size() = " << vector.max_size() << std::endl
+	        //   << "vector::max_size() = " << vector.max_size() << std::endl
 	          << "Contents:" << std::endl;
 }
 
@@ -38,7 +38,7 @@ void printVectorInfo(const NAMESPACE::vector<T> &vector) {
 	std::cout << "--------------------------------------------------" << std::endl << std::boolalpha
 	          << "vector::empty() = " << vector.empty() << std::endl
 	          << "vector::size() = " << vector.size() << std::endl
-	          << "vector::max_size() = " << vector.max_size() << std::endl
+	        //   << "vector::max_size() = " << vector.max_size() << std::endl
 	          << "Contents:" << std::endl;
 }
 
