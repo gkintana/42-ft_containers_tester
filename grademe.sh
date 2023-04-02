@@ -32,25 +32,22 @@ LOG=compilation.log
 
 VEC_TESTS=sources/vector_tests
 
-TEST_DIR=test_reports
+REPORT_DIR=test_reports
 
-VEC_DIR=vector
-STD_VEC=std_vector
-STD_VEC_LEAKS=std_vector_leak_summary
 FT_VEC=ft_vector
 FT_VEC_LEAKS=ft_vector_leak_summary
+STD_VEC=std_vector
+STD_VEC_LEAKS=std_vector_leak_summary
 
-MAP_DIR=map_tests
-STD_MAP=std_map
-STD_MAP_LEAKS=std_map_leak_summary
 FT_MAP=ft_map
 FT_MAP_LEAKS=ft_map_leak_summary
+STD_MAP=std_map
+STD_MAP_LEAKS=std_map_leak_summary
 
-STACK_DIR=stack_tests
-STD_STACK=std_stack
-STD_STACK_LEAKS=std_stack_leak_summary
 FT_STACK=ft_stack
 FT_STACK_LEAKS=ft_stack_leak_summary
+STD_STACK=std_stack
+STD_STACK_LEAKS=std_stack_leak_summary
 
 #######################################
 #              Functions              #
@@ -64,11 +61,11 @@ check_compilation_log_file() {
 }
 
 create_directories() {
-	mkdir -p $TEST_DIR/$1
-	mkdir -p $TEST_DIR/$3
-	if [[ "$OSTYPE" =~ ^linux ]]; then
-		mkdir -p $TEST_DIR/$2
-		mkdir -p $TEST_DIR/$4
+	mkdir -p $REPORT_DIR/$1
+	mkdir -p $REPORT_DIR/$3
+	if [[ "$OSTYPE" =~ ^linux && $(dpkg -l valgrind 2>/dev/null | grep valgrind) ]]; then
+		mkdir -p $REPORT_DIR/$2
+		mkdir -p $REPORT_DIR/$4
 	fi
 }
 
@@ -76,12 +73,12 @@ compile_and_redirect() {
 	# compile and redirect output to a text file
 	$CC $CFLAGS -D $2 -I $INCLUDE -I $PROJECT_PATH -I $PROJECT_UTILS $1 -o ${1%%.cpp} 2>> $LOG
 	if [ -f ${1%%.cpp} ]; then
-		./${1%%.cpp} > $TEST_DIR/$3/$(basename -- ${1%%.cpp}).txt
+		./${1%%.cpp} > $REPORT_DIR/$3/$(basename -- ${1%%.cpp}).txt
 	fi
 
 	# if the OS is Linux and Valgrind is installed, run with Valgrind and redirect output to a text file located in a different directory
 	if [[ -f ${1%%.cpp} && "$OSTYPE" =~ ^linux && $(dpkg -l valgrind 2>/dev/null | grep valgrind) ]]; then
-		$VALGRIND $VFLAGS ./${1%%.cpp} > $TEST_DIR/$4/$(basename -- ${1%%.cpp}).txt 2>&1
+		$VALGRIND $VFLAGS ./${1%%.cpp} > $REPORT_DIR/$4/$(basename -- ${1%%.cpp}).txt 2>&1
 	fi
 
 	# delete executable file
@@ -90,38 +87,8 @@ compile_and_redirect() {
 	fi
 }
 
-execute_and_redirect_output() {
-	for file in $1/*.cpp; do
-		#ft container
-		compile_and_redirect $file $2 $3 $4
-		#std container
-		compile_and_redirect $file $5 $6 $7
-
-		printf $PURPLE'%-37s' " • $(basename -- ${file%%.cpp})$DEFAULT"
-		if [ -f $TEST_DIR/$3/$(basename -- ${file%%.cpp}).txt ]; then
-			echo -ne "Compiled:$GREEN OK $DEFAULT |  "
-			diff <(sed '$d' $TEST_DIR/$3/$(basename -- ${file%%.cpp}).txt) <(sed '$d' $TEST_DIR/$6/$(basename -- ${file%%.cpp}).txt) > diff
-			if [ -s diff ]; then
-				echo -ne "Result:$RED KO $DEFAULT"
-			else
-				echo -ne "Result:$GREEN OK $DEFAULT |  "
-				echo -ne "FT Time:$GREEN" $(tail -n 1 $TEST_DIR/$3/$(basename -- ${file%%.cpp}).txt) "$DEFAULT |  "
-				echo -ne "STD Time:$GREEN" $(tail -n 1 $TEST_DIR/$6/$(basename -- ${file%%.cpp}).txt)" $DEFAULT"
-			fi
-			check_valgrind_report $TEST_DIR/$4/$(basename -- ${file%%.cpp}).txt
-			rm diff
-		else
-			printf "Compiled:$RED KO $DEFAULT |  Result:$RED KO $DEFAULT"
-		fi
-		echo
-
-	done
-	echo -e $YELLOW"Details about the output can be found in the test_reports directory"$DEFAULT
-	check_compilation_log_file
-}
-
 check_valgrind_report() {
-	if [[ "$OSTYPE" =~ ^linux ]]; then
+	if [[ "$OSTYPE" =~ ^linux && $(dpkg -l valgrind 2>/dev/null | grep valgrind) ]]; then
 		if grep -q "All heap blocks were freed -- no leaks are possible" $1; then
 			echo -ne " |  Leaks:$GREEN OK $DEFAULT |  "
 		else
@@ -137,24 +104,33 @@ check_valgrind_report() {
 }
 
 print_test_results() {
-	for file in $TEST_DIR/$1/*.txt; do
-		printf $PURPLE'%-37s' " • $(basename -- $file .txt)$DEFAULT"
-		if [ -f $TEST_DIR/$2/${file##*/} ]; then
-			echo -ne "Compiled:$GREEN OK $DEFAULT |  "
-			diff <(sed '$d' $file) <(sed '$d' $TEST_DIR/$2/${file##*/}) > diff
-			if [ -s diff ]; then
-				echo -ne "Result:$RED KO $DEFAULT"
-			else
-				echo -ne "Result:$GREEN OK $DEFAULT |  "
-				echo -ne "FT Time:$GREEN" $(tail -n 1 $TEST_DIR/$2/${file##*/}) "$DEFAULT |  "
-				echo -ne "STD Time:$GREEN" $(tail -n 1 $file)" $DEFAULT"
-			fi
-			check_valgrind_report $TEST_DIR/$3/${file##*/}
-			rm diff
+	printf $PURPLE'%-37s' " • $(basename -- ${1%%.cpp})$DEFAULT"
+	if [ -f $REPORT_DIR/$3/$(basename -- ${1%%.cpp}).txt ]; then
+		echo -ne "Compiled:$GREEN OK $DEFAULT |  "
+		diff <(sed '$d' $REPORT_DIR/$2/$(basename -- ${1%%.cpp}).txt) <(sed '$d' $REPORT_DIR/$4/$(basename -- ${1%%.cpp}).txt) > diff
+		if [ -s diff ]; then
+			echo -ne "Result:$RED KO $DEFAULT"
 		else
-			printf "Compiled:$RED KO $DEFAULT |  Result:$RED KO $DEFAULT"
+			echo -ne "Result:$GREEN OK $DEFAULT |  "
+			echo -ne "FT Time:$GREEN" $(tail -n 1 $REPORT_DIR/$2/$(basename -- ${1%%.cpp}).txt) "$DEFAULT |  "
+			echo -ne "STD Time:$GREEN" $(tail -n 1 $REPORT_DIR/$4/$(basename -- ${1%%.cpp}).txt)" $DEFAULT"
 		fi
-		echo
+		check_valgrind_report $REPORT_DIR/$3/$(basename -- ${1%%.cpp}).txt
+		rm diff
+	else
+		printf "Compiled:$RED KO $DEFAULT |  Result:$RED KO $DEFAULT"
+	fi
+	echo
+}
+
+execute_and_compare() {
+	for file in $1/*.cpp; do
+		#ft container
+		compile_and_redirect $file $2 $3 $4
+		#std container
+		compile_and_redirect $file $5 $6 $7
+
+		print_test_results $file $3 $4 $6
 	done
 	echo -e $YELLOW"Details about the output can be found in the test_reports directory"$DEFAULT
 	check_compilation_log_file
@@ -162,7 +138,7 @@ print_test_results() {
 
 start_tests() {
 	create_directories $2 $3 $4 $5
-	execute_and_redirect_output $1 $NS_FT $2 $3 $NS_STD $4 $5
+	execute_and_compare $1 $NS_FT $2 $3 $NS_STD $4 $5
 }
 
 #######################################
