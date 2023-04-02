@@ -73,20 +73,49 @@ create_directories() {
 }
 
 execute_and_redirect_output() {
-	for file in $2/*.cpp; do
+	for file in $1/*.cpp; do
 		# compile object files then run and redirect output to a text file
-		$CC $CFLAGS -D $1 -I $INCLUDE -I $PROJECT_PATH -I $PROJECT_UTILS $file -o ${file%%.cpp}
+		$CC $CFLAGS -D $2 -I $INCLUDE -I $PROJECT_PATH -I $PROJECT_UTILS $file -o ${file%%.cpp} 2> $LOG
 		./${file%%.cpp} > $TEST_DIR/$3/$(basename -- ${file%%.cpp}).txt
 
 		# (if OS is linux) run with valgrind and redirect output to a text file located in a different directory
-		# if [[ "$OSTYPE" =~ ^linux ]]; then
-		# 	$VALGRIND $VFLAGS ./${file} > $TEST_DIR/$2/$(basename -- $file .o).txt 2>&1
-		# fi
+		if [[ "$OSTYPE" =~ ^linux ]]; then
+			$VALGRIND $VFLAGS ./${file%%.cpp} > $TEST_DIR/$4/$(basename -- ${file%%.cpp}).txt 2>&1
+		fi
+
+
+		$CC $CFLAGS -D $5 -I $INCLUDE -I $PROJECT_PATH -I $PROJECT_UTILS $file -o ${file%%.cpp} 2> $LOG
+		./${file%%.cpp} > $TEST_DIR/$6/$(basename -- ${file%%.cpp}).txt
+
+		if [[ "$OSTYPE" =~ ^linux ]]; then
+			$VALGRIND $VFLAGS ./${file%%.cpp} > $TEST_DIR/$7/$(basename -- ${file%%.cpp}).txt 2>&1
+		fi
+
+
+		printf $PURPLE'%-37s' " • $(basename -- ${file%%.cpp})$DEFAULT"
+		if [ -f $TEST_DIR/$3/$(basename -- ${file%%.cpp}).txt ]; then
+			echo -ne "Compiled:$GREEN OK $DEFAULT |  "
+			diff <(sed '$d' $TEST_DIR/$3/$(basename -- ${file%%.cpp}).txt) <(sed '$d' $TEST_DIR/$6/$(basename -- ${file%%.cpp}).txt) > diff
+			if [ -s diff ]; then
+				echo -ne "Result:$RED KO $DEFAULT"
+			else
+				echo -ne "Result:$GREEN OK $DEFAULT |  "
+				echo -ne "FT Time:$GREEN" $(tail -n 1 $TEST_DIR/$3/$(basename -- ${file%%.cpp}).txt) "$DEFAULT |  "
+				echo -ne "STD Time:$GREEN" $(tail -n 1 $TEST_DIR/$6/$(basename -- ${file%%.cpp}).txt)" $DEFAULT"
+			fi
+			check_valgrind_report $TEST_DIR/$4/$(basename -- ${file%%.cpp}).txt
+			rm diff
+		else
+			printf "Compiled:$RED KO $DEFAULT |  Result:$RED KO $DEFAULT"
+		fi
+		echo
+
 
 		# delete object and executable file
 		rm ${file%%.cpp}
 	done
-	printf "\033[A\033[2K\r"
+	echo -e $YELLOW"Details about the output can be found in the test_reports directory"$DEFAULT
+	check_compilation_log_file
 }
 
 check_valgrind_report() {
@@ -133,8 +162,8 @@ start_tests() {
 	printf "\033[A\033[2K\r"
 	create_directories $2 $3 $4 $5
 
-	echo -e $YELLOW"Turning ft::$6 objects into executables & saving their output to a .txt file"$DEFAULT
-	execute_and_redirect_output $NS_FT $1 $2 $3
+	# echo -e $YELLOW"Turning ft::$6 objects into executables & saving their output to a .txt file"$DEFAULT
+	execute_and_redirect_output $1 $NS_FT $2 $3 $NS_STD $4 $5
 	# echo -e $YELLOW"Turning std::$6 objects into executables & saving their output to a .txt file"$DEFAULT
 	# execute_and_redirect_output $NS_STD $1 $4 $5
 
