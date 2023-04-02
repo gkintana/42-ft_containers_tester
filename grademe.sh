@@ -17,20 +17,22 @@ YELLOW='\033[1;33m'
 PURPLE='\033[1;35m'
 CYAN='\033[1;36m'
 
-PROJECT_PATH="../42-ft_containers/include/containers"
-PROJECT_UTILS="../42-ft_containers/include/utilities"
+PROJECT_PATH=../42-ft_containers/include/containers
+PROJECT_UTILS=../42-ft_containers/include/utilities
 
 CC=c++
 CFLAGS='-std=c++98 -Wall -Wextra -Werror -g3'
-INCLUDE="include"
+INCLUDE=include
 VALGRIND=valgrind
 VFLAGS='--leak-check=full --show-leak-kinds=all'
-NS_FT="NAMESPACE=ft"
-NS_STD="NAMESPACE=std"
+NS_FT=NAMESPACE=ft
+NS_STD=NAMESPACE=std
 RM='rm -rf'
 LOG=compilation.log
 
 VEC_TESTS=sources/vector_tests
+MAP_TESTS=sources/map_tests
+STACK_TESTS=sources/stack_tests
 
 REPORT_DIR=test_reports
 
@@ -144,27 +146,18 @@ start_tests() {
 #######################################
 #             Compilation             #
 #######################################
+rm -rf compilation.log test_reports
 if [ $1 == "vector" ]; then
 	echo -e $CYAN"Vector Tester"$DEFAULT
-	rm -rf compilation.log test_reports
 	start_tests $VEC_TESTS $FT_VEC $FT_VEC_LEAKS $STD_VEC $STD_VEC_LEAKS "vector"
 
 elif [ $1 == "map" ]; then
 	echo -e $CYAN"Map Tester"$DEFAULT
-	echo -e $YELLOW"Compiling..."$DEFAULT
-	make clean && make -k map 2> $LOG
-	start_tests $FT_MAP $FT_MAP_LEAKS $STD_MAP $STD_MAP_LEAKS "map"
+	start_tests $MAP_TESTS $FT_MAP $FT_MAP_LEAKS $STD_MAP $STD_MAP_LEAKS "map"
 
 elif [ $1 == "stack" ]; then
 	echo -e $CYAN"Stack Tester"$DEFAULT
-	echo -e $YELLOW"Compiling..."$DEFAULT
-	make clean && make -k stack 2> $LOG
-	start_tests $FT_STACK $FT_STACK_LEAKS $STD_STACK $STD_STACK_LEAKS "stack"
-
-elif [ $1 == "set" ]; then
-	echo -e $CYAN"Set Tester"$DEFAULT
-	echo -e $YELLOW"Will be available in the future"$DEFAULT
-	exit 1
+	start_tests $STACK_TESTS $FT_STACK $FT_STACK_LEAKS $STD_STACK $STD_STACK_LEAKS "stack"
 
 else
 	echo -e $RED"Error: Unknown Container Type"$DEFAULT
