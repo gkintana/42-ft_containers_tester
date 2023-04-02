@@ -72,25 +72,30 @@ create_directories() {
 	fi
 }
 
+compile_and_redirect() {
+	# compile and redirect output to a text file
+	$CC $CFLAGS -D $2 -I $INCLUDE -I $PROJECT_PATH -I $PROJECT_UTILS $1 -o ${1%%.cpp} 2>> $LOG
+	if [ -f ${1%%.cpp} ]; then
+		./${1%%.cpp} > $TEST_DIR/$3/$(basename -- ${1%%.cpp}).txt
+	fi
+
+	# if the OS is Linux and Valgrind is installed, run with Valgrind and redirect output to a text file located in a different directory
+	if [[ -f ${1%%.cpp} && "$OSTYPE" =~ ^linux && $(dpkg -l valgrind 2>/dev/null | grep valgrind) ]]; then
+		$VALGRIND $VFLAGS ./${1%%.cpp} > $TEST_DIR/$4/$(basename -- ${1%%.cpp}).txt 2>&1
+	fi
+
+	# delete executable file
+	if [ -f ${1%%.cpp} ]; then
+		rm ${file%%.cpp}
+	fi
+}
+
 execute_and_redirect_output() {
 	for file in $1/*.cpp; do
-		# compile object files then run and redirect output to a text file
-		$CC $CFLAGS -D $2 -I $INCLUDE -I $PROJECT_PATH -I $PROJECT_UTILS $file -o ${file%%.cpp} 2> $LOG
-		./${file%%.cpp} > $TEST_DIR/$3/$(basename -- ${file%%.cpp}).txt
-
-		# (if OS is linux) run with valgrind and redirect output to a text file located in a different directory
-		if [[ "$OSTYPE" =~ ^linux ]]; then
-			$VALGRIND $VFLAGS ./${file%%.cpp} > $TEST_DIR/$4/$(basename -- ${file%%.cpp}).txt 2>&1
-		fi
-
-
-		$CC $CFLAGS -D $5 -I $INCLUDE -I $PROJECT_PATH -I $PROJECT_UTILS $file -o ${file%%.cpp} 2> $LOG
-		./${file%%.cpp} > $TEST_DIR/$6/$(basename -- ${file%%.cpp}).txt
-
-		if [[ "$OSTYPE" =~ ^linux ]]; then
-			$VALGRIND $VFLAGS ./${file%%.cpp} > $TEST_DIR/$7/$(basename -- ${file%%.cpp}).txt 2>&1
-		fi
-
+		#ft container
+		compile_and_redirect $file $2 $3 $4
+		#std container
+		compile_and_redirect $file $5 $6 $7
 
 		printf $PURPLE'%-37s' " • $(basename -- ${file%%.cpp})$DEFAULT"
 		if [ -f $TEST_DIR/$3/$(basename -- ${file%%.cpp}).txt ]; then
@@ -110,9 +115,6 @@ execute_and_redirect_output() {
 		fi
 		echo
 
-
-		# delete object and executable file
-		rm ${file%%.cpp}
 	done
 	echo -e $YELLOW"Details about the output can be found in the test_reports directory"$DEFAULT
 	check_compilation_log_file
@@ -159,15 +161,8 @@ print_test_results() {
 }
 
 start_tests() {
-	printf "\033[A\033[2K\r"
 	create_directories $2 $3 $4 $5
-
-	# echo -e $YELLOW"Turning ft::$6 objects into executables & saving their output to a .txt file"$DEFAULT
 	execute_and_redirect_output $1 $NS_FT $2 $3 $NS_STD $4 $5
-	# echo -e $YELLOW"Turning std::$6 objects into executables & saving their output to a .txt file"$DEFAULT
-	# execute_and_redirect_output $NS_STD $1 $4 $5
-
-	# print_test_results $3 $1 $2
 }
 
 #######################################
@@ -175,8 +170,7 @@ start_tests() {
 #######################################
 if [ $1 == "vector" ]; then
 	echo -e $CYAN"Vector Tester"$DEFAULT
-	echo -e $YELLOW"Compiling..."$DEFAULT
-	# make clean && make -k vector 2> $LOG
+	rm -rf compilation.log test_reports
 	start_tests $VEC_TESTS $FT_VEC $FT_VEC_LEAKS $STD_VEC $STD_VEC_LEAKS "vector"
 
 elif [ $1 == "map" ]; then
