@@ -17,13 +17,20 @@ YELLOW='\033[1;33m'
 PURPLE='\033[1;35m'
 CYAN='\033[1;36m'
 
+PROJECT_PATH="../42-ft_containers/include/containers"
+PROJECT_UTILS="../42-ft_containers/include/utilities"
+
 CC=c++
-CFLAGS='-Wall -Wextra -Werror'
+CFLAGS='-std=c++98 -Wall -Wextra -Werror -g3'
+INCLUDE="include"
 VALGRIND=valgrind
 VFLAGS='--leak-check=full --show-leak-kinds=all'
+NS_FT="NAMESPACE=ft"
+NS_STD="NAMESPACE=std"
 RM='rm -rf'
 LOG=compilation.log
 
+VEC_TESTS=sources/vector_tests
 
 TEST_DIR=test_reports
 
@@ -56,26 +63,28 @@ check_compilation_log_file() {
 	fi
 }
 
-create_folders_for_valgrind_output() {
+create_directories() {
+	mkdir -p $TEST_DIR/$1
+	mkdir -p $TEST_DIR/$3
 	if [[ "$OSTYPE" =~ ^linux ]]; then
-		mkdir -p $TEST_DIR/$1
 		mkdir -p $TEST_DIR/$2
+		mkdir -p $TEST_DIR/$4
 	fi
 }
 
 execute_and_redirect_output() {
-	for file in $TEST_DIR/$1/*.o; do
+	for file in $2/*.cpp; do
 		# compile object files then run and redirect output to a text file
-		$CC $CFLAGS $file -o ${file%%.o}
-		./${file%%.o} > ${file%%.o}.txt
+		$CC $CFLAGS -D $1 -I $INCLUDE -I $PROJECT_PATH -I $PROJECT_UTILS $file -o ${file%%.cpp}
+		./${file%%.cpp} > $TEST_DIR/$3/$(basename -- ${file%%.cpp}).txt
 
 		# (if OS is linux) run with valgrind and redirect output to a text file located in a different directory
-		if [[ "$OSTYPE" =~ ^linux ]]; then
-			$VALGRIND $VFLAGS ./${file%%.o} > $TEST_DIR/$2/$(basename -- $file .o).txt 2>&1
-		fi
+		# if [[ "$OSTYPE" =~ ^linux ]]; then
+		# 	$VALGRIND $VFLAGS ./${file} > $TEST_DIR/$2/$(basename -- $file .o).txt 2>&1
+		# fi
 
 		# delete object and executable file
-		rm $file ${file%%.o}
+		rm ${file%%.cpp}
 	done
 	printf "\033[A\033[2K\r"
 }
@@ -122,14 +131,14 @@ print_test_results() {
 
 start_tests() {
 	printf "\033[A\033[2K\r"
-	create_folders_for_valgrind_output $4 $2
+	create_directories $2 $3 $4 $5
 
-	echo -e $YELLOW"Turning ft::$5 objects into executables & saving their output to a .txt file"$DEFAULT
-	execute_and_redirect_output $1 $2
-	echo -e $YELLOW"Turning std::$5 objects into executables & saving their output to a .txt file"$DEFAULT
-	execute_and_redirect_output $3 $4
+	echo -e $YELLOW"Turning ft::$6 objects into executables & saving their output to a .txt file"$DEFAULT
+	execute_and_redirect_output $NS_FT $1 $2 $3
+	# echo -e $YELLOW"Turning std::$6 objects into executables & saving their output to a .txt file"$DEFAULT
+	# execute_and_redirect_output $NS_STD $1 $4 $5
 
-	print_test_results $3 $1 $2
+	# print_test_results $3 $1 $2
 }
 
 #######################################
@@ -138,8 +147,8 @@ start_tests() {
 if [ $1 == "vector" ]; then
 	echo -e $CYAN"Vector Tester"$DEFAULT
 	echo -e $YELLOW"Compiling..."$DEFAULT
-	make clean && make -k vector 2> $LOG
-	start_tests $FT_VEC $FT_VEC_LEAKS $STD_VEC $STD_VEC_LEAKS "vector"
+	# make clean && make -k vector 2> $LOG
+	start_tests $VEC_TESTS $FT_VEC $FT_VEC_LEAKS $STD_VEC $STD_VEC_LEAKS "vector"
 
 elif [ $1 == "map" ]; then
 	echo -e $CYAN"Map Tester"$DEFAULT
