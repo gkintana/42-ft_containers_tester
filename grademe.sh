@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ $# -ne 1 ]; then
-	echo -e "Please specify container type\nFormat:"
-	echo -e "    bash grademe.sh <container_type>"
-	echo "Container Types: vector, stack, map, set"
+	echo "Please specify the container type as follows:"
+	echo "    bash grademe.sh <container_type>"
+	echo -e "\nSupported container types:\n    • vector\n    • map\n    • stack"
 	exit 1
 fi
 
@@ -30,26 +30,22 @@ NS_STD=NAMESPACE=std
 RM='rm -rf'
 LOG=compilation.log
 
+#######################################
+#           Test Directories          #
+#######################################
 VEC_TESTS=sources/vector_tests
 MAP_TESTS=sources/map_tests
 STACK_TESTS=sources/stack_tests
 
 REPORT_DIR=test_reports
+LEAKS=_leak_summary
 
 FT_VEC=ft_vector
-FT_VEC_LEAKS=ft_vector_leak_summary
-STD_VEC=std_vector
-STD_VEC_LEAKS=std_vector_leak_summary
-
 FT_MAP=ft_map
-FT_MAP_LEAKS=ft_map_leak_summary
-STD_MAP=std_map
-STD_MAP_LEAKS=std_map_leak_summary
-
 FT_STACK=ft_stack
-FT_STACK_LEAKS=ft_stack_leak_summary
+STD_VEC=std_vector
+STD_MAP=std_map
 STD_STACK=std_stack
-STD_STACK_LEAKS=std_stack_leak_summary
 
 #######################################
 #              Functions              #
@@ -127,11 +123,8 @@ print_test_results() {
 
 execute_and_compare() {
 	for file in $1/*.cpp; do
-		#ft container
-		compile_and_redirect $file $2 $3 $4
-		#std container
-		compile_and_redirect $file $5 $6 $7
-
+		compile_and_redirect $file $2 $3 $4    # ft container
+		compile_and_redirect $file $5 $6 $7    # std container
 		print_test_results $file $3 $4 $6
 	done
 	echo -e $YELLOW"Details about the output can be found in the test_reports directory"$DEFAULT
@@ -149,17 +142,14 @@ start_tests() {
 rm -rf compilation.log test_reports
 if [ $1 == "vector" ]; then
 	echo -e $CYAN"Vector Tester"$DEFAULT
-	start_tests $VEC_TESTS $FT_VEC $FT_VEC_LEAKS $STD_VEC $STD_VEC_LEAKS "vector"
-
+	start_tests $VEC_TESTS $FT_VEC $FT_VEC$LEAKS $STD_VEC $STD_VEC$LEAKS "vector"
 elif [ $1 == "map" ]; then
 	echo -e $CYAN"Map Tester"$DEFAULT
-	start_tests $MAP_TESTS $FT_MAP $FT_MAP_LEAKS $STD_MAP $STD_MAP_LEAKS "map"
-
+	start_tests $MAP_TESTS $FT_MAP $FT_MAP$LEAKS $STD_MAP $STD_MAP$LEAKS "map"
 elif [ $1 == "stack" ]; then
 	echo -e $CYAN"Stack Tester"$DEFAULT
-	start_tests $STACK_TESTS $FT_STACK $FT_STACK_LEAKS $STD_STACK $STD_STACK_LEAKS "stack"
-
+	start_tests $STACK_TESTS $FT_STACK $FT_STACK$LEAKS $STD_STACK $STD_STACK$LEAKS "stack"
 else
-	echo -e $RED"Error: Unknown Container Type"$DEFAULT
+	echo -e $RED"ERROR: Unknown Container Type"$DEFAULT
 	exit 1
 fi
