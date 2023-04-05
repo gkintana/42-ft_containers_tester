@@ -21,7 +21,7 @@ PROJECT_PATH=../42-ft_containers/include/containers
 PROJECT_UTILS=../42-ft_containers/include/utilities
 
 CC=c++
-CFLAGS='-std=c++98 -Wall -Wextra -Werror -g3'
+CFLAGS='-std=c++98 -Wall -Wextra -Werror -g3 -pthread'
 INCLUDE=include
 VALGRIND=valgrind
 VFLAGS='--leak-check=full --show-leak-kinds=all'
@@ -69,14 +69,20 @@ create_directories() {
 
 compile_and_redirect() {
 	# compile and redirect output to a text file
-	$CC $CFLAGS -D $2 -I $INCLUDE -I $PROJECT_PATH -I $PROJECT_UTILS $1 -o ${1%%.cpp} 2>> $LOG
+	$CC $CFLAGS -D $2 -D ENABLE_THREAD=true -I $INCLUDE -I $PROJECT_PATH -I $PROJECT_UTILS $1 -o ${1%%.cpp} 2>> $LOG
 	if [ -f ${1%%.cpp} ]; then
 		./${1%%.cpp} > $REPORT_DIR/$3/$(basename -- ${1%%.cpp}).txt
 	fi
 
-	# if the OS is Linux and Valgrind is installed, run with Valgrind and redirect output to a text file located in a different directory
-	if [[ -f ${1%%.cpp} && "$OSTYPE" =~ ^linux && $(dpkg -l valgrind 2>/dev/null | grep valgrind) ]]; then
-		$VALGRIND $VFLAGS ./${1%%.cpp} > $REPORT_DIR/$4/$(basename -- ${1%%.cpp}).txt 2>&1
+	# if the output of the command above timed out, skip this step
+	if [ "$(tail -n 1 "$REPORT_DIR/$3/$(basename -- ${1%%.cpp}).txt")" != "TIMEOUT" ]; then
+		# if the OS is Linux and Valgrind is installed, recompile without threads (to lessen wait time and not
+		# encounter a leak caused by the pthread). Then run with Valgrind and redirect output to a text file
+		# located in a different directory
+		if [[ -f ${1%%.cpp} && "$OSTYPE" =~ ^linux && $(dpkg -l valgrind 2>/dev/null | grep valgrind) ]]; then
+			$CC $CFLAGS -D $2 -I $INCLUDE -I $PROJECT_PATH -I $PROJECT_UTILS $1 -o ${1%%.cpp} 2>> $LOG
+			$VALGRIND $VFLAGS ./${1%%.cpp} > $REPORT_DIR/$4/$(basename -- ${1%%.cpp}).txt 2>&1
+		fi
 	fi
 
 	# delete executable file
@@ -103,6 +109,12 @@ check_valgrind_report() {
 
 print_test_results() {
 	printf $PURPLE'%-37s' " • $(basename -- ${1%%.cpp})$DEFAULT"
+	if [[ -f $REPORT_DIR/$2/$(basename -- ${1%%.cpp}).txt && "$(tail -n 1 "$REPORT_DIR/$2/$(basename -- ${1%%.cpp}).txt")" == "TIMEOUT" ]]; then
+		printf "Compiled:$GREEN OK $DEFAULT |  Result:$RED TIMEOUT $DEFAULT"
+		echo
+		return
+	fi
+
 	if [ -f $REPORT_DIR/$3/$(basename -- ${1%%.cpp}).txt ]; then
 		echo -ne "Compiled:$GREEN OK $DEFAULT |  "
 		diff <(sed '$d' $REPORT_DIR/$2/$(basename -- ${1%%.cpp}).txt) <(sed '$d' $REPORT_DIR/$4/$(basename -- ${1%%.cpp}).txt) > diff

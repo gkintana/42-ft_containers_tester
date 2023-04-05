@@ -17,10 +17,46 @@ static void fillConstructor();
 static void rangeConstructor();
 static void copyTests();
 
+#include <pthread.h>
+#include <time.h>
+#include <string.h>
+#include <unistd.h>
+
+#ifndef ENABLE_THREAD
+# define ENABLE_THREAD false
+#endif
+
+void* timer_thread(void* arg)
+{
+	(void)arg;
+    time_t start_time = time(NULL);
+    while (true) {
+        time_t current_time = time(NULL);
+        if (difftime(current_time, start_time) > 10) {
+            std::cout << "TIMEOUT" << std::endl;
+            exit(1);
+        }
+        usleep(100);
+    }
+}
+
+
 int main() {
 	timeval exec_time;
 	gettimeofday(&exec_time, NULL);
 	double start = 1.0e6 * exec_time.tv_sec + exec_time.tv_usec;
+
+	if (ENABLE_THREAD == true) {
+		pthread_t timer;
+		if (pthread_create(&timer, NULL, timer_thread, NULL)) {
+			std::cerr << "Error creating thread.\n";
+			return 1;
+		}
+		if (pthread_detach(timer)) {
+			std::cerr << "Error detaching thread.\n";
+			return 1;
+		}
+	}
 
 	defaultConstructor();
 	fillConstructor();
