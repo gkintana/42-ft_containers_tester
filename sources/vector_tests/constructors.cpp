@@ -21,7 +21,6 @@ static void copyTests();
 #include <time.h>
 #include <string.h>
 #include <unistd.h>
-
 #ifndef ENABLE_THREAD
 # define ENABLE_THREAD false
 #endif
@@ -39,7 +38,6 @@ void* timer_thread(void* arg)
         usleep(100);
     }
 }
-
 
 int main() {
 	timeval exec_time;
