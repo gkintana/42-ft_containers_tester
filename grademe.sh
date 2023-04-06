@@ -88,6 +88,7 @@ compile_and_redirect() {
 	# delete executable file
 	if [ -f ${1%%.cpp} ]; then
 		rm ${file%%.cpp}
+		rm -rf ${file%%.cpp}.dSYM
 	fi
 }
 
@@ -115,7 +116,7 @@ print_test_results() {
 		return
 	fi
 
-	if [ -f $REPORT_DIR/$3/$(basename -- ${1%%.cpp}).txt ]; then
+	if [ -f $REPORT_DIR/$2/$(basename -- ${1%%.cpp}).txt ]; then
 		echo -ne "Compiled:$GREEN OK $DEFAULT |  "
 		diff <(sed '$d' $REPORT_DIR/$2/$(basename -- ${1%%.cpp}).txt) <(sed '$d' $REPORT_DIR/$4/$(basename -- ${1%%.cpp}).txt) > diff
 		if [ -s diff ]; then
